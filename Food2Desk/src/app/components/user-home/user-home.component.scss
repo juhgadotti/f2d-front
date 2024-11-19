@@ -1,44 +1,43 @@
 .item-card {
-    border: 1px solid #ddd;
-    padding: 10px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+
+  .item-image {
+    width: 100%;
+    height: 100px;
     border-radius: 8px;
-  
-    .item-image {
-      width: 100%;
-      height: 100px;
-      border-radius: 8px;
-      background-color: #dc3545; // Cor vermelha do Bootstrap
-    }
-  
-    .item-name {
-      font-weight: bold;
-      font-size: 1.2rem;
-      margin-bottom: 5px;
-    }
-  
-    .item-description {
-      font-size: 0.9rem;
-      color: #6c757d; // Cor cinza para descrição
-      line-height: 1.2;
-    }
-  
-    .item-price {
-      font-size: 1rem;
-      font-weight: bold;
-      color: #000;
-    }
-  
-    .btn-circle {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: #dc3545; // Cor vermelha
-      color: #fff;
-      font-size: 1.2rem;
-  
-      &:hover {
-        background-color: #bb2d3b; // Vermelho mais escuro
-      }
+    background-color: #dc3545; // Cor vermelha do Bootstrap
+  }
+
+  .item-name {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+
+  .item-description {
+    font-size: 0.9rem;
+    color: #6c757d; // Cor cinza para descrição
+    line-height: 1.2;
+  }
+
+  .item-price {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #000;
+  }
+
+  .btn-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #dc3545; // Cor vermelha
+    color: #fff;
+    font-size: 1.2rem;
+
+    &:hover {
+      background-color: #bb2d3b; // Vermelho mais escuro
     }
   }
-  
+}
