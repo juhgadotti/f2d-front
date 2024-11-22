@@ -1,8 +1,21 @@
-<p>ADFDFDFDFDFDFDFDFDFDFDFDFDF</p>
-<div>aaaaaaaaaa</div>
-<div *ngFor="let item of items">
-  
-  <span class="item-name"> {{ item.name }} </span> 
-  <p>{{ item.description }}</p>
-  <p>{{ item.price }}</p>
-</div>
+<app-header></app-header>
+<main>
+  <p>ADFDFDFDFDFDFDFDFDFDFDFDFDF</p>
+  <div>aaaaaaaaaa</div>
+  <div class="col-6" *ngFor="let item of items">
+    <div class="card item-card">
+      <div class="col-3">
+        <div class="item-image bg-danger">
+          <img src='https://www.google.com/url?sa=i&url=https%3A%2F%2Fpanattos.com.br%2Fproduto%2Fcoxinha-frango-requeijao-massa-congelada&psig=AOvVaw2K1mvEJraPa3NWWyq5Agqy&ust=1732208382382000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMiIopyx64kDFQAAAAAdAAAAABAJ'>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="item-name"> {{ item.name }} </p> 
+        <p class="item-description"> {{ item.description }} </p> 
+        <p class="item-price"> R$ {{ item.price }} </p> 
+        <i class="fa-solid fa-cart-shopping"></i>
+      </div>
+    </div>
+  </div>  
+</main>
+<script src="https://kit.fontawesome.com/5766567a39.js" crossorigin="anonymous"></script>

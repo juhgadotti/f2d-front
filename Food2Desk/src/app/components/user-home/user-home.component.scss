@@ -3,6 +3,14 @@
   padding: 10px;
   border-radius: 8px;
 
+  .item-name {
+    font-weight: bold;
+    font-size: 1.2rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 1px;
+    color: #333333;
+  }
+
   .item-image {
     width: 100%;
     height: 100px;
@@ -10,36 +18,34 @@
     background-color: #bf4e4b; // Cor vermelha do Bootstrap
   }
 
+  .item-description {
+    font-size: 0.9rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #acacac; // Cor cinza para descrição
+    line-height: 1.2;
+  }
+
   .item-price {
     font-size: 1rem;
     font-weight: bold;
-    color: #000;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;    
+    color: #333333;
   }
 
   .btn-circle {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #dc3545; // Cor vermelha
+    background-color: #dc3545; // vermelho do f2d
     color: #fff;
     font-size: 1.2rem;
 
     &:hover {
-      background-color: #bb2d3b; // Vermelho mais escuro
+      background-color: #aa3939; // vermelho + escuro
     }
   }
 }
 
-.item-name {
-  font-weight: bold;
-  font-size: 1.2rem;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  padding: 2px;
-  color: #000;
-}
 
-.item-description {
-  font-size: 0.9rem;
-  color: #6c757d; // Cor cinza para descrição
-  line-height: 1.2;
-}
+
+
