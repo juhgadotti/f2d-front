@@ -11,8 +11,8 @@ import { HeaderComponent } from '../../header/header.component';
 })
 export class UserHomeComponent {
   items = [
-    { image: '../../img/food/coca.png', name: 'Item 1', description: 'Description of item 1', price: 10.99 },
-    { name: 'Item 2', description: 'Description of item 2', price: 20.49 },
+    { image: "images/coca.png", name: 'Coca', description: 'Coca cola 350ml', price: 5.99 },
+    { image: "images/coxinha.jpg", name: 'Coxinha', description: 'Coxinha de frango com ou sem catupiry', price: 7.99 },
     { name: 'Item 3', description: 'Description of item 3', price: 15.75 },
   ];
   
