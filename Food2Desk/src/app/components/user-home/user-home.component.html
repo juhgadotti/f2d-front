@@ -6,9 +6,9 @@
     <div class="card item-card">     
       
       
-        <img class="item-image" id="imageItem" [src]="item.image" alt="cuuuu">
+        <img  id="imageItem" [src]="item.image" alt="cuuuu" [ngStyle]="{'width.px': 120, 'heigth.px': 120}">
         <div class="item-info">
-          <p class="item-name"> {{ item.name }} </p> 
+          <p class="item-name" style="margin-top: 6px;"> {{ item.name }} </p> 
           <p class="item-description"> {{ item.description }} </p> 
           <p class="item-price"> R$ {{ item.price }} </p> 
           <i class="fa-solid fa-cart-shopping"></i>        
