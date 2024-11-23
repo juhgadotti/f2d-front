@@ -2,18 +2,16 @@
 <main>
   <p>ADFDFDFDFDFDFDFDFDFDFDFDFDF</p>
   <div>aaaaaaaaaa</div>
-  <div class="col-6" *ngFor="let item of items">
-    <div class="card item-card">     
-      
-      
-        <img  id="imageItem" [src]="item.image" alt="cuuuu" [ngStyle]="{'width.px': 120, 'heigth.px': 120}">
-        <div class="item-info">
-          <p class="item-name" style="margin-top: 6px;"> {{ item.name }} </p> 
-          <p class="item-description"> {{ item.description }} </p> 
-          <p class="item-price"> R$ {{ item.price }} </p> 
-          <i class="fa-solid fa-cart-shopping"></i>        
-      </div>
-    </div>
-  </div>  
+      <div class="col-6" *ngFor="let item of items">
+        <div class="card item-card">     
+            <img  id="imageItem" [src]="item.image" alt="cuuuu" [ngStyle]="{'width.px': 120, 'heigth.px': 120}">
+            <div class="item-info">
+              <p class="item-name" style="margin-top: 6px;"> {{ item.name }} </p> 
+              <p class="item-description"> {{ item.description }} </p> 
+              <p class="item-price"> R$ {{ item.price }} </p> 
+              <i class="fa-solid fa-cart-shopping"></i>        
+        </div> 
+    </div>  
+  </div>
 </main>
 <script src="https://kit.fontawesome.com/5766567a39.js" crossorigin="anonymous"></script>
