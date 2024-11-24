@@ -1,13 +1,15 @@
 header {
     display: flex;
     padding-inline: 16px;
-    padding-block: 10px;
+    padding-block: 3px;
     background-color: #bf4e4b;
     color: #ffe497;
     align-items: center;
-    justify-content: center;
-    font-size: 2.5rem;
+    justify-content: center;   
     font-weight: bold;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 
+img {
+max-width: 130px;
 }
