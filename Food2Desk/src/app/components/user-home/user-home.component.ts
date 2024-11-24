@@ -10,10 +10,15 @@ import { HeaderComponent } from '../../header/header.component';
   standalone: true
 })
 export class UserHomeComponent {
+  cart: any[] = [];
+  
   items = [
     { image: "images/coca.png", name: 'Coca', description: 'Coca cola 350ml', price: 5.99 },
     { image: "images/coxinha.jpg", name: 'Coxinha', description: 'Coxinha de frango com ou sem catupiry', price: 7.99 },
     { name: 'Item 3', description: 'Description of item 3', price: 15.75 },
   ];
   
+  addToCart(item: any){
+    this.cart.push(item);
+  }
 }

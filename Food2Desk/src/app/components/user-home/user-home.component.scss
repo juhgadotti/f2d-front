@@ -3,7 +3,6 @@
   padding: 4px;
   border-radius: 8px;
   display: flex;
-  align-items: center;
   gap: 10px; /* Espaço entre imagem e texto */
   margin-bottom: 10px; /* Espaço entre itens */
 
@@ -16,8 +15,6 @@
   }
 
   .item-image {
-    max-width: 70px;
-    max-height: 70px;
     background: 50% 50% no-repeat;
     border-radius: 4px;
     background-color: #bf4e4b; // Cor vermelha do Bootstrap
@@ -33,6 +30,7 @@
   .item-price {
     font-size: 1rem;
     font-weight: bold;
+    margin-top: auto;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;    
     color: #333333;
   }
@@ -40,22 +38,23 @@
   .item-info {
     display: flex;
     flex-direction: column; 
+    justify-content: space-between; 
+    flex: 1;
   }
 
-  .btn-circle {
-    width: 50px;
-    height: 50px;
+  .btn-cart{
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     background-color: #dc3545; // vermelho do f2d
     color: #fff;
-    font-size: 1.2rem;
-
+    font-size: 1rem;
+    border: none;
+    align-items: end;
+  
     &:hover {
-      background-color: #aa3939; // vermelho + escuro
+      background-color: #aa3939; // vermelho + escuro]
     }
   }
 }
-
-
-
 
