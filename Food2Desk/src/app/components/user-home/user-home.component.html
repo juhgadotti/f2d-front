@@ -11,15 +11,17 @@
               <div class="item-info">
                 <p class="item-name" style="margin-top: 6px;"> {{ item.name }} </p> 
                 <p class="item-description"> {{ item.description }} </p> 
-                <p class="item-price"> R$ {{ item.price }} <button class="btn-cart float-right" (click)="addToCart(item)">$ </button> </p>              
+                <p class="item-price"> R$ {{ item.price }} <button class="btn-cart float-right" (click)="addToCart(item, true)">$</button> </p>              
               </div> 
           </div>
         </div> 
       </div>
       <div class="col-md-6">
+        Itens: <span>{{cart.length}}</span>
         <div *ngFor="let shop of cart">
-            <p>{{shop.name}}</p>
-        </div>
+            <p>{{shop.name}} ({{shop.quantity}}) <button class="btn-cart float-right" (click)="addToCart(shop, false)"> - </button></p>
+          </div>
+          <p>{{totalPrice}}</p>
       </div>
     </div>
   </div>  

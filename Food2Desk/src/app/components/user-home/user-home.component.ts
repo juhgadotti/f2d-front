@@ -11,14 +11,34 @@ import { HeaderComponent } from '../../header/header.component';
 })
 export class UserHomeComponent {
   cart: any[] = [];
-  
+  totalPrice: string = '0.00';
+
+
   items = [
-    { image: "images/coca.png", name: 'Coca', description: 'Coca cola 350ml', price: 5.99 },
-    { image: "images/coxinha.jpg", name: 'Coxinha', description: 'Coxinha de frango com ou sem catupiry', price: 7.99 },
-    { name: 'Item 3', description: 'Description of item 3', price: 15.75 },
+    { id: 1, image: "images/coca.png", name: 'Coca', description: 'Coca cola 350ml', price: 5.99 },
+    { id: 2, image: "images/coxinha.jpg", name: 'Coxinha', description: 'Coxinha de frango com ou sem catupiry', price: 7.99 },
+    { id: 3, name: 'Item 3', description: 'Description of item 3', price: 15.75 },
   ];
-  
-  addToCart(item: any){
-    this.cart.push(item);
+
+  addToCart(item: any, isAdding: boolean) {
+
+    const existingItem = this.cart.find(cartItem => cartItem.id === item.id);
+
+    if (isAdding) {
+      if (!existingItem) {
+        this.cart.push({ ...item, quantity: 1 }); 
+      } else {
+        existingItem.quantity += 1; 
+      }      
+      this.totalPrice += item.price.toFixed(2).replace('.', ',');
+    } else {
+        if(existingItem.quantity == 1){
+          this.cart = this.cart.filter(cartItem => cartItem.id !== item.id);
+        } else {
+          existingItem.quantity -= 1;          
+        }       
+      total -= item.price.toFixed(2).replace('.', ',');
+    }
+    this.totalPrice = total;
   }
 }
