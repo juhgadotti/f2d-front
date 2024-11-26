@@ -41,8 +41,14 @@ export class UserHomeComponent {
     this.totalPrice = total.toFixed(2).replace('.', ',');
   }
 
-  sendOrder(){
+  sendOrder() {
     console.log('pedido enviado');
     this.openOrder = false;
+  }
+
+  newOrder() {
+    this.cart = [];
+    this.openOrder = true;
+    this.totalPrice = '';
   }
 }

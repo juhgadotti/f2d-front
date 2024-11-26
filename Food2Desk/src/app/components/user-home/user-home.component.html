@@ -6,29 +6,40 @@
     <div class="row">
       <div class="col-md-6">
         <div *ngFor="let item of items">
-          <div class="item-card display-flex">     
-              <img class="item-image" id="imageItem" [src]="item.image" alt="cuuuu" [ngStyle]="{'width.px': 120, 'heigth.px': 120}">
-              <div class="item-info">
-                <p class="item-name" style="margin-top: 6px;"> {{ item.name }} </p> 
-                <p class="item-description"> {{ item.description }} </p> 
-                <p class="item-price"> R$ {{ item.price }} <button class="btn-cart float-right" (click)="addToCart(item, true)">$</button> </p>              
-              </div> 
+          <div class="item-card display-flex">
+            <img class="item-image" id="imageItem" [src]="item.image" alt="cuuuu"
+              [ngStyle]="{'width.px': 120, 'heigth.px': 120}">
+            <div class="item-info">
+              <p class="item-name" style="margin-top: 6px;"> {{ item.name }} </p>
+              <p class="item-description"> {{ item.description }} </p>
+              <p class="item-price"> R$ {{ item.price }} <button class="btn-cart float-right"
+                  (click)="addToCart(item, true)">$</button> </p>
+            </div>
           </div>
-        </div> 
+        </div>
       </div>
-      <div class="col-md-6" *ngIf="openOrder; else orderSent">
-        <p>Total: {{totalPrice}} <button class="btn-cart ml-7" (click)="sendOrder()"> Enviar Pedido </button></p>
-        Itens: <span>{{cart.length}}</span>
-        <div *ngFor="let shop of cart">
+      <div class="col-md-6" >
+        <div *ngIf="openOrder; else orderSent">
+          <p>Total: {{totalPrice}} <button class="btn-cart ml-7" *ngIf="cart.length" (click)="sendOrder()"> Enviar
+              Pedido
+            </button></p>
+          Itens: <span>{{cart.length}}</span>
+          <div *ngFor="let shop of cart">
             <p>{{shop.name}}
               <button class="btn-cart float-right" (click)="addToCart(shop, false)"> - </button>
               ({{shop.quantity}})
               <button class="btn-cart float-right" (click)="addToCart(shop, true)"> + </button>
             </p>
-          </div>         
-      </div>
-      <ng-template #orderSent> Pedido enviado! </ng-template>
+          </div>
+        </div>
+        <ng-template #orderSent>
+          <div>
+            <p> Pedido enviado! </p>
+            <button (click)="newOrder()"> Fazer novo pedido </button>
+          </div>
+        </ng-template>
+      </div>      
     </div>
-  </div>  
+  </div>
 </main>
 <script src="https://kit.fontawesome.com/5766567a39.js" crossorigin="anonymous"></script>
