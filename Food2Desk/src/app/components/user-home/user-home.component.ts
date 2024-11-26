@@ -29,16 +29,15 @@ export class UserHomeComponent {
         this.cart.push({ ...item, quantity: 1 }); 
       } else {
         existingItem.quantity += 1; 
-      }      
-      this.totalPrice += item.price.toFixed(2).replace('.', ',');
+      }          
     } else {
         if(existingItem.quantity == 1){
           this.cart = this.cart.filter(cartItem => cartItem.id !== item.id);
         } else {
           existingItem.quantity -= 1;          
-        }       
-      total -= item.price.toFixed(2).replace('.', ',');
+        }            
     }
-    this.totalPrice = total;
+    const total = this.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    this.totalPrice = total.toFixed(2).replace('.', ',');
   }
 }

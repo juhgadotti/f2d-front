@@ -19,7 +19,11 @@
       <div class="col-md-6">
         Itens: <span>{{cart.length}}</span>
         <div *ngFor="let shop of cart">
-            <p>{{shop.name}} ({{shop.quantity}}) <button class="btn-cart float-right" (click)="addToCart(shop, false)"> - </button></p>
+            <p>{{shop.name}}
+              <button class="btn-cart float-right" (click)="addToCart(shop, false)"> - </button>
+              ({{shop.quantity}})
+              <button class="btn-cart float-right" (click)="addToCart(shop, true)"> + </button>
+            </p>
           </div>
           <p>{{totalPrice}}</p>
       </div>
