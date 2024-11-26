@@ -12,7 +12,7 @@ import { HeaderComponent } from '../../header/header.component';
 export class UserHomeComponent {
   cart: any[] = [];
   totalPrice: string = '0.00';
-
+  openOrder: boolean =  true;
 
   items = [
     { id: 1, image: "images/coca.png", name: 'Coca', description: 'Coca cola 350ml', price: 5.99 },
@@ -39,5 +39,10 @@ export class UserHomeComponent {
     }
     const total = this.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
     this.totalPrice = total.toFixed(2).replace('.', ',');
+  }
+
+  sendOrder(){
+    console.log('pedido enviado');
+    this.openOrder = false;
   }
 }
