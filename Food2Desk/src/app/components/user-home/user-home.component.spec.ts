@@ -1,5 +1,4 @@
-import { ComponentFixture, TestBed, RouterLink, RouterOutlet } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed} from '@angular/core/testing';
 import { UserHomeComponent } from './user-home.component';
 
 describe('UserHomeComponent', () => {
