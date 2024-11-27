@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { HeaderComponent } from '../../header/header.component';
 
 @Component({
@@ -10,6 +11,7 @@ import { HeaderComponent } from '../../header/header.component';
   standalone: true
 })
 export class UserHomeComponent {
+  constructor(private router: Router) {}
   cart: any[] = [];
   totalPrice: string = '0.00';
   openOrder: boolean =  true;
@@ -18,6 +20,11 @@ export class UserHomeComponent {
     { id: 1, image: "images/coca.png", name: 'Coca', description: 'Coca cola 350ml', price: 5.99 },
     { id: 2, image: "images/coxinha.jpg", name: 'Coxinha', description: 'Coxinha de frango com ou sem catupiry', price: 7.99 },
     { id: 3, name: 'Item 3', description: 'Description of item 3', price: 15.75 },
+    { id: 4, name: 'Item 3', description: 'Description of item 3', price: 15.75 },
+    { id: 5, name: 'Item 3', description: 'Description of item 3', price: 15.75 },
+    { id: 6, name: 'Item 3', description: 'Description of item 3', price: 15.75 },
+    { id: 7, name: 'Item 3', description: 'Description of item 3', price: 15.75 },
+    { id: 8, name: 'Item 3', description: 'Description of item 3', price: 15.75 },
   ];
 
   addToCart(item: any, isAdding: boolean) {
@@ -50,5 +57,9 @@ export class UserHomeComponent {
     this.cart = [];
     this.openOrder = true;
     this.totalPrice = '';
+  }
+
+  goToOrderStatus() {
+    this.router.navigate(['/user-order-status']);
   }
 }

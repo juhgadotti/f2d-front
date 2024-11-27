@@ -18,7 +18,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6" >
+      <div class="col-md-6 cart">
         <div *ngIf="openOrder; else orderSent">
           <p>Total: {{totalPrice}} <button class="btn-cart ml-7" *ngIf="cart.length" (click)="sendOrder()"> Enviar
               Pedido
@@ -35,7 +35,9 @@
         <ng-template #orderSent>
           <div>
             <p> Pedido enviado! </p>
-            <button (click)="newOrder()"> Fazer novo pedido </button>
+            <p> Previsão de entrega: </p>
+            <button (click)="newOrder()"> Fazer novo pedido </button> 
+            <button (click)="goToOrderStatus()"> Acompanhar status do pedido </button>
           </div>
         </ng-template>
       </div>      
