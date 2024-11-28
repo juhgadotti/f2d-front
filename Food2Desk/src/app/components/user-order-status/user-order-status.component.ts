@@ -10,5 +10,5 @@ import { HeaderComponent } from '../../header/header.component';
   styleUrl: './user-order-status.component.scss'
 })
 export class UserOrderStatusComponent {
-
+  
 }

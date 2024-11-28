@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../../header/header.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user-home',
-  imports: [CommonModule, HeaderComponent],
+  imports: [CommonModule, HeaderComponent, FormsModule],
   templateUrl: './user-home.component.html',
   styleUrls: ['./user-home.component.scss'],
   standalone: true
@@ -14,7 +15,13 @@ export class UserHomeComponent {
   constructor(private router: Router) {}
   cart: any[] = [];
   totalPrice: string = '0.00';
-  openOrder: boolean =  true;
+  orderItens: boolean =  true;
+  orderSent: boolean = false;
+  deliveryNow: boolean =  false;
+  deliverySchedule: boolean =  false;
+  deliveryTime: string = '';
+
+  selectedOffice: number | null = null; 
 
   items = [
     { id: 1, image: "images/coca.png", name: 'Coca', description: 'Coca cola 350ml', price: 5.99 },
@@ -26,6 +33,12 @@ export class UserHomeComponent {
     { id: 7, name: 'Item 3', description: 'Description of item 3', price: 15.75 },
     { id: 8, name: 'Item 3', description: 'Description of item 3', price: 15.75 },
   ];
+
+  offices = [
+    { id: 1, number: '2502', floor: '25' },
+    { id: 2, number: '2503', floor: '25' },
+    { id: 3, number: '2504', floor: '4' }
+  ]
 
   addToCart(item: any, isAdding: boolean) {
 
@@ -50,16 +63,20 @@ export class UserHomeComponent {
 
   sendOrder() {
     console.log('pedido enviado');
-    this.openOrder = false;
+    this.orderItens = false;
   }
 
   newOrder() {
     this.cart = [];
-    this.openOrder = true;
+    this.orderItens = true;
     this.totalPrice = '';
   }
 
   goToOrderStatus() {
     this.router.navigate(['/user-order-status']);
+  }
+
+  confirmOrder() { 
+    this.orderSent = true;
   }
 }
