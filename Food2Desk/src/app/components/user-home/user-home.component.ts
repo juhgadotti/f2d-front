@@ -17,9 +17,11 @@ export class UserHomeComponent {
   totalPrice: string = '0.00';
   orderItens: boolean =  true;
   orderSent: boolean = false;
+  orderDetails: boolean = false;
   deliveryNow: boolean =  false;
   deliverySchedule: boolean =  false;
   deliveryTime: string = '';
+  currentView: 'items' | 'details' | 'confirmation' = 'items';
 
   selectedOffice: number | null = null; 
 
@@ -64,11 +66,13 @@ export class UserHomeComponent {
   sendOrder() {
     console.log('pedido enviado');
     this.orderItens = false;
+    this.orderDetails = true;
   }
 
   newOrder() {
     this.cart = [];
     this.orderItens = true;
+    this.orderSent = false;
     this.totalPrice = '';
   }
 
@@ -78,5 +82,7 @@ export class UserHomeComponent {
 
   confirmOrder() { 
     this.orderSent = true;
+    this.orderItens = false;
+    this.orderDetails = false;
   }
 }

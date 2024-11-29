@@ -19,8 +19,9 @@
         </div>
       </div>
       <div class="col-md-6 cart">
-        <div *ngIf="orderItens; else orderDetails">
-          <p>Total: {{totalPrice}} <button class="btn-cart ml-7" *ngIf="cart.length" (click)="sendOrder()"> Enviar Pedido </button></p>
+        <div *ngIf="orderItens">
+          <p>Total: {{totalPrice}} <button class="btn-cart ml-7" *ngIf="cart.length" (click)="sendOrder()"> Enviar
+              Pedido </button></p>
           Itens: <span>{{cart.length}}</span>
           <div *ngFor="let shop of cart">
             <p>{{shop.name}}
@@ -30,7 +31,7 @@
             </p>
           </div>
         </div>
-        <ng-template #orderDetails>
+        <div *ngIf="orderDetails">
           <div>
             <p> Quase pronto! </p>
             <p> Confirme o escritório de entrega: </p>
@@ -38,26 +39,24 @@
               <input type="radio" name="offices" [value]="+office.id" [(ngModel)]="selectedOffice">
               {{office.number}} / Andar: {{office.floor}}
             </div>
-            <br> 
+            <br>
             <p class="mt-3"> Horario: </p>
             <input type="checkbox" [disabled]="deliverySchedule" [(ngModel)]="deliveryNow"> Enviar agora
-            <br>            
+            <br>
             <input type="checkbox" [disabled]="deliveryNow" [(ngModel)]="deliverySchedule">
             Agendar Horario:
             <input type="time" [disabled]="deliveryNow" min="09:00:00" max="18:00:00" [(ngModel)]="deliveryTime">
             <br>
             <button class="mt-3" (click)="confirmOrder()"> Confirmar Pedido! </button>
           </div>
-        </ng-template>
-        <ng-template #orderSent>
-          <div>
-            <p> Pedido enviado! </p>
-            <p> Previsão de entrega: </p>
-            <button (click)="newOrder()"> Fazer novo pedido </button> 
-            <button (click)="goToOrderStatus()"> Acompanhar status do pedido </button>
-          </div>
-        </ng-template>
-      </div>      
+        </div>
+        <div *ngIf="orderSent">
+          <p> Pedido enviado! </p>
+          <p> Previsão de entrega: </p>
+          <button (click)="newOrder()"> Fazer novo pedido </button>
+          <button (click)="goToOrderStatus()"> Acompanhar status do pedido </button>
+        </div>
+      </div>
     </div>
   </div>
 </main>
