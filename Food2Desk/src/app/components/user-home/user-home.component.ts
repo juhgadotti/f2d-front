@@ -39,7 +39,7 @@ export class UserHomeComponent {
   offices = [
     { id: 1, number: '2502', floor: '25' },
     { id: 2, number: '2503', floor: '25' },
-    { id: 3, number: '2504', floor: '4' }
+    { id: 3, number: '1301', floor: '13' }
   ]
 
   addToCart(item: any, isAdding: boolean) {

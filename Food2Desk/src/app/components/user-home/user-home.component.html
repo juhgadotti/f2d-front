@@ -12,7 +12,7 @@
               <p class="item-name" style="margin-top: 6px;"> {{ item.name }} </p>
               <p class="item-description"> {{ item.description }} </p>
               <p class="item-price"> R$ {{ item.price }}
-                <i class="fa-solid fa-cart-shopping" style="color: green" (click)="addToCart(item, true)"></i>
+                <i class="fa-solid fa-cart-shopping" style="color: rgb(0, 201, 0)" (click)="addToCart(item, true)"></i>
               </p>
             </div>
           </div>
@@ -65,8 +65,8 @@
           </div>
         </div>
         <div *ngIf="orderSent">
-          <p> Pedido enviado! </p>
-          <p> Previsão de entrega: 15 minutos </p>
+          <p style="color: rgb(0, 201, 0); font-weight: bold;"> Pedido enviado! </p>
+          <p> <i class="fa-regular fa-clock"></i> Previsão de entrega: 15 minutos  </p>
           <button class="red-btn" (click)="newOrder()"> Fazer novo pedido </button>
           <button class="red-btn mt-3" (click)="goToOrderStatus()"> Acompanhar status do pedido </button>
         </div>
