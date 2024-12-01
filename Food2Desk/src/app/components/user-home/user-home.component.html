@@ -20,10 +20,20 @@
         </div>
       </div>
       <div class="col-md-4 cart">
+
         <div *ngIf="orderItens">
-          <p>Total: {{totalPrice}} <button class="red-btn ml-7" *ngIf="cart.length" (click)="sendOrder()"> Enviar Pedido
-            </button></p>
+
+
+          <div class="flex-container">
+            <div>Total: {{totalPrice}}</div>
+            <div>
+              <button class="btn-send-order" *ngIf="cart.length" (click)="sendOrder()">Enviar Pedido</button>
+            </div>
+          </div>
+
           Itens: <span>{{cart.length}}</span>
+
+
           <div *ngFor="let shop of cart" class="shop-item">
             <div class="shop-name">{{ shop.name }}</div>
             <div class="shop-controls">
@@ -32,6 +42,8 @@
               <i class="fa-solid fa-plus f2d-red" (click)="addToCart(shop, true)"></i>
             </div>
           </div>
+
+
         </div>
         <div *ngIf="orderDetails">
           <div>
