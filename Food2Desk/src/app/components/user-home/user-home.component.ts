@@ -71,6 +71,9 @@ export class UserHomeComponent {
 
   newOrder() {
     this.cart = [];
+    this.selectedOffice = null;
+    this.deliveryNow = false;
+    this.deliverySchedule = false;
     this.orderItens = true;
     this.orderSent = false;
     this.totalPrice = '';
@@ -83,6 +86,12 @@ export class UserHomeComponent {
   confirmOrder() { 
     this.orderSent = true;
     this.orderItens = false;
+    this.orderDetails = false;
+  }
+
+  backCart() {
+    this.orderItens = true;
+    this.orderSent = false;
     this.orderDetails = false;
   }
 }

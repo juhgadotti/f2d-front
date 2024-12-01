@@ -44,6 +44,7 @@
         </div>
         <div *ngIf="orderDetails">
           <div>
+            <i class="fa-solid fa-arrow-left-long f2d-red" (click)="backCart()" style="cursor: pointer;"></i>
             <p> Quase pronto! </p>
             <p> Confirme o escritório de entrega: </p>
             <div *ngFor="let office of offices">
