@@ -4,3 +4,33 @@
     border-radius: 8px;
     display: flex;
 }
+
+.btn-order{
+    border-color: #bf4e4b;    
+    border-radius: 8px;
+    color: #bf4e4b;
+    background-color: hsl(0, 0%, 100%);
+    font-weight: bold;
+    width: auto;
+    height: 40px;
+
+    &:hover {
+        background-color: hsl(0, 0%, 89%); // vermelho + escuro]
+      }
+}
+
+.btn-status{
+    border-color: #009e15;    
+    border-radius: 8px;
+    color: #009e15;
+    background-color: hsl(0, 0%, 100%);
+    margin-right: 8px;
+}
+
+.status{
+    background-color: #ddd;
+    border-radius: 8px;
+    width: auto;
+    margin-top: 8px;
+    align-items: center !important; 
+}

@@ -10,9 +10,18 @@
                     </ng-multiselect-dropdown> -->
                     <!-- <ng-multiselect-dropdown
                     [placeholder]="'Atualizar Status'"></ng-multiselect-dropdown> -->
-                    <button>Pedido #{{ order.orderId }}</button>
-                    <p> Andar: Sala: </p>
-                    <p>Cliente: {{ order.customer }}</p>
+                    <div class="display-flex">
+                        <button class="btn-order" (click)="statusUpdate()">Pedido #{{ order.orderId }}</button>
+                        <div class="status" *ngIf="viewStatus"><span>Em preparação</span></div>
+                        <div style="margin-top: 6px;" *ngIf="!viewStatus">  <button class="btn-status">Preparação</button> <button class="btn-status">Entrega</button></div>
+                    </div>                                        
+                    
+
+                    <div style="font-size: 1.1rem; margin-top: 7px;">
+                        Andar: <span style="font-weight: bold;">  {{order.floor}} </span>
+                        Sala: <span style="font-weight: bold;">  {{order.office}} </span>
+                    </div>
+                    <p style="color: gray;">Cliente: {{ order.customer }}</p>
                     <ul>
                         <li *ngFor="let item of order.items">
                             ({{ item.quantity }}x) {{ item.name }};

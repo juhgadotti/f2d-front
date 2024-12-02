@@ -11,10 +11,14 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
   styleUrl: './admin-manage.component.scss'
 })
 export class AdminManageComponent {
+  viewStatus = true;
+
   orders = [
     {
       orderId: 1,
       customer: 'Maria Silva',
+      floor: '25',
+      office: '2503',
       items: [
         { name: 'Item 1', quantity: 3 },
         { name: 'Item 2', quantity: 1 },
@@ -35,4 +39,9 @@ export class AdminManageComponent {
       items: [] // Pedido sem itens
     }
   ];
+
+  statusUpdate(){
+    this.viewStatus = !this.viewStatus;
+    console.log('uu')
+  }
 }
