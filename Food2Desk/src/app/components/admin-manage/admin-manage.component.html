@@ -7,8 +7,11 @@
     
                     <div class="display-flex">
                         <button class="btn-order" (click)="showStatusUpdate(i)">Pedido #{{ order.orderId }}</button>
-                        <div *ngIf="order.viewStatus"><span class="status">{{order.status}}</span></div>
-                        <div style="margin-top: 6px;" *ngIf="!order.viewStatus">  <button class="btn-status" (click)="statusUpdate(true, i)">Preparação</button> <button class="btn-status"  (click)="statusUpdate(false, i)">Entrega</button></div>
+                        <div *ngIf="order.viewStatus"><button class="status">{{order.status}}</button></div>
+                        <div style="margin-top: 6px;" *ngIf="!order.viewStatus">
+                            <button class="btn-status" (click)="statusUpdate(true, i)">Preparação</button>
+                            <button class="btn-status"  (click)="statusUpdate(false, i)">Entrega</button>
+                        </div>
                     </div>                                        
                     
 

@@ -18,12 +18,12 @@ export class AdminManageComponent {
       customer: 'Maria Silva',
       floor: '25',
       office: '2503',
-      status: 'Em preparação',
+      status: 'Preparação',
       viewStatus: true,
       items: [
-        { name: 'Item 1', quantity: 3 },
-        { name: 'Item 2', quantity: 1 },
-        { name: 'Item 3', quantity: 5 }
+        { name: 'Coca cola', quantity: 1 },
+        { name: 'Empada de frango', quantity: 2 },
+        { name: 'Trento de chocolate', quantity: 1 }
       ]
     },
     {
@@ -31,17 +31,24 @@ export class AdminManageComponent {
       customer: 'João Souza',
       floor: '12',
       office: '1201',
-      status: 'Saiu para entrega',
+      status: 'Entrega',
       viewStatus: true,
       items: [
-        { name: 'Item A', quantity: 2 },
-        { name: 'Item B', quantity: 4 }
+        { name: 'KitKat', quantity: 1 },
+        { name: 'Água', quantity: 2 }
       ]
     },
     {
       orderId: 3,
-      customer: 'Ana Costa',
-      items: [] // Pedido sem itens
+      customer: 'Caio Santos',
+      floor: '6',
+      office: '602',
+      status: 'Entrega',
+      viewStatus: true,
+      items: [
+        { name: 'Coxinha', quantity: 2 },
+        { name: 'Suco de laranja', quantity: 1 }
+      ]
     }
   ];
 
@@ -51,9 +58,9 @@ export class AdminManageComponent {
 
   statusUpdate(status: boolean, index: number) {
     if (status) { //alterar para switch case
-      this.orders[index].status = 'Em preparação'
+      this.orders[index].status = 'Preparação'
     } else {
-      this.orders[index].status = 'Saiu para entrega'
+      this.orders[index].status = 'Entrega'
     }
 
     this.showStatusUpdate(index);
