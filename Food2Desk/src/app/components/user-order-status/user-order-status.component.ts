@@ -12,14 +12,16 @@ import { HeaderComponent } from '../../header/header.component';
 export class UserOrderStatusComponent {
 
   orders = [
-    { id: 31, floor: '25', office: '2503', time: '13', items: [{
-      name: 'Coca-cola', quantity: 3
+    { id: 31, floor: '25', office: '2503', time: '13', status: 'Em preparação', items: [{
+      name: 'Coca-cola', quantity: 1
     }, {
       name: 'Coxinha', quantity: 1
     }
   ] },
-    { id: 2, floor: '13', office: '1301', time: '11', items: [{
-      name: 'Coca-cola', quantity: 3
+    { id: 2, floor: '13', office: '1301', time: '11', status: 'A caminho', items: [{
+      name: 'Coca-cola zero', quantity: 1
+    }, {
+      name: 'Empada', quantity: 1
     }] }
   ]
 

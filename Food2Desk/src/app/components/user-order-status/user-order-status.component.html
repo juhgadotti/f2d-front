@@ -4,7 +4,7 @@
         <div class="mt-3">
             <p style="font-weight: bold; font-size: 1.3rem;">Pedidos em andamento:</p>
             <div *ngFor="let order of orders" class="orderDetails">
-                <span style="font-weight: bold;">Pedido #{{order.id}} </span>
+                <span style="font-weight: bold;">Pedido #{{order.id}} </span> <button class="status">{{order.status}}</button>
                 <br>
                 <i class="fa-regular fa-clock"></i> {{order.time}} minutos
                 <span class="space"></span>

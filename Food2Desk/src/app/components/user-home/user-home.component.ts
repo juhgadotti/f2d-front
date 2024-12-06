@@ -26,14 +26,13 @@ export class UserHomeComponent {
   selectedOffice: number | null = null; 
 
   items = [
-    { id: 1, image: "images/coca.png", name: 'Coca', description: 'Coca cola 350ml', price: 5.99 },
-    { id: 2, image: "images/coxinha.jpg", name: 'Coxinha', description: 'Coxinha de frango com ou sem catupiry', price: 7.99 },
-    { id: 3, name: 'Item 3', description: 'Description of item 3', price: 15.75 },
-    { id: 4, name: 'Item 3', description: 'Description of item 3', price: 15.75 },
-    { id: 5, name: 'Item 3', description: 'Description of item 3', price: 15.75 },
-    { id: 6, name: 'Item 3', description: 'Description of item 3', price: 15.75 },
-    { id: 7, name: 'Item 3', description: 'Description of item 3', price: 15.75 },
-    { id: 8, name: 'Item 3', description: 'Description of item 3', price: 15.75 },
+    { id: 1, image: "images/coxinha.jpg", name: 'Coxinha', description: 'Coxinha de frango com ou sem catupiry', price: 7.99 },
+    { id: 2, image: "images/sand.png", name: 'Sanduiche natural', description: 'Pão, peito de peru, queijo branco e tomate', price: 12.75 },
+    { id: 4, image: "images/fruitsalad.png", name: 'Salada de fruta', description: 'Maçã, banana, laranja e uva', price: 10.75 },
+    { id: 5, image: "images/cafe.jpg", name: 'Café', description: 'Coado', price: 4.75 },
+    { id: 6, image: "images/agua.jpg", name: 'Água', description: '500ml', price: 3.75 },
+    { id: 7, image: "images/coca.png", name: 'Coca cola', description: 'Coca cola 350ml', price: 5.99 },
+    { id: 8, image: "images/cocazero.png", name: 'Coca cola zero', description: 'Coca cola zero 350ml', price: 5.99 },
   ];
 
   offices = [
