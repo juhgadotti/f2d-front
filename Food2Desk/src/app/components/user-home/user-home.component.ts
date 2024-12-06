@@ -94,4 +94,8 @@ export class UserHomeComponent {
     this.orderSent = false;
     this.orderDetails = false;
   }
+
+  setView(template: number){
+    //deixar verdinho 
+  }
 }
