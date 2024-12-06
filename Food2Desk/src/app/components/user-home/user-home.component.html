@@ -19,59 +19,60 @@
         </div>
       </div>
       <div class="col-md-4 cart">
-        <div *ngIf="orderItens">
 
-          <div class="flex-container">
-            <div style="font-size: 1.2rem;">Total: R$<span style="font-weight: bold;">{{totalPrice}}</span></div>
+        @switch (currentView) {
+          @case('items'){
+            <div class="flex-container">
+              <div style="font-size: 1.2rem;">Total: R$<span style="font-weight: bold;">{{totalPrice}}</span></div>
+              <div>
+                <button class="btn-send-order" *ngIf="cart.length" (click)="orderDetails()">Enviar Pedido</button>
+              </div>
+            </div>
+            <!-- <div>
+                  <p>Itens: <span>{{cart.length}}</span></p>
+                </div> -->
+            <div *ngIf="!cart.length" style="color: gray;"> Nenhum item adicionado ao carrinho</div>
+            <div *ngFor="let shop of cart" class="shop-item mt-3">
+              <div class="shop-name">{{ shop.name }}</div>
+              <div class="shop-controls">
+                <i class="fa-solid fa-minus f2d-red" (click)="addToCart(shop, false)"></i>
+                <span class="quantity">{{ shop.quantity }}</span>
+                <i class="fa-solid fa-plus f2d-red" (click)="addToCart(shop, true)"></i>
+              </div>
+            </div>
+          } @case('details') {
             <div>
-              <button class="btn-send-order" *ngIf="cart.length" (click)="sendOrder()">Enviar Pedido</button>
-            </div>
-          </div>          
-          <!-- <div>
-            <p>Itens: <span>{{cart.length}}</span></p>
-          </div> -->
-          <div *ngIf="!cart.length" style="color: gray;"> Nenhum item adicionado ao carrinho</div>
-          <div *ngFor="let shop of cart" class="shop-item mt-3">
-            <div class="shop-name">{{ shop.name }}</div>
-            <div class="shop-controls">
-              <i class="fa-solid fa-minus f2d-red" (click)="addToCart(shop, false)"></i>
-              <span class="quantity">{{ shop.quantity }}</span>
-              <i class="fa-solid fa-plus f2d-red" (click)="addToCart(shop, true)"></i>
-            </div>
-          </div>
+              <i class="fa-solid fa-arrow-left-long f2d-red" (click)="backCart()" style="cursor: pointer;"></i>
+              <p> Quase pronto! </p>
+              <p> Confirme o escritório de entrega: </p>
+              <div *ngFor="let office of offices">
+                <input type="radio" name="offices" [value]="+office.id" [(ngModel)]="selectedOffice">
+                <span style="font-weight: bold;"> {{office.number}}</span> <span style="color: gray; font-style: italic;">
+                  ({{office.floor}}° andar)</span>
+              </div>
+              <br>
+              <p class="mt-3"> Horário: </p>
+              <input type="checkbox" [disabled]="deliverySchedule" [(ngModel)]="deliveryNow"> Enviar agora
+              <br>
+              <input type="checkbox" [disabled]="deliveryNow" [(ngModel)]="deliverySchedule">
+              Agendar Horário:
+              <input type="time" [disabled]="deliveryNow" min="09:00:00" max="18:00:00" [(ngModel)]="deliveryTime">
 
+              <div>
+                <button class="red-btn mt-3" (click)="orderConfirm()"> Confirmar Pedido! </button>
+              </div>
 
-        </div>
-        <div *ngIf="orderDetails">
-          <div>
-            <i class="fa-solid fa-arrow-left-long f2d-red" (click)="backCart()" style="cursor: pointer;"></i>
-            <p> Quase pronto! </p>
-            <p> Confirme o escritório de entrega: </p>
-            <div *ngFor="let office of offices">
-              <input type="radio" name="offices" [value]="+office.id" [(ngModel)]="selectedOffice">
-              <span style="font-weight: bold;"> {{office.number}}</span> <span style="color: gray; font-style: italic;"> ({{office.floor}}° andar)</span>
             </div>
-            <br>
-            <p class="mt-3"> Horário: </p>
-            <input type="checkbox" [disabled]="deliverySchedule" [(ngModel)]="deliveryNow"> Enviar agora
-            <br>
-            <input type="checkbox" [disabled]="deliveryNow" [(ngModel)]="deliverySchedule">
-            Agendar Horário:
-            <input type="time" [disabled]="deliveryNow" min="09:00:00" max="18:00:00" [(ngModel)]="deliveryTime">
-
+          } @case('confirmation'){
             <div>
-              <button class="red-btn mt-3" (click)="confirmOrder()"> Confirmar Pedido! </button>
+              <p style="color: rgb(0, 201, 0); font-weight: bold;"> Pedido enviado! </p>
+              <p> <i class="fa-regular fa-clock"></i> Previsão de entrega: 15 minutos </p>
+              <button class="red-btn" (click)="orderNew()"> Fazer novo pedido </button>
+              <br>
+              <button class="red-btn mt-3" (click)="goToOrderStatus()"> Acompanhar status do pedido </button>
             </div>
-            
-          </div>
-        </div>
-        <div *ngIf="orderSent">
-          <p style="color: rgb(0, 201, 0); font-weight: bold;"> Pedido enviado! </p>
-          <p> <i class="fa-regular fa-clock"></i> Previsão de entrega: 15 minutos  </p>
-          <button class="red-btn" (click)="newOrder()"> Fazer novo pedido </button>
-          <br>
-          <button class="red-btn mt-3" (click)="goToOrderStatus()"> Acompanhar status do pedido </button>
-        </div>
+          }
+        }
       </div>
     </div>
   </div>

@@ -17,7 +17,7 @@ export class UserHomeComponent {
   totalPrice: string = '0.00';
   orderItens: boolean =  true;
   orderSent: boolean = false;
-  orderDetails: boolean = false;
+  //orderDetails: boolean = false;
   deliveryNow: boolean =  false;
   deliverySchedule: boolean =  false;
   deliveryTime: string = '';
@@ -62,39 +62,28 @@ export class UserHomeComponent {
     this.totalPrice = total.toFixed(2).replace('.', ',');
   }
 
-  sendOrder() {
-    console.log('pedido enviado');
-    this.orderItens = false;
-    this.orderDetails = true;
+  orderDetails() {
+    this.currentView = 'details';    
   }
 
-  newOrder() {
+  orderNew() {
     this.cart = [];
     this.selectedOffice = null;
     this.deliveryNow = false;
     this.deliverySchedule = false;
-    this.orderItens = true;
-    this.orderSent = false;
     this.totalPrice = '';
-  }
+    this.currentView = 'items';  
+  } 
 
   goToOrderStatus() {
     this.router.navigate(['/user-order-status']);
   }
 
-  confirmOrder() { 
-    this.orderSent = true;
-    this.orderItens = false;
-    this.orderDetails = false;
+  orderConfirm() { 
+    this.currentView = 'confirmation';
   }
 
   backCart() {
-    this.orderItens = true;
-    this.orderSent = false;
-    this.orderDetails = false;
-  }
-
-  setView(template: number){
-    //deixar verdinho 
+    this.currentView = 'items';    
   }
 }
