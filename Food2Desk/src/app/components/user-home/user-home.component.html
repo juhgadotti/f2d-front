@@ -31,7 +31,7 @@
             <!-- <div>
                   <p>Itens: <span>{{cart.length}}</span></p>
                 </div> -->
-            <div *ngIf="!cart.length" style="color: gray;"> Nenhum item adicionado ao carrinho</div>
+            <div *ngIf="!cart.length" style="color: gray;"> Nenhum item adicionado ao carrinho </div>
             <div *ngFor="let shop of cart" class="shop-item mt-3">
               <div class="shop-name">{{ shop.name }}</div>
               <div class="shop-controls">
