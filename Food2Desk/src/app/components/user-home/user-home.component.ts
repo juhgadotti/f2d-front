@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../../header/header.component';
 import { FormsModule } from '@angular/forms';
+import { Order } from '../../interfaces/order';
 
 @Component({
   selector: 'app-user-home',
@@ -11,6 +12,8 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./user-home.component.scss'],
   standalone: true
 })
+
+
 export class UserHomeComponent {
   constructor(private router: Router) {}
   cart: any[] = [];
