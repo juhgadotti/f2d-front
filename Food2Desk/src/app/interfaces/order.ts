@@ -1,4 +1,5 @@
 export interface Order {
+    orderId: string
     userName: string
     userId: number
     officeFloor: number
