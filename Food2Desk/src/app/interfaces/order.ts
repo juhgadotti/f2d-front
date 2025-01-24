@@ -5,5 +5,7 @@ export interface Order {
     officeFloor: number
     officeNumber: number
     totalCharge: number
-    item: {name: string, quantity: number, id: number, }
+    deliverNow: boolean
+    deliveryTime: number | null
+    item: {name: string, quantity: number, id: number }
 }

@@ -20,7 +20,8 @@ export class UserHomeComponent {
   //aq objeto vazio
   order: Partial<Order> = {}
 
-  cart: any[] = [] ;
+  cart: any[] = [];
+  
   totalPrice: string = '0.00';
   orderItens: boolean =  true;
   orderSent: boolean = false;
