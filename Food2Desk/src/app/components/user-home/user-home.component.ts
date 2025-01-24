@@ -13,17 +13,23 @@ import { Order } from '../../interfaces/order';
   standalone: true
 })
 
-
+                
 export class UserHomeComponent {
   constructor(private router: Router) {}
-  cart: any[] = [];
+
+  //aq objeto vazio
+  order: Partial<Order> = {}
+
+  cart: any[] = [] ;
   totalPrice: string = '0.00';
   orderItens: boolean =  true;
   orderSent: boolean = false;
   //orderDetails: boolean = false;
+
   deliveryNow: boolean =  false;
   deliverySchedule: boolean =  false;
   deliveryTime: string = '';
+
   currentView: 'items' | 'details' | 'confirmation' = 'items';
 
   selectedOffice: number | null = null; 

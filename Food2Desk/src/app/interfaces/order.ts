@@ -1,9 +1,9 @@
 export interface Order {
-    orderId: string
+    id: string
     userName: string
     userId: number
     officeFloor: number
     officeNumber: number
     totalCharge: number
-    item: [name: string, quantity: number, id: number]
+    item: {name: string, quantity: number, id: number, }
 }
