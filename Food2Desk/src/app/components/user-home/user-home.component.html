@@ -25,7 +25,7 @@
             <div class="flex-container">
               <div style="font-size: 1.2rem;">Total: R$<span style="font-weight: bold;">{{totalPrice}}</span></div>
               <div>
-                <button class="btn-send-order" *ngIf="cart.length" (click)="orderDetails()">Enviar Pedido</button>
+                <button class="btn-send-order" *ngIf="cart.length" (click)="orderNavigate(1)">Enviar Pedido</button>
               </div>
             </div>
             <!-- <div>
@@ -42,7 +42,7 @@
             </div>
           } @case('details') {
             <div>
-              <i class="fa-solid fa-arrow-left-long f2d-red" (click)="backCart()" style="cursor: pointer;"></i>
+              <i class="fa-solid fa-arrow-left-long f2d-red" (click)="orderNavigate(3)" style="cursor: pointer;"></i>
               <p> Quase pronto! </p>
               <p> Confirme o escritório de entrega: </p>
               <div *ngFor="let office of offices">
@@ -59,7 +59,7 @@
               <input type="time" [disabled]="delivery.now" min="09:00:00" max="18:00:00" [(ngModel)]="delivery.time">
 
               <div>
-                <button class="red-btn mt-3" (click)="orderConfirm()"> Confirmar Pedido! </button>
+                <button class="red-btn mt-3" (click)="orderNavigate(2)"> Confirmar Pedido! </button>
               </div>
 
             </div>
@@ -67,7 +67,7 @@
             <div>
               <p style="color: rgb(0, 201, 0); font-weight: bold;"> Pedido enviado! </p>
               <p> <i class="fa-regular fa-clock"></i> Previsão de entrega: 15 minutos </p>
-              <button class="red-btn" (click)="orderNew()"> Fazer novo pedido </button>
+              <button class="red-btn" (click)="orderNavigate(3)"> Fazer novo pedido </button>
               <br>
               <button class="red-btn mt-3" (click)="goToOrderStatus()"> Acompanhar status do pedido </button>
             </div>

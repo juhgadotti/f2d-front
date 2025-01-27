@@ -93,7 +93,6 @@ export class UserHomeComponent {
     this.delivery.now = false;
     //this.deliverySchedule = false;
     this.totalPrice = '';
-    this.currentView = 'items';  
   } 
 
   goToOrderStatus() {
@@ -106,5 +105,20 @@ export class UserHomeComponent {
 
   backCart() {
     this.currentView = 'items';    
+  }
+
+  orderNavigate(view: number){
+    switch (view){
+      case 1:
+        this.currentView = 'details';
+        break;
+      case 2:
+        this.currentView = 'confirmation';
+        break;
+      case 3:
+      default:
+        this.currentView = 'items';
+        break;
+    }
   }
 }
