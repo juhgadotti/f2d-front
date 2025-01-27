@@ -52,11 +52,11 @@
               </div>
               <br>
               <p class="mt-3"> Horário: </p>
-              <input type="checkbox" [disabled]="deliverySchedule" [(ngModel)]="deliveryNow"> Enviar agora
+              <input type="radio" [(ngModel)]="delivery.now" [value]="true"> Enviar agora
               <br>
-              <input type="checkbox" [disabled]="deliveryNow" [(ngModel)]="deliverySchedule">
+              <input type="radio" [(ngModel)]="delivery.now" [value]="false">
               Agendar Horário:
-              <input type="time" [disabled]="deliveryNow" min="09:00:00" max="18:00:00" [(ngModel)]="deliveryTime">
+              <input type="time" [disabled]="delivery.now" min="09:00:00" max="18:00:00" [(ngModel)]="delivery.time">
 
               <div>
                 <button class="red-btn mt-3" (click)="orderConfirm()"> Confirmar Pedido! </button>

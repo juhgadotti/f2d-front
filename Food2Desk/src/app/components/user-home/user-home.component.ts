@@ -4,6 +4,13 @@ import { Router } from '@angular/router';
 import { HeaderComponent } from '../../header/header.component';
 import { FormsModule } from '@angular/forms';
 import { Order } from '../../interfaces/order';
+import { User } from '../../interfaces/user';
+import { Item } from '../../interfaces/item';
+
+interface Delivery {
+  now: boolean,
+  time: string
+}
 
 @Component({
   selector: 'app-user-home',
@@ -12,30 +19,34 @@ import { Order } from '../../interfaces/order';
   styleUrls: ['./user-home.component.scss'],
   standalone: true
 })
-
-                
+   
 export class UserHomeComponent {
   constructor(private router: Router) {}
 
   //aq objeto vazio
   order: Partial<Order> = {}
+  itens: Item[] = [];
+
+  delivery: Delivery = {
+    now: true,
+    time : ''
+  }
+
+  
 
   cart: any[] = [];
   
-  totalPrice: string = '0.00';
+  totalPrice: string = '0.00'; 
   orderItens: boolean =  true;
   orderSent: boolean = false;
   //orderDetails: boolean = false;
-
-  deliveryNow: boolean =  false;
-  deliverySchedule: boolean =  false;
-  deliveryTime: string = '';
 
   currentView: 'items' | 'details' | 'confirmation' = 'items';
 
   selectedOffice: number | null = null; 
 
   items = [
+    
     { id: 1, image: "images/coxinha.jpg", name: 'Coxinha', description: 'Coxinha de frango com ou sem catupiry', price: 7.99 },
     { id: 2, image: "images/sand.png", name: 'Sanduiche natural', description: 'Pão, peito de peru, queijo branco e tomate', price: 12.75 },
     { id: 4, image: "images/fruitsalad.png", name: 'Salada de fruta', description: 'Maçã, banana, laranja e uva', price: 10.75 },
@@ -79,8 +90,8 @@ export class UserHomeComponent {
   orderNew() {
     this.cart = [];
     this.selectedOffice = null;
-    this.deliveryNow = false;
-    this.deliverySchedule = false;
+    this.delivery.now = false;
+    //this.deliverySchedule = false;
     this.totalPrice = '';
     this.currentView = 'items';  
   } 
