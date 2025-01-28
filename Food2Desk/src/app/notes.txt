@@ -1,0 +1,3 @@
+adicionar: bloco no 'endereço' do escritorio
+pesquisar: commit no vscode
+arrumar: navegação na div lateral na user-home (alterações do model fizeram algumas coisas pararem de funcionar)
