@@ -12,6 +12,14 @@ interface Delivery {
   time: string
 }
 
+interface Details {
+  delivery: {
+    now: boolean,
+    time: string
+  },
+  officeAddress: number | null
+}
+
 @Component({
   selector: 'app-user-home',
   imports: [CommonModule, HeaderComponent, FormsModule],
@@ -25,14 +33,13 @@ export class UserHomeComponent {
 
   //aq objeto vazio
   order: Partial<Order> = {}
-  itens: Item[] = [];
+  itens: Item[] = []; //aq vai puxar a lista do backend
 
-  delivery: Delivery = {
-    now: true,
-    time : ''
-  }
 
-  
+  details: Details = {
+    delivery: { now: true, time: ''},
+    officeAddress: null
+  }  
 
   cart: any[] = [];
   
@@ -46,7 +53,6 @@ export class UserHomeComponent {
   selectedOffice: number | null = null; 
 
   items = [
-    
     { id: 1, image: "images/coxinha.jpg", name: 'Coxinha', description: 'Coxinha de frango com ou sem catupiry', price: 7.99 },
     { id: 2, image: "images/sand.png", name: 'Sanduiche natural', description: 'Pão, peito de peru, queijo branco e tomate', price: 12.75 },
     { id: 4, image: "images/fruitsalad.png", name: 'Salada de fruta', description: 'Maçã, banana, laranja e uva', price: 10.75 },
@@ -83,15 +89,19 @@ export class UserHomeComponent {
     this.totalPrice = total.toFixed(2).replace('.', ',');
   }
 
-  orderDetails() {
-    this.currentView = 'details';    
+  newOrder() {
+    order: {} 
+    this.details = {
+      delivery: { now: true, time: ''},
+      officeAddress: null,
+    }
+    this.orderNavigate(3);
   }
 
   orderNew() {
     this.cart = [];
     this.selectedOffice = null;
-    this.delivery.now = false;
-    //this.deliverySchedule = false;
+    //this.delivery.now = false;
     this.totalPrice = '';
   } 
 

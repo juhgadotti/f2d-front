@@ -1,3 +1,5 @@
 adicionar: bloco no 'endereço' do escritorio
 pesquisar: commit no vscode
 arrumar: navegação na div lateral na user-home (alterações do model fizeram algumas coisas pararem de funcionar)
+adicionar: bloqueio de botoes (confirmar pedido etc se nao tiver tudo preenchido)
+fazer: construir o objeto e fazer a impressao no console.log, ao fazer novo pedido, mostrar o pedido vazio 
