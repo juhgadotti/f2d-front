@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HeaderComponent } from '../../header/header.component';
 import { FormsModule } from '@angular/forms';
-import { Order } from '../../interfaces/order';
+import { Order } from './order';
 import { User } from '../../interfaces/user';
 import { Item } from '../../interfaces/item';
+import { HttpClient } from '@angular/common/http';
 
 interface Delivery {
   now: boolean,
@@ -28,8 +29,14 @@ interface Details {
   standalone: true
 })
    
-export class UserHomeComponent {
-  constructor(private router: Router) {}
+export class UserHomeComponent implements OnInit {
+  constructor(private router: Router, private http: HttpClient) {}
+
+  ngOnInit(): void { //load
+    this.http.get<string[]>('https://localhost:7028/api/principal/gets').subscribe(response => {
+      console.log(response)
+    })
+  }
 
   //aq objeto vazio
   order: Partial<Order> = {}
@@ -85,11 +92,12 @@ export class UserHomeComponent {
           existingItem.quantity -= 1;          
         }            
     }
+
     const total = this.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
     this.totalPrice = total.toFixed(2).replace('.', ',');
   }
 
-  newOrder() {
+  newOrder(): void {
     order: {} 
     this.details = {
       delivery: { now: true, time: ''},
