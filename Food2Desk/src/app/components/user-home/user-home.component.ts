@@ -29,11 +29,11 @@ interface Details {
   standalone: true
 })
    
-export class UserHomeComponent implements OnInit {
+export class UserHomeComponent implements OnInit { 
   constructor(private router: Router, private http: HttpClient) {}
 
   ngOnInit(): void { //load
-    this.http.get<string[]>('https://localhost:7028/api/principal/gets').subscribe(response => {
+    this.http.get<string[]>().subscribe(response => {
       console.log(response)
     })
   }
@@ -42,11 +42,10 @@ export class UserHomeComponent implements OnInit {
   order: Partial<Order> = {}
   itens: Item[] = []; //aq vai puxar a lista do backend
 
-
   details: Details = {
     delivery: { now: true, time: ''},
     officeAddress: null
-  }  
+  }
 
   cart: any[] = [];
   
@@ -60,6 +59,7 @@ export class UserHomeComponent implements OnInit {
   selectedOffice: number | null = null; 
 
   items = [
+    
     { id: 1, image: "images/coxinha.jpg", name: 'Coxinha', description: 'Coxinha de frango com ou sem catupiry', price: 7.99 },
     { id: 2, image: "images/sand.png", name: 'Sanduiche natural', description: 'Pão, peito de peru, queijo branco e tomate', price: 12.75 },
     { id: 4, image: "images/fruitsalad.png", name: 'Salada de fruta', description: 'Maçã, banana, laranja e uva', price: 10.75 },
@@ -92,7 +92,6 @@ export class UserHomeComponent implements OnInit {
           existingItem.quantity -= 1;          
         }            
     }
-
     const total = this.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
     this.totalPrice = total.toFixed(2).replace('.', ',');
   }
@@ -115,14 +114,6 @@ export class UserHomeComponent implements OnInit {
 
   goToOrderStatus() {
     this.router.navigate(['/user-order-status']);
-  }
-
-  orderConfirm() { 
-    this.currentView = 'confirmation';
-  }
-
-  backCart() {
-    this.currentView = 'items';    
   }
 
   orderNavigate(view: number){
