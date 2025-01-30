@@ -85,13 +85,11 @@ export class UserHomeComponent implements OnInit {
   ]
 
   addToCart(product: any, isAdding: boolean) {
-
     const existingItem = this.cart.find(cartItem => cartItem.id === product.id);
 
     if (isAdding) {
       if (!existingItem) {
         //this.cart.push({ ...item, quantity: 1 }); 
-
         this.cart.push({...product, quantity: 1});
         
       } else {
@@ -141,5 +139,13 @@ export class UserHomeComponent implements OnInit {
         this.currentView = 'items';
         break;
     }
+  }
+
+  sendOrder(): void { //vai retornar o recebimento do pedido
+    //this.http.put<order>().subscribe(response => {
+    //  console.log(response)
+    //});
+    this.order = {};
+    this.orderNavigate(2);
   }
 }
