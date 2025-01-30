@@ -112,7 +112,16 @@ export class UserHomeComponent implements OnInit {
       delivery: { now: true, time: ''},
       officeAddress: null,
     }
+    this.totalPrice = '';
+    this.cart = [];
     this.orderNavigate(3);
+  }
+
+  sendOrder(): void { //vai retornar o recebimento do pedido
+    //this.http.put<order>().subscribe(response => {
+    //  console.log(response)
+    //});        
+    this.orderNavigate(2);
   }
 
   orderNew() {
@@ -139,13 +148,5 @@ export class UserHomeComponent implements OnInit {
         this.currentView = 'items';
         break;
     }
-  }
-
-  sendOrder(): void { //vai retornar o recebimento do pedido
-    //this.http.put<order>().subscribe(response => {
-    //  console.log(response)
-    //});
-    this.order = {};
-    this.orderNavigate(2);
   }
 }
