@@ -21,6 +21,14 @@ interface Details {
   officeAddress: number | null
 }
 
+interface Products {
+  id: number,
+  name: string,
+  image: string, 
+  description: string,
+  price: number 
+}
+
 @Component({
   selector: 'app-user-home',
   imports: [CommonModule, HeaderComponent, FormsModule],
@@ -30,64 +38,68 @@ interface Details {
 })
    
 export class UserHomeComponent implements OnInit { 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient) {
+
+  }
+  productsList: Products[] = [];
+  order: Partial<Order> = {}
+
+  cart: any[] = []; //dentro do order
 
   ngOnInit(): void { //load
-    this.http.get<string[]>().subscribe(response => {
-      console.log(response)
-    })
-  }
+    //this.http.get<string[]>().subscribe(response => {
+    //  console.log(response)
+    //})
 
-  //aq objeto vazio
-  order: Partial<Order> = {}
+    this.productsList = [
+      { id: 1, image: "images/coxinha.jpg", name: 'Coxinha', description: 'Coxinha de frango com ou sem catupiry', price: 7.99 },
+      { id: 2, image: "images/sand.png", name: 'Sanduiche natural', description: 'Pão, peito de peru, queijo branco e tomate', price: 12.75 },
+      { id: 4, image: "images/fruitsalad.png", name: 'Salada de fruta', description: 'Maçã, banana, laranja e uva', price: 10.75 },
+      { id: 5, image: "images/cafe.jpg", name: 'Café', description: 'Coado', price: 4.75 },
+      { id: 6, image: "images/agua.jpg", name: 'Água', description: '500ml', price: 3.75 },
+      { id: 7, image: "images/coca.png", name: 'Coca cola', description: 'Coca cola 350ml', price: 5.99 },
+      { id: 8, image: "images/cocazero.png", name: 'Coca cola zero', description: 'Coca cola zero 350ml', price: 5.99 }
+    ];
+  }  
+  
   itens: Item[] = []; //aq vai puxar a lista do backend
 
   details: Details = {
     delivery: { now: true, time: ''},
     officeAddress: null
   }
-
-  cart: any[] = [];
   
   totalPrice: string = '0.00'; 
   orderItens: boolean =  true;
   orderSent: boolean = false;
   //orderDetails: boolean = false;
-
+  
   currentView: 'items' | 'details' | 'confirmation' = 'items';
 
-  selectedOffice: number | null = null; 
-
-  items = [
-    
-    { id: 1, image: "images/coxinha.jpg", name: 'Coxinha', description: 'Coxinha de frango com ou sem catupiry', price: 7.99 },
-    { id: 2, image: "images/sand.png", name: 'Sanduiche natural', description: 'Pão, peito de peru, queijo branco e tomate', price: 12.75 },
-    { id: 4, image: "images/fruitsalad.png", name: 'Salada de fruta', description: 'Maçã, banana, laranja e uva', price: 10.75 },
-    { id: 5, image: "images/cafe.jpg", name: 'Café', description: 'Coado', price: 4.75 },
-    { id: 6, image: "images/agua.jpg", name: 'Água', description: '500ml', price: 3.75 },
-    { id: 7, image: "images/coca.png", name: 'Coca cola', description: 'Coca cola 350ml', price: 5.99 },
-    { id: 8, image: "images/cocazero.png", name: 'Coca cola zero', description: 'Coca cola zero 350ml', price: 5.99 },
-  ];
-
+  selectedOffice: number | null = null;
+  
   offices = [
     { id: 1, number: '2502', floor: '25' },
     { id: 2, number: '2503', floor: '25' },
     { id: 3, number: '1301', floor: '13' }
   ]
 
-  addToCart(item: any, isAdding: boolean) {
+  addToCart(product: any, isAdding: boolean) {
 
-    const existingItem = this.cart.find(cartItem => cartItem.id === item.id);
+    const existingItem = this.cart.find(cartItem => cartItem.id === product.id);
 
     if (isAdding) {
       if (!existingItem) {
-        this.cart.push({ ...item, quantity: 1 }); 
+        //this.cart.push({ ...item, quantity: 1 }); 
+
+        this.cart.push({...product, quantity: 1});
+        
       } else {
         existingItem.quantity += 1; 
       }          
     } else {
         if(existingItem.quantity == 1){
-          this.cart = this.cart.filter(cartItem => cartItem.id !== item.id);
+          this.cart = this.cart.filter(cartItem => cartItem.id !== product.id);
         } else {
           existingItem.quantity -= 1;          
         }            
