@@ -5,7 +5,7 @@ import { HeaderComponent } from '../../header/header.component';
 import { FormsModule } from '@angular/forms';
 import { Order } from './order';
 import { User } from '../../interfaces/user';
-import { Item } from '../../interfaces/item';
+import { Product } from '../../interfaces/product';
 import { HttpClient } from '@angular/common/http';
 
 interface Delivery {
@@ -21,14 +21,6 @@ interface Details {
   officeAddress: number | null
 }
 
-interface Products {
-  id: number,
-  name: string,
-  image: string, 
-  description: string,
-  price: number 
-}
-
 @Component({
   selector: 'app-user-home',
   imports: [CommonModule, HeaderComponent, FormsModule],
@@ -41,8 +33,8 @@ export class UserHomeComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient) {
 
   }
-  productsList: Products[] = [];
-  order: Partial<Order> = {}
+  productsList: Product[] = [];
+  order: Partial<Order> = {};
 
   cart: any[] = []; //dentro do order
 
@@ -62,7 +54,7 @@ export class UserHomeComponent implements OnInit {
     ];
   }  
   
-  itens: Item[] = []; //aq vai puxar a lista do backend
+  //itens: Item[] = []; //aq vai puxar a lista do backend
 
   details: Details = {
     delivery: { now: true, time: ''},
