@@ -7,5 +7,5 @@ export interface Order {
     totalCharge: number
     deliverNow: boolean
     deliveryTime: number | null
-    item: {name: string, quantity: number, id: number }
+    cart: {name: string, quantity: number, id: number }[]
 }
