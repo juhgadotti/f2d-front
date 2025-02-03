@@ -7,6 +7,7 @@ import { Order } from './order';
 import { User } from '../../interfaces/user';
 import { Item } from '../../interfaces/item';
 import { HttpClient } from '@angular/common/http';
+import { Food2DeskApi } from '../../../environments/path';
 
 interface Delivery {
   now: boolean,
@@ -32,8 +33,11 @@ interface Details {
 export class UserHomeComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient) {}
 
+  private urls = Food2DeskApi.urls;
+
   ngOnInit(): void { //load
-    this.http.get<string[]>('https://localhost:7028/api/principal/gets').subscribe(response => {
+    
+    this.http.get<string[]>(this.urls.items.root).subscribe(response => {
       console.log(response)
     })
   }
