@@ -34,6 +34,7 @@ export class UserHomeComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient) {}
   
   private urls = Food2DeskApi.urls;
+
   productsList: Product[] = [];
   order: Partial<Order> = {};
 
@@ -43,7 +44,12 @@ export class UserHomeComponent implements OnInit {
       console.log(response)
       this.productsList = response;
     });
+    
+    this.http.get<User>(this.urls.user.root).subscribe(response =>{
+      
+    })
   }
+
 
   //aq objeto vazio
   //order: Partial<Order> = {}
