@@ -1,5 +1,5 @@
 export interface User {
     id: string
     name: string
-    offices: {floor: number, number: number, }
+    offices: [{floor: string, number: string, block: string, enterprise: string, id: string}]
 }

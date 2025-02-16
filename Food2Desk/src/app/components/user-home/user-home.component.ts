@@ -37,8 +37,9 @@ export class UserHomeComponent implements OnInit {
 
   productsList: Product[] = [];
   order: Partial<Order> = {};
-
+  user: User = {} as User; //q isso aqui meu deus
   cart: any[] = []; //dentro do order
+
   ngOnInit(): void { //load
     this.http.get<Product[]>(this.urls.product.root).subscribe(response => {
       console.log(response)
@@ -46,7 +47,8 @@ export class UserHomeComponent implements OnInit {
     });
     
     this.http.get<User>(this.urls.user.root).subscribe(response =>{
-      
+      console.log(response)
+      this.user = response;
     })
   }
 
