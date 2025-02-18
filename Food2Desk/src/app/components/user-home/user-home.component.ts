@@ -78,26 +78,49 @@ export class UserHomeComponent implements OnInit {
     { id: 3, number: '1301', floor: '13' }
   ]
 
-  addToCart(product: any, isAdding: boolean) {
-    const existingItem = this.cart.find(cartItem => cartItem.id === product.id);
+  addToCart(product: any) {
+    const item = this.order.cart?.find(cartItem => cartItem.id === product.id);
+    if(!item) 
+      this.order.cart?.push({...product, quantity: 1});
+     else 
+      item.quantity++;
+  }
 
+  removeFromCart(product: any){
+    if(product.quantity > 1)
+      product.quantity--;
+    else  {
+      this.order.cart?.filter(cartItem => cartItem.id !== product.id);
+    }
+    this.calculateTotalPrice();
+  }
+
+  calculateTotalPrice(): void{
+    const total = this.order.cart?.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    let a = total?.toFixed(2).replace('.', ',');
+    this.order.totalCharge = a?.toString();
+  }
+
+  addToCart2(product: any, isAdding: boolean) {    
+    const existingItem = this.order.cart?.find(cartItem => cartItem.id === product.id);
+    
     if (isAdding) {
       if (!existingItem) {
         //this.cart.push({ ...item, quantity: 1 }); 
-        this.cart.push({...product, quantity: 1});
+        this.order.cart?.push({...product, quantity: 1});
         
       } else {
         existingItem.quantity += 1; 
       }          
     } else {
-        if(existingItem.quantity == 1){
+        if(existingItem?.quantity == 1){
           this.cart = this.cart.filter(cartItem => cartItem.id !== product.id);
         } else {
           existingItem.quantity -= 1;          
         }            
     }
-    const total = this.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    this.totalPrice = total.toFixed(2).replace('.', ',');
+    const total = this.order.cart?.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    this.totalPrice = total?.toFixed(2).replace('.', ',');
   }
 
   newOrder(): void {

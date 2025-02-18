@@ -12,7 +12,7 @@
               <p class="item-name" style="margin-top: 6px;"> {{ item.name }} </p>
               <p class="item-description"> {{ item.description }} </p>
               <p class="item-price"> R$ {{ item.price }}
-                <i class="fa-solid fa-cart-shopping" style="color: rgb(0, 201, 0)" (click)="addToCart(item, true)"></i>
+                <i class="fa-solid fa-cart-shopping" style="color: rgb(0, 201, 0)" (click)="addToCart(item)"></i>
               </p>
             </div>
           </div>
@@ -23,7 +23,7 @@
         @switch (currentView) {
           @case('items'){
             <div class="flex-container">
-              <div style="font-size: 1.2rem;">Total: R$<span style="font-weight: bold;">{{totalPrice}}</span></div>
+              <div style="font-size: 1.2rem;">Total: R$<span style="font-weight: bold;">{{this.order.totalCharge}}</span></div>
               <div>
                 <button class="btn-send-order" *ngIf="order.cart?.length" (click)="orderNavigate(1)">Enviar Pedido</button>
               </div>
