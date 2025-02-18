@@ -23,7 +23,7 @@
         @switch (currentView) {
           @case('items'){
             <div class="flex-container">
-              <div style="font-size: 1.2rem;">Total: R$<span style="font-weight: bold;">{{this.order.totalCharge}}</span></div>
+              <div style="font-size: 1.2rem;">Total: R$<span style="font-weight: bold;">{{totalString}}</span></div>
               <div>
                 <button class="btn-send-order" *ngIf="order.cart?.length" (click)="orderNavigate(1)">Enviar Pedido</button>
               </div>

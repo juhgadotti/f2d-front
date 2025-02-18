@@ -38,7 +38,7 @@ export class UserHomeComponent implements OnInit {
   productsList: Product[] = [];
   order: Partial<Order> = {};
   user: User = {} as User; //q isso aqui meu deus
-  cart: any[] = []; //dentro do order
+  totalString: string | undefined = '';
 
   ngOnInit(): void { //load
     this.http.get<Product[]>(this.urls.product.root).subscribe(response => {
@@ -49,7 +49,9 @@ export class UserHomeComponent implements OnInit {
     this.http.get<User>(this.urls.user.root).subscribe(response =>{
       console.log(response)
       this.user = response;
-    })
+    });
+
+    this.order.cart = {};s
   }
 
 
@@ -79,11 +81,17 @@ export class UserHomeComponent implements OnInit {
   ]
 
   addToCart(product: any) {
+    console.log(product);
     const item = this.order.cart?.find(cartItem => cartItem.id === product.id);
-    if(!item) 
-      this.order.cart?.push({...product, quantity: 1});
+    console.log(item);
+    if(!item) {
+        console.log('entro')
+        this.order.cart?.push({...product, quantity: 1});
+    }
      else 
       item.quantity++;
+
+      console.log(this.order.cart); 
   }
 
   removeFromCart(product: any){
@@ -96,32 +104,11 @@ export class UserHomeComponent implements OnInit {
   }
 
   calculateTotalPrice(): void{
-    const total = this.order.cart?.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    let a = total?.toFixed(2).replace('.', ',');
-    this.order.totalCharge = a?.toString();
+    this.order.totalCharge = this.order.cart?.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    this.totalString = this.order.totalCharge?.toFixed(2).replace('.', ',');
   }
 
-  addToCart2(product: any, isAdding: boolean) {    
-    const existingItem = this.order.cart?.find(cartItem => cartItem.id === product.id);
-    
-    if (isAdding) {
-      if (!existingItem) {
-        //this.cart.push({ ...item, quantity: 1 }); 
-        this.order.cart?.push({...product, quantity: 1});
-        
-      } else {
-        existingItem.quantity += 1; 
-      }          
-    } else {
-        if(existingItem?.quantity == 1){
-          this.cart = this.cart.filter(cartItem => cartItem.id !== product.id);
-        } else {
-          existingItem.quantity -= 1;          
-        }            
-    }
-    const total = this.order.cart?.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    this.totalPrice = total?.toFixed(2).replace('.', ',');
-  }
+  
 
   newOrder(): void {
     order: {} 
@@ -130,7 +117,7 @@ export class UserHomeComponent implements OnInit {
       officeAddress: null,
     }
     this.totalPrice = '';
-    this.cart = [];
+    //this.cart = [];
     this.orderNavigate(3);
   }
 
@@ -142,7 +129,7 @@ export class UserHomeComponent implements OnInit {
   }
 
   orderNew() {
-    this.cart = [];
+    //this.cart = [];
     this.selectedOffice = null;
     //this.delivery.now = false;
     this.totalPrice = '';
