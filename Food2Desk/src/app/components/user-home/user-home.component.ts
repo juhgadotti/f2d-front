@@ -51,7 +51,7 @@ export class UserHomeComponent implements OnInit {
       this.user = response;
     });
 
-    this.order.cart = {};s
+    this.order.cart = {};
   }
 
 
