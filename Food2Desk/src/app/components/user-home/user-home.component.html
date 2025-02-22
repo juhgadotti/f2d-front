@@ -12,7 +12,7 @@
               <p class="item-name" style="margin-top: 6px;"> {{ item.name }} </p>
               <p class="item-description"> {{ item.description }} </p>
               <p class="item-price"> R$ {{ item.price }}
-                <i class="fa-solid fa-cart-shopping" style="color: rgb(0, 201, 0)" (click)="addToCart(item, true)"></i>
+                <i class="fa-solid fa-cart-shopping" style="color: rgb(0, 201, 0)" (click)="addToCart(item)"></i>
               </p>
             </div>
           </div>
@@ -23,21 +23,21 @@
         @switch (currentView) {
           @case('items'){
             <div class="flex-container">
-              <div style="font-size: 1.2rem;">Total: R$<span style="font-weight: bold;">{{totalPrice}}</span></div>
+              <div style="font-size: 1.2rem;">Total: R$<span style="font-weight: bold;">{{totalString}}</span></div>
               <div>
-                <button class="btn-send-order" *ngIf="cart.length" (click)="orderNavigate(1)">Enviar Pedido</button>
+                <button class="btn-send-order" *ngIf="order.cart?.length" (click)="orderNavigate(1)">Enviar Pedido</button>
               </div>
             </div>
             <!-- <div>
                   <p>Itens: <span>{{cart.length}}</span></p>
                 </div> -->
-            <div *ngIf="!cart.length" style="color: gray;"> Nenhum item adicionado ao carrinho </div>
-            <div *ngFor="let shop of cart" class="shop-item mt-3">
-              <div class="shop-name">{{ shop.name }}</div>
+            <div *ngIf="!order.cart?.length" style="color: gray;"> Nenhum item adicionado ao carrinho </div>
+            <div *ngFor="let item of order.cart" class="shop-item mt-3">
+              <div class="shop-name">{{ item.name }}</div>
               <div class="shop-controls">
-                <i class="fa-solid fa-minus f2d-red" (click)="addToCart(shop, false)"></i>
-                <span class="quantity">{{ shop.quantity }}</span>
-                <i class="fa-solid fa-plus f2d-red" (click)="addToCart(shop, true)"></i>
+                <i class="fa-solid fa-minus f2d-red" (click)="removeFromCart(item)"></i>
+                <span class="quantity">{{ item.quantity }}</span>
+                <i class="fa-solid fa-plus f2d-red" (click)="addToCart(item)"></i>
               </div>
             </div>
           } @case('details') {

@@ -38,7 +38,7 @@ export class UserHomeComponent implements OnInit {
   productsList: Product[] = [];
   order: Partial<Order> = {};
   user: User = {} as User; //q isso aqui meu deus
-  cart: any[] = []; //dentro do order
+  totalString: string | undefined = '';
 
   ngOnInit(): void { //load
     this.http.get<Product[]>(this.urls.product.root).subscribe(response => {
@@ -49,7 +49,9 @@ export class UserHomeComponent implements OnInit {
     this.http.get<User>(this.urls.user.root).subscribe(response =>{
       console.log(response)
       this.user = response;
-    })
+    });
+
+    this.order.cart = {};
   }
 
 
@@ -78,27 +80,35 @@ export class UserHomeComponent implements OnInit {
     { id: 3, number: '1301', floor: '13' }
   ]
 
-  addToCart(product: any, isAdding: boolean) {
-    const existingItem = this.cart.find(cartItem => cartItem.id === product.id);
-
-    if (isAdding) {
-      if (!existingItem) {
-        //this.cart.push({ ...item, quantity: 1 }); 
-        this.cart.push({...product, quantity: 1});
-        
-      } else {
-        existingItem.quantity += 1; 
-      }          
-    } else {
-        if(existingItem.quantity == 1){
-          this.cart = this.cart.filter(cartItem => cartItem.id !== product.id);
-        } else {
-          existingItem.quantity -= 1;          
-        }            
+  addToCart(product: any) {
+    console.log(product);
+    const item = this.order.cart?.find(cartItem => cartItem.id === product.id);
+    console.log(item);
+    if(!item) {
+        console.log('entro')
+        this.order.cart?.push({...product, quantity: 1});
     }
-    const total = this.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    this.totalPrice = total.toFixed(2).replace('.', ',');
+     else 
+      item.quantity++;
+
+      console.log(this.order.cart); 
   }
+
+  removeFromCart(product: any){
+    if(product.quantity > 1)
+      product.quantity--;
+    else  {
+      this.order.cart?.filter(cartItem => cartItem.id !== product.id);
+    }
+    this.calculateTotalPrice();
+  }
+
+  calculateTotalPrice(): void{
+    this.order.totalCharge = this.order.cart?.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    this.totalString = this.order.totalCharge?.toFixed(2).replace('.', ',');
+  }
+
+  
 
   newOrder(): void {
     order: {} 
@@ -107,7 +117,7 @@ export class UserHomeComponent implements OnInit {
       officeAddress: null,
     }
     this.totalPrice = '';
-    this.cart = [];
+    //this.cart = [];
     this.orderNavigate(3);
   }
 
@@ -119,7 +129,7 @@ export class UserHomeComponent implements OnInit {
   }
 
   orderNew() {
-    this.cart = [];
+    //this.cart = [];
     this.selectedOffice = null;
     //this.delivery.now = false;
     this.totalPrice = '';

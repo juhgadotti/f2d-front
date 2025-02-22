@@ -4,8 +4,8 @@ export interface Order {
     userId: number
     officeFloor: number
     officeNumber: number
-    totalCharge: number
+    totalCharge: number | null
     deliverNow: boolean
     deliveryTime: number | null
-    cart: {name: string, quantity: number, id: number }[]
+    cart: [{name: string, quantity: number, id: string, price: number }] | undefined
 }
