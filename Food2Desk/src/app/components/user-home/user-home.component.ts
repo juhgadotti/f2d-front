@@ -83,18 +83,14 @@ export class UserHomeComponent implements OnInit {
   addToCart(product: any) {
     console.log(product);
     const item = this.order.cart?.find(cartItem => cartItem.id === product.id);
-    console.log(item);
     if(!item) {
-        console.log('entro')
         this.order.cart?.push({...product, quantity: 1});
     }
-     else {
-      console.log('adicionando 1')
+    else {
        item.quantity++;
-
-     }
-
-      console.log(this.order.cart); 
+    }
+    this.calculateTotalPrice();
+    
   }
 
   removeFromCart(product: any){
