@@ -36,7 +36,7 @@ export class UserHomeComponent implements OnInit {
   private urls = Food2DeskApi.urls;
 
   productsList: Product[] = [];
-  order: Partial<Order> = {};
+  order: Partial<Order> = { cart: [] };
   user: User = {} as User; //q isso aqui meu deus
   totalString: string | undefined = '';
 
@@ -51,7 +51,7 @@ export class UserHomeComponent implements OnInit {
       this.user = response;
     });
 
-    this.order.cart = {};
+   // this.order.cart = {};
   }
 
 
@@ -88,8 +88,11 @@ export class UserHomeComponent implements OnInit {
         console.log('entro')
         this.order.cart?.push({...product, quantity: 1});
     }
-     else 
-      item.quantity++;
+     else {
+      console.log('adicionando 1')
+       item.quantity++;
+
+     }
 
       console.log(this.order.cart); 
   }
@@ -117,7 +120,7 @@ export class UserHomeComponent implements OnInit {
       officeAddress: null,
     }
     this.totalPrice = '';
-    //this.cart = [];
+    //this.order.cart = [];
     this.orderNavigate(3);
   }
 
@@ -135,11 +138,14 @@ export class UserHomeComponent implements OnInit {
     this.totalPrice = '';
   } 
 
+
+  //navegação (estão ok)
+
   goToOrderStatus() {
     this.router.navigate(['/user-order-status']);
   }
 
-  orderNavigate(view: number){
+  orderNavigate(view: number) {
     switch (view){
       case 1:
         this.currentView = 'details';
