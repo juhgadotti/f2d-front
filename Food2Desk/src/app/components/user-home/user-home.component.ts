@@ -89,15 +89,14 @@ export class UserHomeComponent implements OnInit {
     else {
        item.quantity++;
     }
-    this.calculateTotalPrice();
-    
+    this.calculateTotalPrice();    
   }
 
   removeFromCart(product: any){
     if(product.quantity > 1)
       product.quantity--;
     else  {
-      this.order.cart?.filter(cartItem => cartItem.id !== product.id);
+      this.order.cart = this.order.cart?.filter(cartItem => cartItem.id !== product.id);
     }
     this.calculateTotalPrice();
   }
