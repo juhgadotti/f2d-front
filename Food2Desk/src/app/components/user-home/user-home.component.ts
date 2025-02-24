@@ -61,7 +61,7 @@ export class UserHomeComponent implements OnInit {
   orderSent: boolean = false;
   //orderDetails: boolean = false;
   
-  currentView: 'items' | 'details' | 'confirmation' = 'items';
+  currentView: 'items' | 'details' | 'review'| 'confirmation'  = 'items';
 
   selectedOffice: number | null = null;
 
@@ -123,9 +123,12 @@ export class UserHomeComponent implements OnInit {
         this.currentView = 'details';
         break;
       case 2:
-        this.currentView = 'confirmation';
+        this.currentView = 'review';
         break;
       case 3:
+        this.currentView = 'confirmation';
+        break;
+      case 4:
       default:
         this.currentView = 'items';
         break;
