@@ -41,31 +41,22 @@ export class UserHomeComponent implements OnInit {
   totalString: string | undefined = '';
 
   ngOnInit(): void { //load
+
     this.http.get<Product[]>(this.urls.product.root).subscribe(response => {
-      console.log(response)
       this.productsList = response;
     });
     
     this.http.get<User>(this.urls.user.root).subscribe(response =>{
-      console.log(response)
       this.user = response;
     });
 
-   // this.order.cart = {};
   }
-
-
-  //aq objeto vazio
-  //order: Partial<Order> = {}
-  //itens: Item[] = []; //aq vai puxar a lista do backend
-
 
   details: Details = {
     delivery: { now: true, time: ''},
     officeAddress: null
   }
   
-  totalPrice: string = '0.00'; 
   orderItens: boolean =  true;
   orderSent: boolean = false;
   //orderDetails: boolean = false;
@@ -73,12 +64,6 @@ export class UserHomeComponent implements OnInit {
   currentView: 'items' | 'details' | 'confirmation' = 'items';
 
   selectedOffice: number | null = null;
-  
-  offices = [
-    { id: 1, number: '2502', floor: '25' },
-    { id: 2, number: '2503', floor: '25' },
-    { id: 3, number: '1301', floor: '13' }
-  ]
 
   addToCart(product: any) {
     console.log(product);
@@ -106,35 +91,27 @@ export class UserHomeComponent implements OnInit {
     this.totalString = this.order.totalCharge?.toFixed(2).replace('.', ',');
   }
 
-  
-
-  newOrder(): void {
-    order: {} 
-    this.details = {
-      delivery: { now: true, time: ''},
-      officeAddress: null,
-    }
-    this.totalPrice = '';
-    //this.order.cart = [];
-    this.orderNavigate(3);
-  }
-
   sendOrder(): void { //vai retornar o recebimento do pedido
+    console.log(this.order)
     //this.http.put<order>().subscribe(response => {
     //  console.log(response)
     //});        
     this.orderNavigate(2);
   }
 
-  orderNew() {
-    //this.cart = [];
-    this.selectedOffice = null;
-    //this.delivery.now = false;
-    this.totalPrice = '';
-  } 
+  newOrder(): void {
+    this.order = {};
+    this.order.cart = [];
 
+    this.details = {
+      delivery: { now: true, time: ''},
+      officeAddress: null,
+    }
 
-  //navegação (estão ok)
+    this.totalString = '';
+    this.orderNavigate(3);
+    //todo atualizar a lista
+  }
 
   goToOrderStatus() {
     this.router.navigate(['/user-order-status']);
