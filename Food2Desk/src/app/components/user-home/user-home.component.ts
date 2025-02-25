@@ -109,7 +109,7 @@ export class UserHomeComponent implements OnInit {
     }
 
     this.totalString = '';
-    this.orderNavigate(3);
+    this.orderNavigate(4);
     //todo atualizar a lista
   }
 

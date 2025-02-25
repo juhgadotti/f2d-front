@@ -42,7 +42,7 @@
             </div>
           } @case('details') {
             <div>
-              <i class="fa-solid fa-arrow-left-long f2d-red" (click)="orderNavigate(3)" style="cursor: pointer;"></i>
+              <i class="fa-solid fa-arrow-left-long f2d-red" (click)="orderNavigate(2)" style="cursor: pointer;"></i>
               <p> Quase pronto! </p>
               <p> Confirme o escritório de entrega: </p>
               <div *ngFor="let office of user.offices">
@@ -59,10 +59,15 @@
               <input type="time" [disabled]="details.delivery.now" min="09:00:00" max="18:00:00" [(ngModel)]="details.delivery.time">
 
               <div>
-                <button class="red-btn mt-3" (click)="sendOrder()"> Confirmar Pedido! </button>
+                <button class="red-btn mt-3" (click)="sendOrder()"> Revisar pedido </button>
               </div>
 
             </div>
+          } @case('review'){
+            <div> 
+              <p>Total: <span>{{totalString}}</span></p>
+              <button (click)="orderNavigate(3)"> Confirmar pedido! </button>
+            </div>                
           } @case('confirmation'){
             <div>
               <p style="color: rgb(0, 201, 0); font-weight: bold;"> Pedido enviado! </p>
@@ -71,9 +76,7 @@
               <br>
               <button class="red-btn mt-3" (click)="goToOrderStatus()"> Acompanhar status do pedido </button>
             </div>
-          } @case('review'){
-            <div></div>                
-          }
+          } 
         }
       </div>
     </div>
