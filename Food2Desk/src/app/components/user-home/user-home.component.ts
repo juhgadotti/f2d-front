@@ -93,6 +93,7 @@ export class UserHomeComponent implements OnInit {
 
   sendOrder(): void { //vai retornar o recebimento do pedido
     console.log(this.order)
+    this.order.office?.floor.at;
     //this.http.put<order>().subscribe(response => {
     //  console.log(response)
     //});        

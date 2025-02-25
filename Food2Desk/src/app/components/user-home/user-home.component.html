@@ -65,7 +65,11 @@
             </div>
           } @case('review'){
             <div> 
-              <p>Total: <span>{{totalString}}</span></p>
+              <div><p>Total: <span>{{totalString}}</span></p></div>
+              <div *ngFor="let item of order.cart">
+                <p>{{item.name}} ({{item.quantity}})</p>
+              </div>
+              
               <button (click)="orderNavigate(3)"> Confirmar pedido! </button>
             </div>                
           } @case('confirmation'){
