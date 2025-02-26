@@ -2,7 +2,7 @@ import { environment } from "./environment";
 
 export const Food2DeskApi = {
     urls: {
-        items: {
+        items: { //todo mudar nome p/ products
             root: `${environment.baseServerUrl}/api/principal` // /nomes das rotas
         },
         user: {
@@ -10,6 +10,9 @@ export const Food2DeskApi = {
         },
         product: {
             root: `${environment.baseServerUrl}/api/product`
+        },
+        order:{
+            root: `${environment.baseServerUrl}/api/order`
         }
     }
 }
