@@ -42,7 +42,7 @@
             </div>
           } @case('details') {
             <div>
-              <i class="fa-solid fa-arrow-left-long f2d-red" (click)="orderNavigate(2)" style="cursor: pointer;"></i>
+              <i class="fa-solid fa-arrow-left-long f2d-red" (click)="orderNavigate(4)" style="cursor: pointer;"></i>
               <p> Quase pronto! </p>
               <p> Confirme o escritório de entrega: </p>
               <div *ngFor="let office of user.offices">
@@ -64,12 +64,13 @@
 
             </div>
           } @case('review'){
+            <i class="fa-solid fa-arrow-left-long f2d-red" (click)="orderNavigate(1)" style="cursor: pointer;"></i>
             <div> 
-              <div><p>Total: <span>{{totalString}}</span></p></div>
+              <div><p>escritório</p></div>
               <div *ngFor="let item of order.cart">
                 <p>{{item.name}} ({{item.quantity}})</p>
               </div>
-              
+              <div><p>Total: <span>{{totalString}}</span></p></div>
               <button (click)="orderNavigate(3)"> Confirmar pedido! </button>
             </div>                
           } @case('confirmation'){
