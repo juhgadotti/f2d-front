@@ -97,9 +97,9 @@ export class UserHomeComponent implements OnInit {
     //this.http.put<order>().subscribe(response => {
     //  console.log(response)
     //});     
-    this.http.post<Order>(this.urls.order.root, this.order, ).pipe(response =>{
-      console.log(response);
-    });
+    //this.http.post<Order>(this.urls.order.root, this.order, ).pipe(response =>{
+    //  console.log(response);
+    //});
     this.orderNavigate(2);
   }
 
