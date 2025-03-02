@@ -63,7 +63,7 @@ export class UserHomeComponent implements OnInit {
   
   currentView: 'items' | 'details' | 'review'| 'confirmation'  = 'items';
 
-  selectedOffice: number | null = null;
+  selectedOffice: any | null = null;
 
   addToCart(product: any) {
     console.log(product);
@@ -119,6 +119,10 @@ export class UserHomeComponent implements OnInit {
 
   goToOrderStatus() {
     this.router.navigate(['/user-order-status']);
+  }
+
+  onOfficeSelect(){
+    console.log(this.selectedOffice)
   }
 
   orderNavigate(view: number) {
