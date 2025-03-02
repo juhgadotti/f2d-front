@@ -48,6 +48,7 @@ export class UserHomeComponent implements OnInit {
     
     this.http.get<User>(this.urls.user.root).subscribe(response =>{
       this.user = response;
+      console.log(response)
     });
 
   }
@@ -63,7 +64,7 @@ export class UserHomeComponent implements OnInit {
   
   currentView: 'items' | 'details' | 'review'| 'confirmation'  = 'items';
 
-  selectedOffice: any | null = null;
+  selectedOffice: string | null = null;
 
   addToCart(product: any) {
     console.log(product);

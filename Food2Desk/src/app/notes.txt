@@ -5,8 +5,11 @@ adicionar: bloqueio de botoes (confirmar pedido etc se nao tiver tudo preenchido
 fazer: construir o objeto e fazer a impressao no console.log, ao fazer novo pedido, mostrar o pedido vazio 
 
 
-
-
+1. definir o escritorio [ok]
+2. fazer o disabled do botao
+3. fazer a revisão
+4. terminar de construir o order
+5. mandar o order pro backend
 
 
 

@@ -46,7 +46,7 @@
               <p> Quase pronto! </p>
               <p> Confirme o escritório de entrega: </p>
               <div *ngFor="let office of user.offices">
-                <input type="radio" name="offices" [value]="+office.id" [(ngModel)]="selectedOffice" (change)="onOfficeSelect()">
+                <input type="radio" name="offices" [value]="office.officeId" [(ngModel)]="selectedOffice" (change)="onOfficeSelect()">
                 <span style="font-weight: bold;"> {{office.number}}</span> <span style="color: gray; font-style: italic;">
                   ({{office.floor}}° andar)</span>
               </div>
