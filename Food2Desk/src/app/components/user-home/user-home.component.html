@@ -59,7 +59,7 @@
               <input type="time" [disabled]="details.delivery.now" min="09:00:00" max="18:00:00" [(ngModel)]="details.delivery.time">
 
               <div>
-                <button class="red-btn mt-3" [ngClass]=" " [disabled]="" (click)="sendOrder()"> Revisar pedido </button>
+                <button class="red-btn mt-3" [ngClass]="{ 'red-btn-disabled': !selectedOffice }" [disabled]="!selectedOffice" (click)="sendOrder()"> Revisar pedido </button>
               </div>
 
             </div>

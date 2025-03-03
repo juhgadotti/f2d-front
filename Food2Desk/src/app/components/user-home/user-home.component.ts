@@ -123,6 +123,7 @@ export class UserHomeComponent implements OnInit {
   }
 
   onOfficeSelect(){
+    this.order.officeId = this.selectedOffice;
     console.log(this.selectedOffice)
   }
 

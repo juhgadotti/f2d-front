@@ -73,6 +73,15 @@
   height: 30px;
 }
 
+.red-btn-disabled {
+  border: none;
+  background-color: #e6adab;
+  color: white;
+  border-radius: 8px;
+  width: auto;
+  height: 30px;
+  cursor: not-allowed;
+}
 
 .shop-item {
   display: flex; // Alinha os itens na mesma linha
