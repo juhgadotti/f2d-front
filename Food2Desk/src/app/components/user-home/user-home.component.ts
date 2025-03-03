@@ -11,15 +11,7 @@ import { Food2DeskApi } from '../../../environments/path';
 
 interface Delivery {
   now: boolean,
-  time: string
-}
-
-interface Details {
-  delivery: {
-    now: boolean,
-    time: string
-  },
-  officeAddress: number | null
+  time: string | null
 }
 
 @Component({
@@ -53,9 +45,8 @@ export class UserHomeComponent implements OnInit {
 
   }
 
-  details: Details = {
-    delivery: { now: true, time: ''},
-    officeAddress: null
+  delivery: Delivery = {
+     now: true, time: null
   }
   
   orderItens: boolean =  true;
@@ -107,10 +98,10 @@ export class UserHomeComponent implements OnInit {
   newOrder(): void {
     this.order = {};
     this.order.cart = [];
+    this.selectedOffice = null;
 
-    this.details = {
-      delivery: { now: true, time: ''},
-      officeAddress: null,
+    this.delivery = {
+       now: true, time: null
     }
 
     this.totalString = '';
