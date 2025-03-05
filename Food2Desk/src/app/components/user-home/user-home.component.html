@@ -56,8 +56,7 @@
               <br>
               <input type="radio" [(ngModel)]="delivery.now" [value]="false">
               Agendar Horário:
-              <input type="time" [disabled]="delivery.now" min="09:00:00" max="18:00:00" [(ngModel)]="delivery.time">
-
+              <input type="time" [disabled]="delivery.now" min="09:00:00" max="18:00:00" [(ngModel)]="delivery.time">              
               <div>
                 <button class="red-btn mt-3" [ngClass]="{ 'red-btn-disabled': !selectedOffice }" [disabled]="!selectedOffice" (click)="sendOrder()"> Revisar pedido </button>
               </div>
@@ -68,8 +67,8 @@
             <div> 
               <div>
                 <p>Local de entrega: {{order.office?.number}}, {{order.office?.floor}}° andar.</p>
+                <p>Horario: <span *ngIf="delivery.now"> agora </span> <span *ngIf="!delivery.now"> agendada para: {{delivery.time}} </span> </p>
                 <p>Total: <span>{{totalString}}</span></p>
-                <p> </p>
               </div>
               <div *ngFor="let item of order.cart">
                 <p>{{item.name}} ({{item.quantity}})</p>
