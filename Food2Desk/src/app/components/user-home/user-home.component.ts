@@ -85,8 +85,9 @@ export class UserHomeComponent implements OnInit {
 
   sendOrder(): void { //vai retornar o recebimento do pedido
     this.order.deliverNow = this.delivery.now;
-    this.order.deliveryTime ?? this.delivery.time;
-    console.log(this.order)
+    this.order.deliveryTime = this.delivery.time?.toString();
+    console.log(this.order);
+    console.log(this.delivery.time);
     //this.order.office?.floor.at;
     //this.http.put<order>().subscribe(response => {
     //  console.log(response)
@@ -103,7 +104,7 @@ export class UserHomeComponent implements OnInit {
     this.selectedOffice = null;
 
     this.delivery = {
-       now: true, time: null
+       now: true, time: ''
     }
 
     this.totalString = '';
