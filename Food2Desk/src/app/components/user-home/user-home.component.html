@@ -46,7 +46,7 @@
               <p> Quase pronto! </p>
               <p> Confirme o escritório de entrega: </p>
               <div *ngFor="let office of user.offices">
-                <input type="radio" name="offices" [value]="office.officeId" [(ngModel)]="selectedOffice" (change)="onOfficeSelect()">
+                <input type="radio" name="offices" [value]="office" [(ngModel)]="selectedOffice" (change)="onOfficeSelect()">
                 <span style="font-weight: bold;"> {{office.number}}</span> <span style="color: gray; font-style: italic;">
                   ({{office.floor}}° andar)</span>
               </div>
@@ -66,7 +66,7 @@
           } @case('review'){
             <i class="fa-solid fa-arrow-left-long f2d-red" (click)="orderNavigate(1)" style="cursor: pointer;"></i>
             <div> 
-              <div><p>escritório</p></div>
+              <div>                <p>escritório</p>              </div>              
               <div *ngFor="let item of order.cart">
                 <p>{{item.name}} ({{item.quantity}})</p>
               </div>

@@ -55,7 +55,7 @@ export class UserHomeComponent implements OnInit {
   
   currentView: 'items' | 'details' | 'review'| 'confirmation'  = 'items';
 
-  selectedOffice: string | null = null;
+  selectedOffice!: User['offices'][0] | null;
 
   addToCart(product: any) {
     console.log(product);
@@ -114,7 +114,7 @@ export class UserHomeComponent implements OnInit {
   }
 
   onOfficeSelect(){
-    this.order.officeId = this.selectedOffice;
+    this.order.office = this.selectedOffice;
     console.log(this.selectedOffice)
   }
 
