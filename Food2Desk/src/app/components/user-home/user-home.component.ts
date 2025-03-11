@@ -8,6 +8,7 @@ import { User } from '../../interfaces/user';
 import { Product } from '../../interfaces/product';
 import { HttpClient } from '@angular/common/http';
 import { Food2DeskApi } from '../../../environments/path';
+import { Observable } from 'rxjs';
 
 interface Delivery {
   now: boolean,
@@ -40,7 +41,6 @@ export class UserHomeComponent implements OnInit {
     
     this.http.get<User>(this.urls.user.root).subscribe(response =>{
       this.user = response;
-      console.log(response)
     });
 
   }
@@ -86,8 +86,6 @@ export class UserHomeComponent implements OnInit {
   sendOrder(): void { //vai retornar o recebimento do pedido
     this.order.deliverNow = this.delivery.now;
     this.order.deliveryTime = this.delivery.time?.toString();
-    console.log(this.order);
-    console.log(this.delivery.time);
     //this.order.office?.floor.at;
     //this.http.put<order>().subscribe(response => {
     //  console.log(response)
@@ -95,7 +93,16 @@ export class UserHomeComponent implements OnInit {
     //this.http.post<Order>(this.urls.order.root, this.order, ).pipe(response =>{
     //  console.log(response);
     //});
+    
     this.orderNavigate(2);
+  }
+
+  test() {
+    console.log(this.order);    
+
+    this.http.post<Order>(this.urls.order.root, this.order).subscribe(response => {
+      console.log(response);
+    });
   }
 
   newOrder(): void {
@@ -118,7 +125,6 @@ export class UserHomeComponent implements OnInit {
 
   onOfficeSelect(){
     this.order.office = this.selectedOffice;
-    console.log(this.selectedOffice)
   }
 
   orderNavigate(view: number) {

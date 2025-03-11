@@ -8,7 +8,7 @@ fazer: construir o objeto e fazer a impressao no console.log, ao fazer novo pedi
 1. definir o escritorio [ok]
 2. fazer o disabled do botao [ok]
 4. terminar de construir o order [ok]
-3. fazer a revisão
+3. fazer a revisão [ok]
 5. mandar o order pro backend
 
 
