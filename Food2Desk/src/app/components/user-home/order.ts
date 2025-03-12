@@ -1,7 +1,7 @@
 export interface Order {
     id: string
     userName: string
-    userId: number
+    userId: string
     totalCharge: number | null
     deliverNow: boolean
     deliveryTime: string | null
