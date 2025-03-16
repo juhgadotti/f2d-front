@@ -116,7 +116,10 @@ export class UserHomeComponent implements OnInit {
 
     this.totalString = '';
     this.orderNavigate(4);
-    //todo atualizar a lista
+    
+    this.http.get<Product[]>(this.urls.product.root).subscribe(response => {
+      this.productsList = response;
+    });
   }
 
   goToOrderStatus() {
