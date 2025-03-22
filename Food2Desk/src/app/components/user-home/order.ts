@@ -6,5 +6,5 @@ export interface Order {
     deliverNow: boolean
     deliveryTime: string | null
     office: { officeId: string, floor: string, number: string, block: string | null, enterprise: string | null, enterpriseId: string | null, obs: string | null} | null
-    cart: Array<{ name: string, quantity: number, id: string, price: number }>;
+    cart: Array<{id: string, quantity: number}>;
 }
