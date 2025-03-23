@@ -9,15 +9,17 @@ fazer: construir o objeto e fazer a impressao no console.log, ao fazer novo pedi
 2. fazer o disabled do botao [ok]
 4. terminar de construir o order [ok]
 3. fazer a revisão [ok]
-5. mandar o order pro backend
+5. mandar o order pro backend [ok]
 
 
+6. bloquear carrinho quando vai pra revisao de pedido
+7. 
 
 
 
 p/ salvar:
 this.productsList = [
-      { id: 1, image: "images/coxinha.jpg", name: 'Coxinha', description: 'Coxinha de frango com ou sem catupiry', price: 7.99 },
+      { id: 1, image: "images/coxinha.jpg", name: 'Coxinha', description: 'Coxinha de frango com ou sem catupiry', price: 7.99 }, 
       { id: 2, image: "images/sand.png", name: 'Sanduiche natural', description: 'Pão, peito de peru, queijo branco e tomate', price: 12.75 },
       { id: 4, image: "images/fruitsalad.png", name: 'Salada de fruta', description: 'Maçã, banana, laranja e uva', price: 10.75 },
       { id: 5, image: "images/cafe.jpg", name: 'Café', description: 'Coado', price: 4.75 },
