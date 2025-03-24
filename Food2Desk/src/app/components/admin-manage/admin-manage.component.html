@@ -1,28 +1,39 @@
 <app-header></app-header>
 <main>
+    <nav class="navbar navbar-expand-lg px-4"></nav>
     <div class="container">
 
 
         <h3 class="p-3">Gerenciador de Pedidos <button class="btn btn-swipe-column"
                 (click)="showThirdColumn = !showThirdColumn" id="toggleConcluded">
-                <i class="fa-regular fa-fw" [ngClass]="{'fa-eye': !showThirdColumn, 'fa-eye-slash': showThirdColumn}"></i>
+                <i class="fa-regular fa-fw"
+                    [ngClass]="{'fa-eye': !showThirdColumn, 'fa-eye-slash': showThirdColumn}"></i>
                 {{ showThirdColumn ? 'Ocultar Concluídos' : 'Exibir Concluídos' }}</button></h3>
 
 
-        <div class="row">
-            <div class="col-12 col-md" [ngClass]="{'col-md-6': !showThirdColumn, 'col-md-4': showThirdColumn}">
-                <h4>Novos Pedidos</h4>
+        <div class="row g-3">
+            <div class="col-12 col-md orders-card" [ngClass]="{'col-md-6': !showThirdColumn, 'col-md-4': showThirdColumn}">
+                <h4 class="d-flex align-items-center">
+                    Novos pedidos
+                    <div class="badge ms-2 new-order-length">{{ newOrderList.length }}</div>
+                  </h4>
+                                  
+                  
                 <div id="newOrders">
-                    <!-- Pedidos novos aqui -->
+                    <div *ngFor="let item of newOrderList">
+                        {{item.userName}}
+                    </div>
                 </div>
             </div>
-            <div class="col-md-4" [ngClass]="{'col-md-6': !showThirdColumn, 'col-md-4': showThirdColumn}">
+
+            <div class="col-md-4 orders-card" [ngClass]="{'col-md-6': !showThirdColumn, 'col-md-4': showThirdColumn}">
                 <h4>Em Entrega</h4>
                 <div id="inDelivery">
                     <!-- Pedidos em entrega aqui -->
                 </div>
             </div>
-            <div class="col-12 col-md-4" *ngIf="showThirdColumn" id="concludedColumn">
+
+            <div class="col-12 col-md-4 orders-card" *ngIf="showThirdColumn" id="concludedColumn">
                 <h4>Concluídos???????</h4>
                 <div id="concludedOrders">
 

@@ -2,13 +2,13 @@
 
 .orders-card {
     border: 1px solid #ddd;
-    padding: 4px;
+    padding: 8px;
     border-radius: 8px;
-    display: flex;
+    background-color: #ffffff;
 }
 
-.btn-order{
-    border-color: #bf4e4b;    
+.btn-order {
+    border-color: #bf4e4b;
     border-radius: 8px;
     color: #bf4e4b;
     background-color: hsl(0, 0%, 100%);
@@ -18,18 +18,18 @@
 
     &:hover {
         background-color: hsl(0, 0%, 89%); // vermelho + escuro]
-      }
+    }
 }
 
-.btn-status{
-    border-color: #009e15;    
+.btn-status {
+    border-color: #009e15;
     border-radius: 8px;
     color: #009e15;
     background-color: hsl(0, 0%, 100%);
     margin-right: 8px;
 }
 
-.status{
+.status {
     background-color: #ddd;
     border-radius: 8px;
     height: 30px;
@@ -38,6 +38,7 @@
     align-items: center !important;
     border: none;
 }
+
 //novos:
 html {
     font-family: 'Inter', system-ui, sans-serif;
@@ -51,14 +52,49 @@ html {
     font-family: 'Inter', system-ui, sans-serif;
     border-radius: 0.8rem;
     color: black;
-    width: 196  px;
-    transition: background-color 0.3s, border-color 0.3s; 
+    min-width: 196px;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 .btn-swipe-column:hover {
-    background-color: #cfd6df; 
-    border-color: #d9dadb;    
-    color: rgb(59, 59, 59); 
+    background-color: #cfd6df;
+    border-color: #d9dadb;
+    color: rgb(59, 59, 59);
+}
+
+h4 {
+    display: flex;
+    align-items: center;
+
+    .badge {
+        color:  #3662dd;
+        background-color: #eff6ff;
+        border: 1px solid #c6dffe;
+        border-radius: 3rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.15rem 0.75rem;
+        font-size: 0.8rem;
+        font-weight: 500;
+        cursor: default;
+        transition: background-color 0.2s ease-in-out;
+        margin-top: 4px;
+        margin-left: 4px;
+    }
+}
+
+.badge-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.15rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border-radius: 3rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
 }
 
 
