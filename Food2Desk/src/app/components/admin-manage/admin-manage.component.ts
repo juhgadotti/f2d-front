@@ -14,71 +14,18 @@ import { Router } from '@angular/router';
   templateUrl: './admin-manage.component.html',
   styleUrl: './admin-manage.component.scss'
 })
+
 export class AdminManageComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient) {}
     
     private urls = Food2DeskApi.urls;
-    
+    newOrderList: Order[] = [];
+    showThirdColumn: boolean = false;
+
   ngOnInit(): void {
-    console.log('init')
-    this.http.get<Order>(this.urls.order.root).subscribe(response =>{
-      console.log(response)
+    this.http.get<Order[]>(this.urls.order.root).subscribe(response =>{
+      this.newOrderList = response;
     });  
     
   }
-
-    orders = [
-      {
-        orderId: 1,
-        customer: 'Maria Silva',
-        floor: '25',
-        office: '2503',
-        status: 'Preparação',
-        viewStatus: true,
-        items: [
-          { name: 'Coca cola', quantity: 1 },
-          { name: 'Empada de frango', quantity: 2 },
-          { name: 'Trento de chocolate', quantity: 1 }
-        ]
-      },
-      {
-        orderId: 2,
-        customer: 'João Souza',
-        floor: '12',
-        office: '1201',
-        status: 'Entrega',
-        viewStatus: true,
-        items: [
-          { name: 'KitKat', quantity: 1 },
-          { name: 'Água', quantity: 2 }
-        ]
-      },
-      {
-        orderId: 3,
-        customer: 'Caio Santos',
-        floor: '6',
-        office: '602',
-        status: 'Entrega',
-        viewStatus: true,
-        items: [
-          { name: 'Coxinha', quantity: 2 },
-          { name: 'Suco de laranja', quantity: 1 }
-        ]
-      }
-    ];
-
-    showStatusUpdate(index: number) {
-      this.orders[index].viewStatus = !this.orders[index].viewStatus;
-    }
-
-    statusUpdate(status: boolean, index: number) {
-      if (status) { //alterar para switch case
-        this.orders[index].status = 'Preparação'
-      } else {
-        this.orders[index].status = 'Entrega'
-      }
-
-      this.showStatusUpdate(index);
-
-    }
 }

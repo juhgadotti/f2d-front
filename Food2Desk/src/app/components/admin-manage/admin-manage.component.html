@@ -1,38 +1,31 @@
 <app-header></app-header>
 <main>
     <div class="container">
-        <div class="orders-card mt-5">
-            <div>
-                <div *ngFor="let order of orders, let i = index">
-    
-                    <div class="display-flex">
-                        <button class="btn-order" (click)="showStatusUpdate(i)">Pedido #{{ order.orderId }}</button>
-                        <div *ngIf="order.viewStatus"><button class="status">{{order.status}}</button></div>
-                        <div style="margin-top: 6px;" *ngIf="!order.viewStatus">
-                            <button class="btn-status" (click)="statusUpdate(true, i)">Preparação</button>
-                            <button class="btn-status"  (click)="statusUpdate(false, i)">Entrega</button>
+        
+            
+                <h2 class="mb-3">Gerenciador de Pedidos</h2>
+                <button class="btn btn-secondary mb-3" (click)="showThirdColumn = !showThirdColumn" id="toggleConcluded">Mostrar Concluídos</button>
+                
+                <div class="row">
+                    <div class="col-12 col-md" [ngClass]="{'col-md-6': !showThirdColumn, 'col-md-4': showThirdColumn}">
+                        <h4>Novos Pedidos</h4>
+                        <div id="newOrders">
+                            <!-- Pedidos novos aqui -->
                         </div>
-                    </div>                                        
-                    
-
-                    <div style="font-size: 1.1rem; margin-top: 7px;">
-                        Andar: <span style="font-weight: bold;">  {{order.floor}} </span>
-                        Sala: <span style="font-weight: bold;">  {{order.office}} </span>
                     </div>
-                    <p style="color: gray;">Cliente: {{ order.customer }}</p>
-                    <ul>
-                        <li *ngFor="let item of order.items">
-                            ({{ item.quantity }}x) {{ item.name }};
-                        </li>
-                    </ul>
+                    <div class="col-md-4" [ngClass]="{'col-md-6': !showThirdColumn, 'col-md-4': showThirdColumn}">
+                        <h4>Em Entrega</h4>
+                        <div id="inDelivery">
+                            <!-- Pedidos em entrega aqui -->
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4" *ngIf="showThirdColumn" id="concludedColumn"  style="display: none;">
+                        <h4>Concluídos???????</h4>
+                        <div id="concludedOrders">
+                            <!-- Pedidos concluídos aqui -->
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+        
     </div>
-<!-- <ng-multiselect-dropdown [placeholder]="'Atualizar Status'" [data]="dropdownList"
-                        [(ngModel)]="selectedItems" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
-                        (onDeSelect)="onItemDeselect($event)" (onSelectAll)="onSelectAll($event)">
-                    </ng-multiselect-dropdown> -->
-                    <!-- <ng-multiselect-dropdown
-                    [placeholder]="'Atualizar Status'"></ng-multiselect-dropdown> -->
 </main>
