@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
 .orders-card {
     border: 1px solid #ddd;
     padding: 4px;
@@ -36,9 +38,29 @@
     align-items: center !important;
     border: none;
 }
-
-
 //novos:
+html {
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+.btn-swipe-column {
+    float: right;
+    border: 1px solid #e1e7ef;
+    cursor: pointer;
+    background-color: #f8fafc;
+    font-family: 'Inter', system-ui, sans-serif;
+    border-radius: 0.8rem;
+    color: black;
+    width: 196  px;
+    transition: background-color 0.3s, border-color 0.3s; 
+}
+
+.btn-swipe-column:hover {
+    background-color: #cfd6df; 
+    border-color: #d9dadb;    
+    color: rgb(59, 59, 59); 
+}
+
 
 // .two-columns
 // {}
