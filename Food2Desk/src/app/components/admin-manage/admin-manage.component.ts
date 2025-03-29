@@ -24,6 +24,7 @@ export class AdminManageComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.get<Order[]>(this.urls.order.root).subscribe(response =>{
+      console.log(response)
       this.newOrderList = response;
     });      
   } 
@@ -31,9 +32,9 @@ export class AdminManageComponent implements OnInit {
   updateOrderStatus(order: Order, newStatus: number) {        
     this.newOrderList = this.newOrderList.map(item => item.id == order.id ? {...item, status: newStatus} : item);
 
-    //this.http.put<>(this.urls.order.root).subscribe(response => {
-
-    //});
+    this.http.put<Order>(this.urls.order.root, order).subscribe(response => {
+      console.log(response)
+    });
     //att a lista
   }
 
