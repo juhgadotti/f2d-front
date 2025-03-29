@@ -1,5 +1,6 @@
 export interface Order {
     id: string
+    code: number
     userId: string
     userName: string
     totalCharge: number | null
