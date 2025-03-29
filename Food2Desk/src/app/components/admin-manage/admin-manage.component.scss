@@ -118,12 +118,14 @@ h4 {
 .order-item {
     border: 1px solid #ccc;  // Borda fina
     border-radius: 6px;       // Cantos arredondados
-    padding: 8px 12px;        // Espaçamento interno
+    padding: 6px 10px;        // Espaçamento interno
     margin-bottom: 8px;       // Espaço entre os cards
-    background-color: #f8f9fa; // Cor de fundo suave
-    display: flex;            // Para organizar elementos internos
+    background-color: #f8f9fa; // Cor de fundo suave          // Para organizar elementos internos
     align-items: center;      // Centraliza os itens verticalmente
     justify-content: space-between; // Espaço entre elementos
+    align-items: start;
+    display: flex;
+    flex-direction: column;
 
     &:hover{
         transition: linearx ;
@@ -132,11 +134,12 @@ h4 {
 
     // Ícone ou botão dentro do card
     .order-actions {
-        font-size: 14px;
+        font-size: 18px;
         color: #666;
-        cursor: pointer;
-
-       
+        cursor: pointer;   
+        display: flex;
+        justify-content: space-between;
+        width: 100%;   
     }
 }
 
