@@ -13,6 +13,7 @@ export const Food2DeskApi = {
         },
         order:{
             root: `${environment.baseServerUrl}/api/order`,
+            list: `${environment.baseServerUrl}/api/order/list`,
             test: `${environment.baseServerUrl}/api/order/test`
         }
     }
