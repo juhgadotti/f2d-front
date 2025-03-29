@@ -1,45 +1,60 @@
 <app-header></app-header>
 <main>
-    <nav class="navbar navbar-expand-lg px-4"></nav>
-    <div class="container">
+    <!-- <nav class="navbar navbar-expand-lg px-4"></nav> -->
+    <div class="container content-wrapper">
+        <div class="header">
+            <h3 class="p-3">Gerenciador de Pedidos 
+                <button class="btn btn-swipe-column" (click)="showThirdColumn = !showThirdColumn" id="toggleConcluded">
+                    <i class="fa-regular fa-fw" [ngClass]="{'fa-eye': !showThirdColumn, 'fa-eye-slash': showThirdColumn}"></i>
+                    {{ showThirdColumn ? 'Ocultar Concluídos' : 'Exibir Concluídos' }}
+                </button>
+            </h3>
+        </div>
+        
 
-
-        <h3 class="p-3">Gerenciador de Pedidos <button class="btn btn-swipe-column"
-                (click)="showThirdColumn = !showThirdColumn" id="toggleConcluded">
-                <i class="fa-regular fa-fw"
-                    [ngClass]="{'fa-eye': !showThirdColumn, 'fa-eye-slash': showThirdColumn}"></i>
-                {{ showThirdColumn ? 'Ocultar Concluídos' : 'Exibir Concluídos' }}</button></h3>
-
-
-        <div class="row g-3">
-            <div class="col-12 col-md orders-card" [ngClass]="{'col-md-6': !showThirdColumn, 'col-md-4': showThirdColumn}">
+        <!-- A row principal que contém todas as colunas -->
+        <div class="row d-flex">
+            <div class="col-12 col-md-6 orders-card px-3" 
+                [ngClass]="{'col-md-6': !showThirdColumn, 'col-md-4': showThirdColumn}">
                 <h4 class="d-flex align-items-center">
                     Novos pedidos
-                    <div class="badge ms-2 new-order-length">{{ newOrderList.length }}</div>
-                  </h4>
-                                  
-                  
+                    <div class="badge ms-2 new-order-length">{{ orderListStatus(1).length }}</div>
+                </h4>
                 <div id="newOrders">
-                    <div *ngFor="let item of newOrderList">
-                        {{item.userName}}
+                    <div *ngFor="let item of orderListStatus(1)">
+                        <div class="order-item">
+                            <span class="small">{{ item.userName }}</span>   dsadsa  
+                            <i class="fa-solid fa-basket-shopping order-actions" uib-tooltip="oi?" (click)="updateOrderStatus(item, 2)"></i>    
+                            <i class="fa-solid fa-circle-check" (click)="updateOrderStatus(item, 3)"></i>                   
+                        </div>    
+                    </div>
+                </div>
+            </div> 
+
+            <div class="col-12 col-md-6 orders-card" 
+                [ngClass]="{'col-md-6': !showThirdColumn, 'col-md-4': showThirdColumn}">
+                <h4>Em Entrega</h4>
+                <div id="inDelivery">
+                    <div *ngFor="let item of orderListStatus(2)">
+                        <div class="order-item">
+                            <span>{{ item.userName }}</span>
+                            <i class="fa-solid fa-trash order-actions"></i> <!-- Exemplo de ação -->
+                        </div>    
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-4 orders-card" [ngClass]="{'col-md-6': !showThirdColumn, 'col-md-4': showThirdColumn}">
-                <h4>Em Entrega</h4>
-                <div id="inDelivery">
-                    <!-- Pedidos em entrega aqui -->
-                </div>
-            </div>
-
             <div class="col-12 col-md-4 orders-card" *ngIf="showThirdColumn" id="concludedColumn">
-                <h4>Concluídos???????</h4>
+                <h4>Concluídos</h4>
                 <div id="concludedOrders">
-
+                    <div *ngFor="let item of newOrderList">
+                        <div *ngIf="item.status == 3" class="order-item">
+                            <span>{{ item.userName }}</span>
+                            <i class="fa-solid fa-trash order-actions"></i> <!-- Exemplo de ação -->
+                        </div>    
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
 </main>

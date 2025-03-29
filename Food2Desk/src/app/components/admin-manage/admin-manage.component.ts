@@ -25,7 +25,19 @@ export class AdminManageComponent implements OnInit {
   ngOnInit(): void {
     this.http.get<Order[]>(this.urls.order.root).subscribe(response =>{
       this.newOrderList = response;
-    });  
-    
+    });      
+  } 
+
+  updateOrderStatus(order: Order, newStatus: number) {        
+    this.newOrderList = this.newOrderList.map(item => item.id == order.id ? {...item, status: newStatus} : item);
+
+    //this.http.put<>(this.urls.order.root).subscribe(response => {
+
+    //});
+    //att a lista
+  }
+
+  orderListStatus(status: number): Order[]{
+    return this.newOrderList.filter(p => p.status == status)
   }
 }
