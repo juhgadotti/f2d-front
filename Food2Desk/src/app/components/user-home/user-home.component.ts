@@ -103,7 +103,7 @@ export class UserHomeComponent implements OnInit {
     this.http.post<Order>(this.urls.order.root, this.order).subscribe(response => {
       console.log(response);
     });
-
+    this.orderNavigate(3);
     //this.http.post<Order>(this.urls.order.root, this.order).subscribe(response => {
     //  console.log(response);
     //});

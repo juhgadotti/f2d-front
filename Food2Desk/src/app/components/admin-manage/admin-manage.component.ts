@@ -4,7 +4,7 @@ import { HeaderComponent } from '../../header/header.component';
 import { CommonModule } from '@angular/common';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { Food2DeskApi } from '../../../environments/path';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({
@@ -32,7 +32,9 @@ export class AdminManageComponent implements OnInit {
   updateOrderStatus(order: Order, newStatus: number) {        
     this.newOrderList = this.newOrderList.map(item => item.id == order.id ? {...item, status: newStatus} : item);
 
-    this.http.put<Order>(this.urls.order.root, order).subscribe(response => {
+    //const params = new HttpParams().set('id', order.id.toString());
+    order.status = newStatus;
+    this.http.put<Order>(this.urls.order.status, order).subscribe(response => {
       console.log(response)
     });
     //att a lista
