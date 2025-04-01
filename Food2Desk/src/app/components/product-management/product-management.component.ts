@@ -4,12 +4,13 @@ import { Product } from '../../interfaces/product';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Food2DeskApi } from '../../../environments/path';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-product-management',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './product-management.component.html',
   styleUrl: './product-management.component.scss'
 })
@@ -29,8 +30,7 @@ export class ProductManagementComponent implements OnInit {
 
  // options = 
   
-  ngOnInit(){
-   
+  ngOnInit(){   
     this.categories = ['Bebida', 'Salgado', 'Doce', 'Almoço']
   }
 
@@ -45,5 +45,9 @@ export class ProductManagementComponent implements OnInit {
     this.http.post<Product>(this.urls.product.root, this.product).subscribe(response => {
           console.log(response);
         });
+  }
+
+  conso(){
+    console.log(this.categories)
   }
 }
