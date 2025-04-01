@@ -21,11 +21,8 @@
           <div class="form-group col-md-6">
             <label for="category">Categoria</label>
             <select id="category" [(ngModel)]="category" name="category" class="form-control">
-              <option selected>Select a category</option>
-              <option>Café da manhã</option>
-              <option>Lunch</option>
-              <option>Dinner</option>
-              <option>Snacks</option>
+              <option value="" disabled selected>Select a category</option>
+              <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
             </select>
           </div>
         </div>
@@ -34,7 +31,7 @@
           <label for="imageUrl">Arquivo Imagem</label>
           <input type="text" id="imageUrl" class="form-control" placeholder="https://example.com/image.jpg">
         </div>
-        <button type="submit" (click)="saveProduct()" class="btn btn-primary btn-block">Add Product</button>
+        <button type="submit" (click)="saveProduct()" class="btn btn-primary btn-block">Cadastrar</button>
       </form>
     </div>
   </div>

@@ -24,8 +24,9 @@
                             <p class="order-code text-muted">#{{ item.code }}</p>
                         </div>
                         <div class="float-left">
+                            <p>{{item.userName}}</p>
                             <ul>
-                                <li *ngFor="let product of item.cart">
+                                <li *ngFor="let product of item.cart">                                    
                                     {{product.quantity}}x {{product.name}}
                                 </li>
                             </ul>
