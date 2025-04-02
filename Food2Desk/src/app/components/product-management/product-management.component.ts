@@ -45,6 +45,10 @@ export class ProductManagementComponent implements OnInit {
     this.http.post<Product>(this.urls.product.root, this.product).subscribe(response => {
           console.log(response);
         });
+
+    this.http.get<Product[]>(this.urls.product.categories).subscribe(response => {
+          console.log(response);
+    });
   }
 
   conso(){
