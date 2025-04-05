@@ -1,0 +1,28 @@
+.login-container {
+    height: 100vh;
+    background: linear-gradient(135deg, #007bff, #6c63ff);
+  }
+  
+  .login-card {
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;
+    border-radius: 15px;
+  
+    h3 {
+      color: #333;
+    }
+  
+    .form-label {
+      font-weight: 500;
+    }
+  
+    .input-group-text {
+      background-color: #f1f1f1;
+    }
+  
+    .btn-primary {
+      border-radius: 25px;
+    }
+  }
+  
