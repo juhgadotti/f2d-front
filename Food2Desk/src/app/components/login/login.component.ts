@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Food2DeskApi } from '../../../environments/path';
+import { User } from '../../interfaces/user';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +12,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  private urls = Food2DeskApi.urls;
+
+  constructor(private fb: FormBuilder, private http: HttpClient) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -19,7 +24,9 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       console.log(this.loginForm.value);
-      // Aqui você pode chamar um serviço de autenticação
+      this.http.post<User>(this.urls.order.root, this.loginForm).subscribe(response => {
+            console.log(response);
+          });
     }
   }
 }
