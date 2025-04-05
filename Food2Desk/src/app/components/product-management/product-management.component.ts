@@ -24,7 +24,9 @@ export class ProductManagementComponent implements OnInit {
   price!: number;
   categories: string[] = [];
 
-  product: Product = {} as Product;
+  currentView: 'list' | 'new' | 'edit' = 'new';
+
+  product: Product = {} as Product;  
 
   private urls = Food2DeskApi.urls;
 

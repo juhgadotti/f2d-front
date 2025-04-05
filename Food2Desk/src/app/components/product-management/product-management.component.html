@@ -1,40 +1,46 @@
-<div class="modal-container">
-    <div class="modal-content">
-      <h2>Cadastrar Produto</h2>
-      
-      <form>
-        <div class="form-group">
-          <label for="name">Nome</label>
-          <input type="text" [(ngModel)]="name" id="name" name="name" class="form-control" placeholder="Nome do produto">
-                </div>
-  
-        <div class="form-group">
-          <label for="description">Descrição</label>
-          <textarea id="description" [(ngModel)]="description" name="description" class="form-control" placeholder="Uma breve descrição do produto"></textarea>
-        </div>
-  
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="price">Preço (R$)</label>
-            <input type="number" [(ngModel)]="price" name="price" id="price" class="form-control" placeholder="0">
+<main>
+  @switch(currentView)
+  {
+    @case('list') {
+    <div class="modal-container"></div>
+    } @case('new') {
+    <div class="modal-container">
+      <div class="modal-content">
+        <h2>Cadastrar Produto</h2>
+        <form>
+          <div class="form-group">
+            <label for="name">Nome</label>
+            <input type="text" [(ngModel)]="name" id="name" name="name" class="form-control"
+              placeholder="Nome do produto">
           </div>
-          <div class="form-group col-md-6">
-            <label for="category">Categoria</label>
-            <select id="category" [(ngModel)]="category" name="category" class="form-control">
-              <option value="" disabled selected>Select a category</option>
-              <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
-            </select>
+          <div class="form-group">
+            <label for="description">Descrição</label>
+            <textarea id="description" [(ngModel)]="description" name="description" class="form-control"
+              placeholder="Uma breve descrição do produto"></textarea>
           </div>
-        </div>
-  
-        <div class="form-group">
-          <label for="imageUrl">Arquivo Imagem</label>
-          <input type="text" id="imageUrl" class="form-control" placeholder="https://example.com/image.jpg">
-        </div>
-        <button type="submit" (click)="saveProduct()" class="btn btn-primary btn-block">Cadastrar</button>
-        <button type="submit" (click)="conso()" class="btn btn-primary btn-block">Teste</button>
-
-      </form>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="price">Preço (R$)</label>
+              <input type="number" [(ngModel)]="price" name="price" id="price" class="form-control" placeholder="0">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="category">Categoria</label>
+              <select id="category" [(ngModel)]="category" name="category" class="form-control">
+                <option value="" disabled selected>Select a category</option>
+                <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="imageUrl">Arquivo Imagem</label>
+            <input type="text" id="imageUrl" class="form-control" placeholder="https://example.com/image.jpg">
+          </div>
+          <button type="submit" (click)="saveProduct()" class="btn btn-primary btn-block">Cadastrar</button>
+          <button type="submit" (click)="conso()" class="btn btn-primary btn-block">Teste</button>
+        </form>
+      </div>
     </div>
-  </div>
-  
+  }
+}
+
+</main>
