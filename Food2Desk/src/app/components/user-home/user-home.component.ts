@@ -33,7 +33,7 @@ export class UserHomeComponent implements OnInit {
   user: User = {} as User; //q isso aqui meu deus
   totalString: string | undefined = '';
 
-  ngOnInit(): void { //load
+  ngOnInit(): void {
 
     this.http.get<Product[]>(this.urls.product.root).subscribe(response => {
       this.productsList = response;
@@ -42,7 +42,6 @@ export class UserHomeComponent implements OnInit {
     this.http.get<User>(this.urls.user.root).subscribe(response =>{
       this.user = response;
     });
-
   }
 
   delivery: Delivery = {
@@ -51,8 +50,7 @@ export class UserHomeComponent implements OnInit {
   
   orderItens: boolean =  true;
   orderSent: boolean = false;
-  //orderDetails: boolean = false;
-  
+    
   currentView: 'items' | 'details' | 'review'| 'confirmation'  = 'items';
 
   selectedOffice!: User['offices'][0] | null;

@@ -29,15 +29,12 @@ export class ProductManagementComponent implements OnInit {
   product: Product = {} as Product;  
 
   private urls = Food2DeskApi.urls;
-
- // options = 
   
-  ngOnInit(){   
+  ngOnInit() {   
     this.categories = ['Bebida', 'Salgado', 'Doce', 'Almoço']
   }
 
-
-  saveProduct(){
+  saveProduct() {
     this.product.name = this.name;
     this.product.price = this.price;
     this.product.description = this.description;    
