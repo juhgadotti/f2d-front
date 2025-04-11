@@ -14,6 +14,8 @@ export class LoginComponent {
 
   private urls = Food2DeskApi.urls;
 
+  currentView: 'login' | 'register' = 'login';
+
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -28,5 +30,9 @@ export class LoginComponent {
             console.log(response);
           });
     }
+  }
+
+  register():void {
+    this.currentView = 'register';
   }
 }
