@@ -1,8 +1,17 @@
 .login-container {
     height: 100vh;
-    background: linear-gradient(135deg, #007bff, #6c63ff);
+    background-color: #aa3939;
+    // background: linear-gradient(135deg, #dc3545, #6c63ff);
   }
   
+.link{
+  cursor: pointer;
+}
+
+.sm{
+  font-size: small;
+}
+
   .login-card {
     width: 100%;
     max-width: 400px;
