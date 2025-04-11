@@ -3,6 +3,7 @@
     background-color: #aa3939;
     // background: linear-gradient(135deg, #dc3545, #6c63ff);
   }
+
   
 .link{
   cursor: pointer;
@@ -14,6 +15,22 @@
 
 .red-dark{
   color: #aa3939;
+}
+
+.btn-red-negative{
+  width: 100%;
+  max-width: 400px;
+  border-radius: 25px;
+  font-weight: 500;
+  background-color: #fff;
+  border-color: #aa3939;
+  color: #aa3939;
+  height: 35px;
+
+  &:hover{
+    background-color: #aa3939;
+    color: #fff;
+  }
 }
 
   .login-card {

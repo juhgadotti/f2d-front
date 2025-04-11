@@ -32,7 +32,7 @@ export class LoginComponent {
     }
   }
 
-  register():void {
-    this.currentView = 'register';
+  switchView(view: number):void {
+    this.currentView = view == 1 ? 'login' : 'register';
   }
 }
