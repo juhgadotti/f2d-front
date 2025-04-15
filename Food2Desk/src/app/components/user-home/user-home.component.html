@@ -12,7 +12,7 @@
               <p class="item-name" style="margin-top: 6px;"> {{ item.name }} </p>
               <p class="item-description"> {{ item.description }} </p>
               <p class="item-price"> R$ {{ item.price }}
-                <i class="fa-solid fa-cart-shopping" style="color: rgb(0, 201, 0)" (click)="addToCart(item)" ngDisable=" currentView != 'items'"></i>
+                <i class="fa-solid fa-cart-shopping cart-shop" (click)="currentView == 'items' ? addToCart(item) : null" ></i>
               </p>
             </div>
           </div>

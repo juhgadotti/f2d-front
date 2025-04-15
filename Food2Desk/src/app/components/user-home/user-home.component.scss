@@ -141,3 +141,12 @@
   flex-grow: 1;
   display: inline-flex;
 }
+
+.cart-shop{
+  color: rgb(0, 194, 0);
+  cursor: pointer;
+
+  &:hover{
+    color: rgb(0, 121, 0);
+  }
+}
