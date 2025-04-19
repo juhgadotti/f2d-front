@@ -15,6 +15,11 @@ fazer: construir o objeto e fazer a impressao no console.log, ao fazer novo pedi
 6. bloquear carrinho quando vai pra revisao de pedido
 7. 
 
+todo no cadastro:
+1. cadastrar disabled ate que o produto seja editado
+2. limite de caractere na descrição
+3. preço com decimal
+4. input de imagem
 
 
 p/ salvar:

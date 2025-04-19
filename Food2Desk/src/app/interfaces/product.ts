@@ -4,6 +4,6 @@
     name: string
     description: string
     price: number
-    category: number
+    category: string
+    status: number | string
 }
-//TODO: adicionar horário
