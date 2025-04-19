@@ -32,6 +32,8 @@ export class ProductManagementComponent implements OnInit {
   
   ngOnInit() {   
     this.categories = ['Bebida', 'Salgado', 'Doce', 'Almoço']
+
+   
   }
 
   saveProduct() {
@@ -45,9 +47,11 @@ export class ProductManagementComponent implements OnInit {
           console.log(response);
         });
 
-    this.http.get<Product[]>(this.urls.product.categories).subscribe(response => {
+        this.http.get<string[]>(this.urls.product.categories).subscribe(response => {
           console.log(response);
     });
+
+    
   }
 
   conso(){
