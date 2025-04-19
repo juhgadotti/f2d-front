@@ -25,18 +25,25 @@
             </div>
             <div class="form-group col-md-6">
               <label for="category">Categoria</label>
-              <select id="category" [(ngModel)]="category" name="category" class="form-control">
-                <option value="" disabled selected>Select a category</option>
+              <input type="text" id="categoryString" *ngIf="!categorySelect" [(ngModel)]="categoryString" name="category" class="form-control"
+              placeholder="Escreva a categoria">
+              <select id="category" *ngIf="categorySelect" [(ngModel)]="category" name="category" class="form-control">
+                <option value="" disabled selected>Selecionar...</option>
                 <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
-              </select>
+              </select>              
+              <i class="fa-solid fa-plus"  *ngIf="categorySelect" (click)="addCategory()"></i>
+              <i class="fa-solid fa-list"  *ngIf="!categorySelect" (click)="addCategory()"></i>
             </div>
           </div>
           <div class="form-group">
             <label for="imageUrl">Arquivo Imagem</label>
             <input type="text" id="imageUrl" class="form-control" placeholder="https://example.com/image.jpg">
           </div>
-          <button type="submit" (click)="saveProduct()" class="btn btn-primary btn-block">Cadastrar</button>
-          <button type="submit" (click)="conso()" class="btn btn-primary btn-block">Teste</button>
+          <div *ngIf="alreadyExist">
+            Produto já existente! Edite o atual ou substitua o existente.
+          </div>
+          <button type="submit" (click)="saveProduct()" class="btn btn-primary btn-block">Cadastrar</button>          
+          <button type="submit" *ngIf="alreadyExist" (click)="replaceProduct()" style="margin-left: 30px;" class="btn btn-primary btn-block">Substituir</button>
         </form>
       </div>
     </div>

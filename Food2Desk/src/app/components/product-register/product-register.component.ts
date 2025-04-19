@@ -8,53 +8,65 @@ import { CommonModule } from '@angular/common';
 
 
 @Component({
-  selector: 'app-product-management',
+  selector: 'app-product-register',
   standalone: true,
   imports: [FormsModule, CommonModule],
-  templateUrl: './product-management.component.html',
-  styleUrl: './product-management.component.scss'
+  templateUrl: './product-register.component.html',
+  styleUrl: './product-register.component.scss'
 })
 
-export class ProductManagementComponent implements OnInit {
+export class ProductRegisterComponent implements OnInit {
+  
   constructor(private router: Router, private http: HttpClient) {}
-
+  
+  product: Product = {} as Product;  
   name!: string;
   description!: string;
   category: string = '';
+  categoryString: string = '';
   price!: number;
   categories: string[] = [];
+  categorySelect: boolean = true;
+  alreadyExist: boolean = false;
+
 
   currentView: 'list' | 'new' | 'edit' = 'new';
 
-  product: Product = {} as Product;  
+
 
   private urls = Food2DeskApi.urls;
   
-  ngOnInit() {   
-    this.categories = ['Bebida', 'Salgado', 'Doce', 'Almoço']
+  ngOnInit() { 
+    this.http.get<string[]>(this.urls.product.categories).subscribe(response => {
+      this.categories = response;
+    });  
 
    
+  }
+
+  addCategory(){
+    this.categorySelect = !this.categorySelect;
   }
 
   saveProduct() {
     this.product.name = this.name;
     this.product.price = this.price;
-    this.product.description = this.description;    
+    this.product.description = this.description;
+    this.product.category = this.categorySelect ? this.category : this.categoryString;
 
     console.log(this.product)
 
     this.http.post<Product>(this.urls.product.root, this.product).subscribe(response => {
-          console.log(response);
+          if(!response.name){
+            this.alreadyExist = true;            
+          }
         });
-
-        this.http.get<string[]>(this.urls.product.categories).subscribe(response => {
-          console.log(response);
-    });
-
     
   }
 
-  conso(){
-    console.log(this.categories)
+  replaceProduct(){
+    this.http.put<Product>(this.urls.product.root, this.product).subscribe(response => {
+      console.log(response)
+    });
   }
 }
