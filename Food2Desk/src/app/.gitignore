@@ -22,6 +22,12 @@ todo no cadastro:
 4. input de imagem
 
 
+o que falta:
+1. lista de produtos
+2. arrumar os pedidos
+3. cadastro usuario
+4. tela de historico de pedidos
+
 p/ salvar:
 this.productsList = [
       { id: 1, image: "images/coxinha.jpg", name: 'Coxinha', description: 'Coxinha de frango com ou sem catupiry', price: 7.99 }, 

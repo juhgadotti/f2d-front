@@ -1,5 +1,5 @@
  export interface Product {
-    id: string //vai ser string pra ser um guid
+    id: string 
     image: string
     name: string
     description: string

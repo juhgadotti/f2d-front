@@ -40,8 +40,6 @@ export class ProductRegisterComponent implements OnInit {
     this.http.get<string[]>(this.urls.product.categories).subscribe(response => {
       this.categories = response;
     });  
-
-   
   }
 
   addCategory(){
