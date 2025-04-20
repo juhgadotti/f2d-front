@@ -1,9 +1,9 @@
  export interface Product {
-    id: string //vai ser string pra ser um guid
+    id: string 
     image: string
     name: string
     description: string
     price: number
-    category: number
+    category: string
+    status: number | string
 }
-//TODO: adicionar horário

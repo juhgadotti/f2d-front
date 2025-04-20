@@ -1,56 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Product } from '../../interfaces/product';
 import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Food2DeskApi } from '../../../environments/path';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from '../../header/header.component';
+import { Product } from '../../interfaces/product';
 
 @Component({
   selector: 'app-product-management',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [CommonModule, HeaderComponent, FormsModule],
   templateUrl: './product-management.component.html',
   styleUrl: './product-management.component.scss'
 })
-
 export class ProductManagementComponent implements OnInit {
-  constructor(private router: Router, private http: HttpClient) {}
-
-  name!: string;
-  description!: string;
-  category: string = '';
-  price!: number;
-  categories: string[] = [];
-
-  currentView: 'list' | 'new' | 'edit' = 'new';
-
-  product: Product = {} as Product;  
-
-  private urls = Food2DeskApi.urls;
+constructor(private router: Router, private http: HttpClient) {}
   
-  ngOnInit() {   
-    this.categories = ['Bebida', 'Salgado', 'Doce', 'Almoço']
-  }
+  private urls = Food2DeskApi.urls;
+  products: Product[] = [];
 
-  saveProduct() {
-    this.product.name = this.name;
-    this.product.price = this.price;
-    this.product.description = this.description;    
-
-    console.log(this.product)
-
-    this.http.post<Product>(this.urls.product.root, this.product).subscribe(response => {
-          console.log(response);
-        });
-
-    this.http.get<Product[]>(this.urls.product.categories).subscribe(response => {
-          console.log(response);
-    });
-  }
-
-  conso(){
-    console.log(this.categories)
+  ngOnInit(): void{
+    this.http.get<Product[]>(this.urls.product.root).subscribe(response => {
+      this.products = response;
+    });  
   }
 }

@@ -11,7 +11,7 @@ export const Food2DeskApi = {
         },
         product: {
             root: `${environment.baseServerUrl}/api/product`,
-            categories: `${environment.baseServerUrl}/api/product/categories`
+            categories: `${environment.baseServerUrl}/api/product/categories`           
         },
         order:{
             root: `${environment.baseServerUrl}/api/order`,

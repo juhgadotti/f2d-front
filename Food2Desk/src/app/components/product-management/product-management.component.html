@@ -1,46 +1,78 @@
-<main>
-  @switch(currentView)
-  {
-    @case('list') {
-    <div class="modal-container"></div>
-    } @case('new') {
-    <div class="modal-container">
-      <div class="modal-content">
-        <h2>Cadastrar Produto</h2>
-        <form>
-          <div class="form-group">
-            <label for="name">Nome</label>
-            <input type="text" [(ngModel)]="name" id="name" name="name" class="form-control"
-              placeholder="Nome do produto">
+<div class="container mt-4">
+    <h2 class="mb-3"><i class="fa fa-box-open me-2"></i>Product Management</h2>
+  
+    <!-- Nav Tabs -->
+    <ul class="nav nav-tabs mb-4" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#productList" type="button" role="tab">
+          Lista de Produtos
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#addProduct" type="button" role="tab">
+          Cadastrar Produto
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#almoco" type="button" role="tab">
+          Gerenciar Almoço
+        </button>
+      </li>
+    </ul>
+  
+    <!-- Tab Content -->
+    <div class="tab-content">
+      <!-- Product List Tab -->
+      <div class="tab-pane fade show active" id="productList" role="tabpanel">
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle">
+              <thead class="table-light">
+                <tr>
+                  <th>Nome</th>
+                  <th>Descrição</th>
+                  <th>Categoria</th>
+                  <th>Preço</th>
+                  <th>Status</th>
+                  <th class="text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of products">
+                  <td><strong>{{ product.name }}</strong></td>
+                  <td>{{ product.description }}</td>
+                  <td>{{ product.category }}</td>
+                  <td>{{ product.price | currency:'BRL':'symbol' }}</td>
+                  <td>
+                    <span class="badge bg-success" *ngIf="product.status === 1 || product.status === 'Active'">Ativo</span>
+                    <span class="badge bg-secondary" *ngIf="product.status !== 1 && product.status !== 'Active'">Inativo</span>
+                  </td>
+                  <td class="text-center">
+                    <button class="btn btn-sm btn-outline-dark me-1" title="Edit">
+                      <i class="fa fa-pen"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger me-1" title="Delete">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-success" title="Toggle Status">
+                      <i class="fa fa-power-off"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <div class="form-group">
-            <label for="description">Descrição</label>
-            <textarea id="description" [(ngModel)]="description" name="description" class="form-control"
-              placeholder="Uma breve descrição do produto"></textarea>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="price">Preço (R$)</label>
-              <input type="number" [(ngModel)]="price" name="price" id="price" class="form-control" placeholder="0">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="category">Categoria</label>
-              <select id="category" [(ngModel)]="category" name="category" class="form-control">
-                <option value="" disabled selected>Select a category</option>
-                <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="imageUrl">Arquivo Imagem</label>
-            <input type="text" id="imageUrl" class="form-control" placeholder="https://example.com/image.jpg">
-          </div>
-          <button type="submit" (click)="saveProduct()" class="btn btn-primary btn-block">Cadastrar</button>
-          <button type="submit" (click)="conso()" class="btn btn-primary btn-block">Teste</button>
-        </form>
+          
+      </div>
+  
+      <!-- Add Product Tab -->
+      <div class="tab-pane fade" id="addProduct" role="tabpanel">
+        <p class="text-muted">Formulário de cadastro será adicionado aqui...</p>
+      </div>
+  
+      <!-- Almoço Tab -->
+      <div class="tab-pane fade" id="almoco" role="tabpanel">
+        <p class="text-muted">Conteúdo da aba "Almoço" será adicionado aqui...</p>
       </div>
     </div>
-  }
-}
-
-</main>
+  </div>
+  

@@ -1,0 +1,38 @@
+.modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+  
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      width: 400px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      
+      h2 {
+        margin-bottom: 10px;
+      }
+  
+      .form-group {
+        margin-bottom: 1rem;
+      }
+  
+      .form-control {
+        border-radius: 5px;
+      }
+  
+      .btn-primary {
+        background-color: #53cf59;
+        border: none;
+        font-weight: bold;
+      }
+  
+      .btn-primary:hover {
+        background-color: #32a549;
+      }
+    }
+  }
+  
