@@ -4,11 +4,17 @@ import { Food2DeskApi } from '../../../environments/path';
 import { User } from '../../interfaces/user';
 import { HttpClient } from '@angular/common/http';
 
+interface UserAuth {
+  email: string,
+  password: string 
+}
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent {
   loginForm: FormGroup;
 
@@ -23,6 +29,10 @@ export class LoginComponent {
     });
   }
 
+  userAuth: UserAuth = {
+    email: 'teste@teste.com', password: '123'
+  }
+
   onSubmit() {
     if (this.loginForm.valid) {
       console.log(this.loginForm.value);
@@ -32,7 +42,23 @@ export class LoginComponent {
     }
   }
 
+  login(){
+    this.http.post<User>(this.urls.order.root, this.userAuth).subscribe(response => {
+      console.log(response);
+    });
+  }
+
+  register(){
+
+  }
   switchView(view: number):void {
     this.currentView = view == 1 ? 'login' : 'register';
+  }
+
+  loginTest(){
+    console.log('socorro')
+    // this.http.get<User>(this.urls.order.root, this.loginForm).subscribe(response => {
+    //   console.log(response);
+    // });
   }
 }

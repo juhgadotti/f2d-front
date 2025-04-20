@@ -10,7 +10,7 @@
       </h3>
       @switch (currentView) {
         @case('login'){
-        <form (ngSubmit)="onSubmit()">
+        <form (ngSubmit)="login()">
           <!-- [formGroup]="loginForm" -->
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
@@ -37,7 +37,7 @@
             </div>
           </div>
 
-          <button type="submit" class="btn btn-primary w-100">
+          <button  class="btn btn-primary w-100" (click)="login()">
             <!-- [disabled]="loginForm.invalid" -->
             <i class="fas fa-sign-in-alt me-2"></i> Entrar
           </button>
@@ -50,7 +50,7 @@
 
         } @case('register'){
 
-          <form (ngSubmit)="onSubmit()">
+          <form (ngSubmit)="register()">
             <!-- [formGroup]="loginForm" -->
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
