@@ -24,36 +24,36 @@
     <div class="tab-content">
       <!-- Product List Tab -->
       <div class="tab-pane fade show active" id="productList" role="tabpanel">
-        <div class="table-responsive">
+        <div class="table-responsive rounded">
             <table class="table table-bordered align-middle">
               <thead class="table-light">
-                <tr>
+                <tr class="text-center">
                   <th>Nome</th>
                   <th>Descrição</th>
                   <th>Categoria</th>
                   <th>Preço</th>
                   <th>Status</th>
-                  <th class="text-center">Actions</th>
+                  <th>Ações</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let product of products">
                   <td><strong>{{ product.name }}</strong></td>
                   <td>{{ product.description }}</td>
-                  <td>{{ product.category }}</td>
-                  <td>{{ product.price | currency:'BRL':'symbol' }}</td>
-                  <td>
+                  <td class="text-center">{{ product.category }}</td>
+                  <td class="text-center">{{ product.price | currency:'BRL':'symbol' }}</td>
+                  <td class="text-center">
                     <span class="badge bg-success" *ngIf="product.status === 1 || product.status === 'Active'">Ativo</span>
                     <span class="badge bg-secondary" *ngIf="product.status !== 1 && product.status !== 'Active'">Inativo</span>
                   </td>
                   <td class="text-center">
-                    <button class="btn btn-sm btn-outline-dark me-1" title="Edit">
+                    <button class="btn btn-sm btn-outline-dark me-1 btn-round" title="Edit">
                       <i class="fa fa-pen"></i>
                     </button>
-                    <button class="btn btn-sm btn-outline-danger me-1" title="Delete">
+                    <button class="btn btn-sm btn-outline-danger me-1 btn-round" title="Delete">
                       <i class="fa fa-trash"></i>
                     </button>
-                    <button class="btn btn-sm btn-outline-success" title="Toggle Status">
+                    <button class="btn btn-sm btn-outline-success btn-round" title="Toggle Status">
                       <i class="fa fa-power-off"></i>
                     </button>
                   </td>
