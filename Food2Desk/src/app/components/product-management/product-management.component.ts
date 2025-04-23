@@ -6,11 +6,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from '../../header/header.component';
 import { Product } from '../../interfaces/product';
+import { ProductRegisterComponent } from '../../components/product-register/product-register.component';
+
 
 @Component({
   selector: 'app-product-management',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FormsModule],
+  imports: [CommonModule, HeaderComponent, FormsModule, ProductRegisterComponent],
   templateUrl: './product-management.component.html',
   styleUrl: './product-management.component.scss'
 })
