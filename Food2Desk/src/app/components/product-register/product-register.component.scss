@@ -3,14 +3,12 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-  
+
     .modal-content {
       background: white;
       padding: 2rem;
       border-radius: 8px;
-      width: 400px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      width: 400px;      
       
       h2 {
         margin-bottom: 10px;
