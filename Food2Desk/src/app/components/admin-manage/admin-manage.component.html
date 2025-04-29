@@ -48,17 +48,16 @@
                                 {{product.quantity}}x {{product.name}}
                             </li>
                         </ul>
-                        <div *ngIf="item.showDetails">
+                        <div *ngIf="item.showDetails" style="font-size: small;">
                             <hr class="w-100 my-3" style="border-top: 1px solid #808080;" />
-                            <p>
+                            <div>
                                 <span *ngIf="item.office?.block">Bloco: {{item.office?.block}} - </span>
-                                Andar: {{item.office?.floor}} - Número: {{item.office?.number}}
-                            </p>
-
+                                Andar: {{item.office?.floor}} - Número: {{item.office?.number}}<br>
+                                Total: R${{item.totalCharge}} - Cliente: {{item.userName}}
+                            </div>                            
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <div class="col-12 col-md-6 orders-card"
@@ -72,7 +71,6 @@
                 </h4>
                 <div id="inDelivery">
                     <div *ngFor="let item of orderListStatus(2)" class="order-item">
-
                         <div class="order-header">
                             <div>
                                 <span class="order-code text-muted">#{{ item.code }}</span> <input
@@ -87,11 +85,12 @@
                                     (click)="item.showDetails = !item.showDetails"></i>
                             </div>
                         </div>
-
-                        <span>Andar: {{ item.office?.floor }} - Escritorio: {{ item.office?.number }} </span>
-                        <span>{{item.userName}}</span>
+                        <span style="font-weight: bold;">Andar: {{ item.office?.floor }} - Escritorio: {{
+                            item.office?.number }} </span>
+                        <span><span style="font-size: small; color: #5d5d5d;">Cobrar:</span> R${{item.totalCharge}}
+                            <span style="font-size: small; color: #5d5d5d;">de</span> {{item.userName}}</span>
                         <div class="float-left">
-                            <ul>
+                            <ul style="font-size: small;">
                                 <li *ngFor="let product of item.cart">
                                     {{product.quantity}}x {{product.name}}
                                 </li>
@@ -103,7 +102,6 @@
                                 <span *ngIf="item.office?.block">Bloco: {{item.office?.block}} - </span>
                                 Andar: {{item.office?.floor}} - Número: {{item.office?.number}}
                             </p>
-
                         </div>
                     </div>
                 </div>
@@ -130,7 +128,6 @@
                                 <span *ngIf="item.office?.block">Bloco: {{item.office?.block}} - </span>
                                 Andar: {{item.office?.floor}} - Número: {{item.office?.number}}
                             </p>
-
                         </div>
                     </div>
                 </div>
