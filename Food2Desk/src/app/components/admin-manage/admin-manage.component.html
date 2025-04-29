@@ -22,13 +22,16 @@
                         <i class="fa-solid fa-circle-check order-check"></i>
                     </div>
                 </h4>
+
                 <div id="newOrders">
                     <div *ngFor="let item of orderListStatus(1)" class="order-item">
-                        <div>
-                            <span class="order-code text-muted">#{{ item.code }}</span> <input type="checkbox">
-                        </div>
+
                         <div class="order-header">
-                            <span class="order-title">Itens:</span>
+                            <div>
+                                <span class="order-code text-muted">#{{ item.code }}</span> <input
+                                    class="form-check-input ms-2" type="checkbox">
+                            </div>
+
                             <div class="order-icons">
                                 <i class="fa-solid fa-basket-shopping order-delivery"
                                     (click)="updateOrderStatus(item, 2)"></i>
@@ -39,21 +42,23 @@
                                     (click)="item.showDetails = !item.showDetails"></i>
                             </div>
                         </div>
+                        <span class="order-title">Itens:</span>
                         <ul>
                             <li *ngFor="let product of item.cart">
                                 {{product.quantity}}x {{product.name}}
                             </li>
                         </ul>
                         <div *ngIf="item.showDetails">
-                            <hr>
-                            <!-- Conteúdo extra do card -->
-                            <p>Bloco: {{item.office?.block}} - Andar: {{item.office?.floor}}- Escritório:
-                                {{item.office?.number}}</p>
+                            <hr class="w-100 my-3" style="border-top: 1px solid #808080;" />
+                            <p>
+                                <span *ngIf="item.office?.block">Bloco: {{item.office?.block}} - </span>
+                                Andar: {{item.office?.floor}} - Número: {{item.office?.number}}
+                            </p>
 
-                            <!-- ou qualquer outra info -->
                         </div>
                     </div>
                 </div>
+
             </div>
 
             <div class="col-12 col-md-6 orders-card"
@@ -61,9 +66,28 @@
                 <h4>
                     Em Entrega
                     <div class="badge badge-delivery ms-2">{{ orderListStatus(2).length }}</div>
+                    <div class="ms-auto d-flex gap-2">
+                        <i class="fa-solid fa-circle-check order-check"></i>
+                    </div>
                 </h4>
                 <div id="inDelivery">
                     <div *ngFor="let item of orderListStatus(2)" class="order-item">
+
+                        <div class="order-header">
+                            <div>
+                                <span class="order-code text-muted">#{{ item.code }}</span> <input
+                                    class="form-check-input ms-2" type="checkbox">
+                            </div>
+
+                            <div class="order-icons">
+                                <i class="fa-solid fa-circle-check order-check"
+                                    (click)="updateOrderStatus(item, 3)"></i>
+                                <i class="fa"
+                                    [ngClass]="{'fa-caret-down': !item.showDetails, 'fa-caret-up': item.showDetails}"
+                                    (click)="item.showDetails = !item.showDetails"></i>
+                            </div>
+                        </div>
+
                         <span>Andar: {{ item.office?.floor }} - Escritorio: {{ item.office?.number }} </span>
                         <span>{{item.userName}}</span>
                         <div class="float-left">
@@ -73,7 +97,14 @@
                                 </li>
                             </ul>
                         </div>
-                        <i class="fa-solid fa-circle-check order-check" (click)="updateOrderStatus(item, 3)"></i>
+                        <div *ngIf="item.showDetails">
+                            <hr class="w-100 my-3" style="border-top: 1px solid #808080;" />
+                            <p>
+                                <span *ngIf="item.office?.block">Bloco: {{item.office?.block}} - </span>
+                                Andar: {{item.office?.floor}} - Número: {{item.office?.number}}
+                            </p>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -84,7 +115,23 @@
                 </h4>
                 <div id="concludedOrders">
                     <div *ngFor="let item of orderListStatus(3)" class="order-item">
-                        <h6>#{{ item.code }}</h6> <span>R${{item.totalCharge}}</span>
+                        <div class="order-header">
+                            <h6>#{{ item.code }}</h6>
+                            <div class="order-icons">
+                                <i class="fa"
+                                    [ngClass]="{'fa-caret-down': !item.showDetails, 'fa-caret-up': item.showDetails}"
+                                    (click)="item.showDetails = !item.showDetails"></i>
+                            </div>
+                        </div>
+                        <span>R${{item.totalCharge}}</span>
+                        <div *ngIf="item.showDetails">
+                            <hr class="w-100 my-3" style="border-top: 1px solid #808080;" />
+                            <p>
+                                <span *ngIf="item.office?.block">Bloco: {{item.office?.block}} - </span>
+                                Andar: {{item.office?.floor}} - Número: {{item.office?.number}}
+                            </p>
+
+                        </div>
                     </div>
                 </div>
             </div>
