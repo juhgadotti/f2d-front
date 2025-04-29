@@ -28,8 +28,8 @@
 
                         <div class="order-header">
                             <div>
-                                <span class="order-code text-muted">#{{ item.code }}</span> <input
-                                    class="form-check-input ms-2" type="checkbox">
+                                <input class="form-check-input me-2" type="checkbox">
+                                <span class="order-code text-muted">#{{ item.code }}</span>
                             </div>
 
                             <div class="order-icons">
@@ -74,8 +74,8 @@
                     <div *ngFor="let item of orderListStatus(2)" class="order-item">
                         <div class="order-header">
                             <div>
-                                <span class="order-code text-muted">#{{ item.code }}</span> <input
-                                    class="form-check-input ms-2" type="checkbox">
+                                <input class="form-check-input me-2" type="checkbox">
+                                <span class="order-code text-muted">#{{ item.code }}</span>
                             </div>
 
                             <div class="order-icons">
@@ -118,12 +118,12 @@
                             <div style="font-size: small;">
                                 <span *ngIf="item.office?.block">Bloco: {{item.office?.block}} - </span>
                                 Andar: {{item.office?.floor}} - Número: {{item.office?.number}}<br>
-                            <ul>
-                                <li *ngFor="let product of item.cart">
-                                    {{product.quantity}}x {{product.name}}
-                                </li>
-                            </ul>
-                        </div>
+                                <ul>
+                                    <li *ngFor="let product of item.cart">
+                                        {{product.quantity}}x {{product.name}}
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
