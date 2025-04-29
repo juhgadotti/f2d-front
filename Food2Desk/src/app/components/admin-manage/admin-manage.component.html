@@ -52,9 +52,10 @@
                             <hr class="w-100 my-3" style="border-top: 1px solid #808080;" />
                             <div>
                                 <span *ngIf="item.office?.block">Bloco: {{item.office?.block}} - </span>
-                                Andar: {{item.office?.floor}} - Número: {{item.office?.number}}<br>
-                                Total: R${{item.totalCharge}} - Cliente: {{item.userName}}
-                            </div>                            
+                                Andar: {{item.office?.floor}} - Nº: {{item.office?.number}}<br>
+                                <span class="little">Total: R$</span>{{item.totalCharge}} - <span
+                                    class="little">Cliente: </span>{{item.userName}}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -80,28 +81,18 @@
                             <div class="order-icons">
                                 <i class="fa-solid fa-circle-check order-check"
                                     (click)="updateOrderStatus(item, 3)"></i>
-                                <i class="fa"
-                                    [ngClass]="{'fa-caret-down': !item.showDetails, 'fa-caret-up': item.showDetails}"
-                                    (click)="item.showDetails = !item.showDetails"></i>
                             </div>
                         </div>
-                        <span style="font-weight: bold;">Andar: {{ item.office?.floor }} - Escritorio: {{
+                        <span style="font-weight: bold;">Andar: {{ item.office?.floor }} - Nº: {{
                             item.office?.number }} </span>
-                        <span><span style="font-size: small; color: #5d5d5d;">Cobrar:</span> R${{item.totalCharge}}
-                            <span style="font-size: small; color: #5d5d5d;">de</span> {{item.userName}}</span>
+                        <span><span class="little">Cobrar:</span> R${{item.totalCharge}}
+                            <span class="little">de</span> {{item.userName}}</span>
                         <div class="float-left">
                             <ul style="font-size: small;">
                                 <li *ngFor="let product of item.cart">
                                     {{product.quantity}}x {{product.name}}
                                 </li>
                             </ul>
-                        </div>
-                        <div *ngIf="item.showDetails">
-                            <hr class="w-100 my-3" style="border-top: 1px solid #808080;" />
-                            <p>
-                                <span *ngIf="item.office?.block">Bloco: {{item.office?.block}} - </span>
-                                Andar: {{item.office?.floor}} - Número: {{item.office?.number}}
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -121,13 +112,18 @@
                                     (click)="item.showDetails = !item.showDetails"></i>
                             </div>
                         </div>
-                        <span>R${{item.totalCharge}}</span>
+                        <span>R${{item.totalCharge}} - {{ item.userName}}</span>
                         <div *ngIf="item.showDetails">
                             <hr class="w-100 my-3" style="border-top: 1px solid #808080;" />
-                            <p>
+                            <div style="font-size: small;">
                                 <span *ngIf="item.office?.block">Bloco: {{item.office?.block}} - </span>
-                                Andar: {{item.office?.floor}} - Número: {{item.office?.number}}
-                            </p>
+                                Andar: {{item.office?.floor}} - Número: {{item.office?.number}}<br>
+                            <ul>
+                                <li *ngFor="let product of item.cart">
+                                    {{product.quantity}}x {{product.name}}
+                                </li>
+                            </ul>
+                        </div>
                         </div>
                     </div>
                 </div>
