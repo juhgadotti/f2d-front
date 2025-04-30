@@ -6,6 +6,7 @@ import { SavingAppComponent } from './components/saving-app/saving-app.component
 import { ProductRegisterComponent } from './components/product-register/product-register.component';
 import { ProductManagementComponent } from './components/product-management/product-management.component';
 import { LoginComponent } from './components/login/login.component';
+import { LunchManageComponent } from './components/lunch-manage/lunch-manage.component';
 
 
 export const routes: Routes = [
@@ -15,5 +16,6 @@ export const routes: Routes = [
     {path: "admin-manage", component: AdminManageComponent},
     {path: "product-register", component: ProductRegisterComponent},
     {path: "product-management", component: ProductManagementComponent},
-    {path: "login", component: LoginComponent}
+    {path: "login", component: LoginComponent},
+    {path: "lunch-manage", component: LunchManageComponent}
 ];
