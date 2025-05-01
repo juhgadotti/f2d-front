@@ -1,0 +1,35 @@
+.days-card {
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &:hover {
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.edit-button{
+    color:#ff9f45;
+    border-color: #ff9f45;
+    background-color: white;
+
+    &:hover{
+        background-color: #ffd1a6;
+    }
+}
+
+.add-button{
+    color:#009300;
+    border-color: #009300;
+    background-color: white;
+
+    &:hover{
+        background-color: #daffdf;
+    }
+}

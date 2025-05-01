@@ -1,9 +1,12 @@
-<div class="container mt-4">
-    <h2 class="mb-3"><i class="fa-solid fa-burger me-2"></i>Gerenciar Produtos</h2>  
+<app-header></app-header>
+<main>
+  <div class="container mt-4">
+    <h2 class="mb-3"><i class="fa-solid fa-burger me-2"></i>Gerenciar Produtos</h2>
     <!-- Nav Tabs -->
     <ul class="nav nav-tabs mb-4" role="tablist">
       <li class="nav-item" role="presentation">
-        <button class="nav-link tab-product active" data-bs-toggle="tab" data-bs-target="#productList" type="button" role="tab">
+        <button class="nav-link tab-product active" data-bs-toggle="tab" data-bs-target="#productList" type="button"
+          role="tab">
           Lista de Produtos
         </button>
       </li>
@@ -17,21 +20,19 @@
           Gerenciar Almoço
         </button>
       </li>
-    </ul>    
-    
+    </ul>
+
     <!-- Tab Content -->
-    <div class="tab-content">      
-      <!-- Product List Tab -->       
+    <div class="tab-content">
+      <!-- Product List Tab -->
       <div class="tab-pane fade show active" id="productList" role="tabpanel">
         <div class="mb-3 d-flex justify-content-between align-items-center">
-          <input type="text"
-                 class="form-control w-50"
-                 placeholder="Buscar por nome..."
-                 [(ngModel)]="searchTerm"
-                 (input)="applyFilters()" />
-                 <button class="btn btn-filter-outline" (click)="filterShow = !filterShow">Filtros<i class="fa-solid ms-1" [class.fa-caret-down]="!filterShow" [class.fa-caret-up]="filterShow"></i></button>
+          <input type="text" class="form-control w-50" placeholder="Buscar por nome..." [(ngModel)]="searchTerm"
+            (input)="applyFilters()" />
+          <button class="btn btn-filter-outline" (click)="filterShow = !filterShow">Filtros<i class="fa-solid ms-1"
+              [class.fa-caret-down]="!filterShow" [class.fa-caret-up]="filterShow"></i></button>
         </div>
-        <div class="row mb-3"  *ngIf="filterShow">
+        <div class="row mb-3" *ngIf="filterShow">
           <div class="col-md-3">
             <select class="form-select" [(ngModel)]="filterStatus">
               <option value="">Todos os status</option>
@@ -44,81 +45,84 @@
               <option value="">Todas as categorias</option>
               <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
             </select>
-          </div>  
+          </div>
           <div class="col-md-2">
             <input type="number" class="form-control" placeholder="Preço mín." [(ngModel)]="minPrice" />
           </div>
           <div class="col-md-2">
             <input type="number" class="form-control" placeholder="Preço máx." [(ngModel)]="maxPrice" />
-          </div>          
+          </div>
           <div class="col-md-1 d-flex">
             <button class="btn btn-primary btn-filter w-100" (click)="applyFilters()">
               <span class="d-none d-lg-inline">Filtrar</span>
               <i class="fa-solid fa-magnifying-glass d-lg-none"></i>
             </button>
           </div>
-          
+
           <div class="col-md-1 d-flex">
             <button class="btn btn-primary btn-clean w-100" (click)="cleanFilters()">
               <span class="d-none d-lg-inline">Limpar</span>
               <i class="fa-solid fa-trash d-lg-none"></i>
             </button>
           </div>
-          
+
         </div>
         <div class="table-responsive rounded">
-            <table class="table table-bordered align-middle">
-              <thead class="table-light">
-                <tr class="text-center">
-                  <th>Imagem</th>
-                  <th>Nome</th>
-                  <th>Descrição</th>
-                  <th>Categoria</th>
-                  <th>Preço</th>
-                  <th>Status</th>
-                  <th>Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let product of filteredProducts">
-                  <td class="text-center">
-                    <img [src]="product.image" alt="{{ product.name }}" class="img-thumbnail" style="width: 60px; height: 60px; object-fit: cover;">
-                  </td>                  
-                  <td><strong>{{ product.name }}</strong></td>
-                  <td>{{ product.description }}</td>
-                  <td class="text-center">{{ product.category }}</td>
-                  <td class="text-center">{{ product.price | currency:'BRL':'symbol' }}</td>
-                  <td class="text-center">
-                    <span class="badge bg-success" *ngIf="product.status === 1 || product.status === 'Active'">Ativo</span>
-                    <span class="badge bg-secondary" *ngIf="product.status !== 1 && product.status !== 'Active'">Inativo</span>
-                  </td>
-                  <td class="text-center">
-                    <button class="btn btn-sm btn-outline-dark me-1 btn-round" title="Edit">
-                      <i class="fa fa-pen"></i>
-                    </button>
-                    <button class="btn btn-sm btn-outline-danger me-1 btn-round" title="Delete">
-                      <i class="fa fa-trash"></i>
-                    </button>
-                    <button class="btn btn-sm btn-outline-success btn-round" title="Toggle Status">
-                      <i class="fa fa-power-off"></i>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          
+          <table class="table table-bordered align-middle">
+            <thead class="table-light">
+              <tr class="text-center">
+                <th>Imagem</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Categoria</th>
+                <th>Preço</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let product of filteredProducts">
+                <td class="text-center">
+                  <img [src]="product.image" alt="{{ product.name }}" class="img-thumbnail"
+                    style="width: 60px; height: 60px; object-fit: cover;">
+                </td>
+                <td><strong>{{ product.name }}</strong></td>
+                <td>{{ product.description }}</td>
+                <td class="text-center">{{ product.category }}</td>
+                <td class="text-center">{{ product.price | currency:'BRL':'symbol' }}</td>
+                <td class="text-center">
+                  <span class="badge bg-success"
+                    *ngIf="product.status === 1 || product.status === 'Active'">Ativo</span>
+                  <span class="badge bg-secondary"
+                    *ngIf="product.status !== 1 && product.status !== 'Active'">Inativo</span>
+                </td>
+                <td class="text-center">
+                  <button class="btn btn-sm btn-outline-dark me-1 btn-round" title="Edit">
+                    <i class="fa fa-pen"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger me-1 btn-round" title="Delete">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-success btn-round" title="Toggle Status">
+                    <i class="fa fa-power-off"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
       </div>
-  
+
       <!-- Add Product Tab -->
       <div class="tab-pane fade" id="addProduct" role="tabpanel">
         <app-product-register></app-product-register>
       </div>
-  
+
       <!-- Almoço Tab -->
       <div class="tab-pane fade" id="almoco" role="tabpanel">
         <p class="text-muted">Conteúdo da aba "Almoço" será adicionado aqui...</p>
       </div>
     </div>
   </div>
-  
+</main>
