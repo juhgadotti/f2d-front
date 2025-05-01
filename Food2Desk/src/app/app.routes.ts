@@ -7,6 +7,7 @@ import { ProductRegisterComponent } from './components/product-register/product-
 import { ProductManagementComponent } from './components/product-management/product-management.component';
 import { LoginComponent } from './components/login/login.component';
 import { LunchManageComponent } from './components/lunch-manage/lunch-manage.component';
+import { ProductLunchComponent } from './components/product-lunch/product-lunch.component';
 
 
 export const routes: Routes = [
@@ -17,5 +18,5 @@ export const routes: Routes = [
     {path: "product-register", component: ProductRegisterComponent},
     {path: "product-management", component: ProductManagementComponent},
     {path: "login", component: LoginComponent},
-    {path: "lunch-manage", component: LunchManageComponent}
+    {path: "product-lunch", component: ProductLunchComponent}
 ];
