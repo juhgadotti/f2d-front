@@ -5,8 +5,7 @@
         <div class="header">
             <h3 class="p-3">Gerenciar Pedidos
                 <button class="btn btn-swipe-column" (click)="showThirdColumn = !showThirdColumn" id="toggleConcluded">
-                    <i class="fa-regular fa-fw"
-                        [ngClass]="{'fa-eye': !showThirdColumn, 'fa-eye-slash': showThirdColumn}"></i>
+                    <i class="fa-regular fa-fw" [ngClass]="{'fa-eye': !showThirdColumn, 'fa-eye-slash': showThirdColumn}"></i>
                     {{ showThirdColumn ? 'Ocultar Concluídos' : 'Exibir Concluídos' }}
                 </button>
             </h3>
