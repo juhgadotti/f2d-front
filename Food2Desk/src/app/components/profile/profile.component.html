@@ -6,7 +6,7 @@
                 <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
                     <span><i class="fa-solid fa-user me-2"></i> Dados Básicos</span>
                     <i class="fa-solid fa-pen-to-square text-white edit-icon"
-                        (click)="isEditingUser = !isEditingUser"></i>
+                        (click)="isEditingUser = !isEditingUser" *ngIf="!isEditingUser"></i>
                 </div>
                 <div class="card-body">
                     <div *ngIf="!isEditingUser; else editMode">
@@ -35,8 +35,12 @@
                         </div>
 
                         <div class="text-end">
-                            <button class="btn btn-sm btn-success me-2" (click)="saveUserEdit()">Salvar</button>
-                            <button class="btn btn-sm btn-secondary" (click)="cancelUserEdit()">Cancelar</button>
+                            <button class="btn btn-sm btn-outline-success save-button me-2" (click)="saveUserEdit()">
+                                <i class="fa-solid fa-check fa-fw"></i>
+                            </button>
+                            <button class="btn btn-sm btn-cancel me-2" (click)="saveUserEdit()">
+                                <i class="fa-solid fa-xmark fa-fw"></i>
+                            </button>
                         </div>
                     </ng-template>
                 </div>
@@ -45,13 +49,11 @@
 
 
         <!-- escritorios -->
-        <!-- Card 2: Escritórios -->
         <div class="col-md-6 mb-4">
             <div class="card h-100 position-relative">
                 <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
                     <span><i class="fa-solid fa-building me-2"></i> Escritórios</span>
-                    <i class="fa-solid fa-pen-to-square text-white edit-icon"
-                        (click)="isEditingOffices = !isEditingOffices"></i>
+                    <i class="fa-solid fa-pen-to-square text-white edit-icon" *ngIf="!isEditingOffices" (click)="isEditingOffices = !isEditingOffices"></i>
                 </div>
                 <div class="card-body">
                     <table class="table table-sm align-middle">
@@ -71,10 +73,10 @@
                                 <td>{{ office.number }}</td>
                                 <td>{{ office.enterprise }}</td>
                                 <td *ngIf="isEditingOffices" class="text-end">
-                                    <button class="btn btn-sm btn-outline-primary me-1" (click)="editOffice(i)">
+                                    <button class="btn btn-sm btn-round btn-outline-edit me-1" (click)="editOffice(i)">
                                         <i class="fa-solid fa-pen"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-outline-danger" (click)="removeOffice(i)">
+                                    <button class="btn btn-sm btn-round btn-outline-danger" (click)="removeOffice(i)">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </td>
@@ -83,8 +85,16 @@
                     </table>
 
                     <div *ngIf="isEditingOffices" class="text-end mt-3">
-                        <button class="btn btn-sm btn-success" (click)="addOffice()">
-                            <i class="fa-solid fa-plus me-1"></i> Adicionar Escritório
+                        <button class="btn btn-sm btn-outline-primary me-2 add-button" (click)="addOffice()">
+                            <i class="fa-solid fa-plus fa-fw"></i>
+                        </button>
+                    </div>
+                    <div class="text-end mt-4" *ngIf="isEditingOffices">
+                        <button class="btn btn-sm btn-outline-success save-button me-2" (click)="isEditingOffices = !isEditingOffices">
+                            <i class="fa-solid fa-check fa-fw"></i>
+                        </button>
+                        <button class="btn btn-sm btn-cancel me-2" (click)="isEditingOffices = !isEditingOffices">
+                            <i class="fa-solid fa-xmark fa-fw"></i>
                         </button>
                     </div>
                 </div>

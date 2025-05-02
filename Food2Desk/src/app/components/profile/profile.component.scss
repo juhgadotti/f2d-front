@@ -1,14 +1,61 @@
 .card {
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .card-header {
-  font-weight: 600;
-  font-size: 1rem;
+    font-weight: 600;
+    font-size: 1rem;
 }
 
 .table th,
 .table td {
-  vertical-align: middle;
+    vertical-align: middle;
+}
+
+.btn-round {
+    border: none;
+    border-radius: 50%;
+}
+
+.btn-outline-edit {
+    color: #ff9f45;
+    border: none;
+
+    &:hover {
+        color: white;
+        background-color: #ff9f45;
+    }
+}
+
+.add-button {
+    color: #009300;
+    border-color: #009300;
+    background-color: white;
+
+    &:hover {
+        background-color: #daffdf;
+    }
+}
+
+.save-button {
+    color: white;
+    border-color: 009300;
+    background-color: #009300;
+
+    &:hover {
+        color: #009300;
+        background-color: #daffdf;
+    }
+}
+
+.btn-cancel {
+    background-color: white;
+    color: grey;
+    border: gray 1px solid;
+
+    &:hover {
+        background-color: rgb(205, 205, 205);
+        color: white;        
+    }
 }
