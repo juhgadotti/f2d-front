@@ -6,7 +6,6 @@ import { SavingAppComponent } from './components/saving-app/saving-app.component
 import { ProductRegisterComponent } from './components/product-register/product-register.component';
 import { ProductManagementComponent } from './components/product-management/product-management.component';
 import { LoginComponent } from './components/login/login.component';
-import { LunchManageComponent } from './components/lunch-manage/lunch-manage.component';
 import { ProductLunchComponent } from './components/product-lunch/product-lunch.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
