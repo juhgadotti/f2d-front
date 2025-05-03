@@ -13,9 +13,9 @@ import { FormsModule } from '@angular/forms';
 export class ProductLunchComponent {
   weekDays = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado', 'Domingo'];
 
-  lunchMenu: { [key: string]: { name: string; quantity: number }[] } = {
-    'Segunda': [{ name: 'Parmegiana de Frango', quantity: 20 }, { name: 'Peixe', quantity: 15 }],
-    'Terça': [{ name: 'Feijoada', quantity: 30 }, { name: 'Bife Acebolado', quantity: 15 }],
+  lunchMenu: { [key: string]: { name: string; quantity: number, price: number }[] } = {
+    'Segunda': [{ name: 'Parmegiana de Frango', quantity: 20, price: 20 }, { name: 'Peixe', quantity: 15, price: 20 }],
+    'Terça': [{ name: 'Feijoada', quantity: 30, price: 20 }, { name: 'Bife Acebolado', quantity: 15, price: 20 }],
     'Quarta': [],
     'Quinta': [],
     'Sexta': [],
@@ -28,9 +28,10 @@ export class ProductLunchComponent {
   addDish(day: string) {
     const dishName = prompt(`Digite o nome do prato para ${day}:`);
     const quantity = prompt(`Digite a quantidade de porções para ${dishName}:`);
+    const price = prompt(`Digite o valor de ${dishName}:`);
 
     if (dishName && quantity && !isNaN(Number(quantity))) {
-      this.lunchMenu[day].push({ name: dishName, quantity: Number(quantity) });
+      this.lunchMenu[day].push({ name: dishName, quantity: Number(quantity), price: Number(price) });
     }
   }
 
