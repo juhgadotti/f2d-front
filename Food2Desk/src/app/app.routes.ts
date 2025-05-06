@@ -9,6 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ProductLunchComponent } from './components/product-lunch/product-lunch.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { OrderLunchComponent } from './components/order-lunch/order-lunch.component';
+import { AdminHomeComponent } from './components/admin-home/admin-home.component';
 
 
 export const routes: Routes = [
@@ -21,5 +22,6 @@ export const routes: Routes = [
     {path: "login", component: LoginComponent},
     {path: "product-lunch", component: ProductLunchComponent},
     {path: "profile", component: ProfileComponent},
-    {path: "order-lunch", component: OrderLunchComponent}
+    {path: "order-lunch", component: OrderLunchComponent},
+    {path: "admin-home", component: AdminHomeComponent}
 ];
