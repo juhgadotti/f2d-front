@@ -1,2 +1,43 @@
 <app-header></app-header>
-<p>admin-home works!</p>
+<main>
+    <div class="container d-flex flex-column align-items-center mt-5" style="max-width: 600px;">
+  <!-- Cards compridos -->
+  <a [routerLink]="'/admin-manage'" class="card menu-card w-100 p-3 mb-3 text-decoration-none text-dark shadow-sm">
+    <div class="d-flex align-items-center">
+      <i class="fa-solid fa-cart-shopping me-3"></i>
+      <span class="fw-semibold fs-6">Pedidos</span>
+    </div>
+  </a>
+
+  <a [routerLink]="'/admin-lunch'" class="card menu-card w-100 p-3 mb-3 text-decoration-none text-dark shadow-sm">
+    <div class="d-flex align-items-center">
+      <i class="fa-solid fa-bell-concierge me-3"></i>
+      <span class="fw-semibold fs-6">Almoço</span>
+    </div>
+  </a>
+
+  <a [routerLink]="'/product-management'" class="card menu-card w-100 p-3 mb-4 text-decoration-none text-dark shadow-sm">
+    <div class="d-flex align-items-center">
+      <i class="fa-solid fa-gear me-3"></i>
+      <span class="fw-semibold fs-6">Gerenciar Produtos</span>
+    </div>
+  </a>
+
+  <!-- Cards menores lado a lado -->
+  <div class="row w-100 gx-3">
+    <div class="col-6" style="padding-left: 0;">
+      <a [routerLink]="'/pequeno1'" class="card menu-card p-3 text-decoration-none text-dark d-flex flex-column align-items-center shadow-sm">
+        <i class="fa-solid fa-utensils mb-2"></i>
+        <span class="fw-semibold text-center">Quadro Cozinha</span>
+      </a>
+    </div>
+    <div class="col-6" style="padding-right: 0;">
+      <a [routerLink]="'/pequeno2'" class="card menu-card p-3 text-decoration-none text-dark d-flex flex-column align-items-center shadow-sm">
+        <i class="fa-solid fa-basket-shopping mb-2"></i>
+        <span class="fw-semibold text-center">Quadro Entrega</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+</main>
