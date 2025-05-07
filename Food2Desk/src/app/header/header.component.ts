@@ -37,10 +37,10 @@ export class HeaderComponent implements OnInit {
   redirectAdmin(url: number) {
     switch (url) {
       case 1:
-        this.router.navigate(['/admin-manage'])
+        this.router.navigate(['/admin-home'])
         break;
       case 2:
-        this.router.navigate(['/user-order-status'])
+        this.router.navigate(['/admin-manage'])
         break;
       case 3:
         this.router.navigate(['/product-management'])
