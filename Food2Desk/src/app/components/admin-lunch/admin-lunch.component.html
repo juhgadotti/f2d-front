@@ -1,56 +1,86 @@
 <app-header></app-header>
 <main>
-  <div class="container content-wrapper">
-    <div class="header">
-      <h3 class="p-3">Gerenciar Almoços
-        <button class="btn btn-swipe-column" (click)="showCompleted = !showCompleted">
-          <i class="fa-regular fa-fw" [ngClass]="{'fa-eye': !showCompleted, 'fa-eye-slash': showCompleted}"></i>
-          {{ showCompleted ? 'Ocultar Concluídos' : 'Exibir Concluídos' }}
-        </button>
-      </h3>
-    </div>
-    <div class="row d-flex">
-      <!-- Pedidos no Local -->
-      <div class="col-12 col-md-6 orders-card">
-        <h4>
-          No Local
-          <div class="badge badge-neworder ms-2">{{ lunchListStatus(1).length }}</div>
-        </h4>
-        <div *ngFor="let item of lunchListStatus(1)" class="order-item">
-          <div class="order-header">
-            <div>
-              <span class="order-code text-muted">#{{ item.id }}</span>
-            </div>
-            <div class="order-icons">
-              <i class="fa-solid fa-circle-check order-check" (click)="updateLunchStatus(item, 2)"></i>
-            </div>
-          </div>
-          <div>
-            <strong>{{ item.userName }}</strong><br>
-            Prato: {{ item.product.name }}<br>
-            Valor: R${{ item.product.price.toFixed(2) }}
-          </div>
+    <div class="container content-wrapper">
+        <div class="header">
+            <h3 class="p-3">Gerenciar Almoços
+                <button class="btn btn-swipe-column" (click)="showCompleted = !showCompleted">
+                    <i class="fa-regular fa-fw"
+                        [ngClass]="{'fa-eye': !showCompleted, 'fa-eye-slash': showCompleted}"></i>
+                    {{ showCompleted ? 'Ocultar Concluídos' : 'Exibir Concluídos' }}
+                </button>
+            </h3>
         </div>
-      </div>
+        <!-- Abas de seleção -->
+        <div class="tab-selector d-flex justify-content-center gap-3 mb-4">
+            <button class="btn"
+                [ngClass]="{'btn-primary': selectedTab === 'local', 'btn-outline-primary': selectedTab !== 'local'}"
+                (click)="selectedTab = 'local'">
+                Consumo no Local
+            </button>
 
-      <!-- Concluídos -->
-      <div class="col-12 col-md-6 orders-card" *ngIf="showCompleted">
-        <h4>
-          Concluídos
-          <div class="badge badge-completed ms-2">{{ lunchListStatus(2).length }}</div>
-        </h4>
-        <div *ngFor="let item of lunchListStatus(2)" class="order-item">
-          <div class="order-header">
-            <h6>#{{ item.id }}</h6>
-          </div>
-          <div>
-            <strong>{{ item.userName }}</strong><br>
-            Prato: {{ item.product.name }}<br>
-            Valor: R${{ item.product.price.toFixed(2) }}
-          </div>
+            <button class="btn"
+                [ngClass]="{'btn-primary': selectedTab === 'delivery', 'btn-outline-primary': selectedTab !== 'delivery'}"
+                (click)="selectedTab = 'delivery'">
+                Delivery no Escritório
+            </button>
         </div>
-      </div>
+
+        <!-- COLUNA: LOCAL -->
+        <div *ngIf="selectedTab === 'local'" class="row">
+            <div class="col-12 col-md-6 orders-card px-3">
+                <h4>Consumo no Local <span class="badge bg-primary ms-2">{{ lunchListStatus(1).length }}</span></h4>
+                <div *ngFor="let item of lunchListStatus(1)" class="order-item">
+                    <div class="order-header">
+                        <h6>#{{ item.id }}</h6>
+                        <div class="order-icons">
+                            <i class="fa-solid fa-circle-check order-check" (click)="updateLunchStatus(item, 3)"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <strong>{{ item.userName }}</strong><br>
+                        <span>{{ item.product.name }}</span> - R${{ item.product.price }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 orders-card px-3">
+                <h4>Concluídos <span class="badge bg-secondary ms-2">{{ lunchListStatus(3, false).length }}</span></h4>
+
+                <div *ngFor="let item of lunchListStatus(3, false)" class="order-item">
+                    <div class="order-header">
+                        <h6>#{{ item.id }}</h6>
+                    </div>
+                    <div>
+                        <strong>{{ item.userName }}</strong><br>
+                        {{ item.product.name }} - R${{ item.product.price }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- COLUNA: DELIVERY -->
+        <div *ngIf="selectedTab === 'delivery'" class="row">
+            <div class="col-12 col-md-6 orders-card px-3">
+                <h4>Pedidos para Delivery <span class="badge bg-success ms-2">{{ lunchListStatus(4).length }}</span>
+                </h4>
+                <div *ngFor="let item of lunchListStatus(4)" class="order-item">
+                    <div class="order-header">
+                        <h6>#{{ item.id }}</h6>
+                        <div class="order-icons">
+                            <i class="fa-solid fa-circle-check order-check" (click)="updateLunchStatus(item, 3)"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <strong>{{ item.userName }}</strong><br>
+                        {{ item.product.name }} - R${{ item.product.price }}<br>
+                        <small>
+                            Andar: {{ item.office?.floor }} - Nº: {{ item.office?.number }}
+                            <span *ngIf="item.office?.block"> - Bloco: {{ item.office?.block }}</span>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-  </div>
 </main>
-

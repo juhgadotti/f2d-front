@@ -1,5 +1,6 @@
 export interface Lunch {
     id: number 
+    toDelivery: boolean
     userName: string   
     status: number 
     product: {id: string, name: string, price: number}
