@@ -1,1 +1,29 @@
-<p>screen-kitchen works!</p>
+<app-header></app-header>
+
+<div class="container mt-4">
+  <h4 class="text-center mb-4">
+    Novos pedidos
+    <i class="fa-solid fa-rotate-left ms-3" style="color: #aa3939;"></i>
+  </h4>
+
+  <!-- Flex container para os cards -->
+  <div class="d-flex flex-wrap justify-content-start" id="inDelivery">
+    <div
+      *ngFor="let item of orderList"
+      class="order-item bg-light border rounded shadow-sm p-3 m-2"
+      style="flex: 1 1 300px; max-width: 300px;"
+    >
+      <div class="order-header d-flex justify-content-between align-items-start mb-2">
+        <span class="order-code text-muted">#{{ item.code }}</span>
+      </div>
+
+      <div>
+        <ul class="small ps-3 mb-0">
+          <li *ngFor="let product of item.cart">
+            {{ product.quantity }}x {{ product.name }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
