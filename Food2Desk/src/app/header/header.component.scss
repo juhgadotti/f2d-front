@@ -3,7 +3,6 @@ header {
     padding-inline: 16px;
     padding-block: 3px;
     background-color: #bf4e4b;
-    color: #ffe497;
     align-items: center;
     justify-content: center;   
     font-weight: bold;
@@ -14,7 +13,10 @@ img {
 max-width: 130px;
 }
 
-
-.icons{
+.icons {
+    cursor: pointer;
     color: #ffe497;
+    &:hover{
+        color:rgb(255, 205, 68);
+    }
 }
