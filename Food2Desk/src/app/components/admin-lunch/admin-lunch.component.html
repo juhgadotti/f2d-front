@@ -24,11 +24,10 @@
                 Delivery no Escritório
             </button>
         </div>
-
         <!-- COLUNA: LOCAL -->
         <div *ngIf="selectedTab === 'local'" class="row">
             <div class="col-12 col-md-6 orders-card px-3">
-                <h4>Consumo no Local <span class="badge bg-primary ms-2">{{ lunchListStatus(1).length }}</span></h4>
+                <h4>Consumo no Local <span class="badge badge-neworder ms-2">{{ lunchListStatus(1).length }}</span></h4>
                 <div *ngFor="let item of lunchListStatus(1)" class="order-item">
                     <div class="order-header">
                         <h6>#{{ item.id }}</h6>
@@ -43,7 +42,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-6 orders-card px-3">
-                <h4>Concluídos <span class="badge bg-secondary ms-2">{{ lunchListStatus(3, false).length }}</span></h4>
+                <h4>Concluídos <span class="badge badge-completed ms-2">{{ lunchListStatus(3, false).length }}</span></h4>
 
                 <div *ngFor="let item of lunchListStatus(3, false)" class="order-item">
                     <div class="order-header">
