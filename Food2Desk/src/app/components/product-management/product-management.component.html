@@ -17,14 +17,11 @@
           Gerenciar Almoço
         </button>
       </li>
-    </ul>
-    
+    </ul>    
     
     <!-- Tab Content -->
-    <div class="tab-content">
-      
-      <!-- Product List Tab -->
-       
+    <div class="tab-content">      
+      <!-- Product List Tab -->       
       <div class="tab-pane fade show active" id="productList" role="tabpanel">
         <div class="mb-3 d-flex justify-content-between align-items-center">
           <input type="text"
@@ -55,11 +52,19 @@
             <input type="number" class="form-control" placeholder="Preço máx." [(ngModel)]="maxPrice" />
           </div>          
           <div class="col-md-1 d-flex">
-            <button class="btn btn-primary btn-filter w-100" (click)="applyFilters()">Filtrar</button>
+            <button class="btn btn-primary btn-filter w-100" (click)="applyFilters()">
+              <span class="d-none d-lg-inline">Filtrar</span>
+              <i class="fa-solid fa-magnifying-glass d-lg-none"></i>
+            </button>
           </div>
+          
           <div class="col-md-1 d-flex">
-            <button class="btn btn-primary btn-clean w-100" (click)="cleanFilters()">Limpar</button>
+            <button class="btn btn-primary btn-clean w-100" (click)="cleanFilters()">
+              <span class="d-none d-lg-inline">Limpar</span>
+              <i class="fa-solid fa-trash d-lg-none"></i>
+            </button>
           </div>
+          
         </div>
         <div class="table-responsive rounded">
             <table class="table table-bordered align-middle">
