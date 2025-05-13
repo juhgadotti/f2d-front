@@ -21,10 +21,29 @@ constructor(private router: Router, private http: HttpClient) {}
   
   private urls = Food2DeskApi.urls;
   products: Product[] = [];
+  searchTerm: string = '';
+  filteredProducts: any[] = [];
 
   ngOnInit(): void{
     this.http.get<Product[]>(this.urls.product.root).subscribe(response => {
       this.products = response;
+      this.filteredProducts = this.products;
     });  
   }
+
+  filterStatus: string = '';
+minPrice: number | null = null;
+maxPrice: number | null = null;
+
+applyFilters(): void {
+  this.filteredProducts = this.products.filter(product => {
+    const matchesName = product.name.toLowerCase().includes(this.searchTerm.toLowerCase());
+    const matchesStatus = this.filterStatus === '' || product.status.toString() === this.filterStatus;
+    const matchesMinPrice = this.minPrice == null || product.price >= this.minPrice;
+    const matchesMaxPrice = this.maxPrice == null || product.price <= this.maxPrice;
+
+    return matchesName && matchesStatus && matchesMinPrice && matchesMaxPrice;
+  });
 }
+}
+
