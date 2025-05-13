@@ -23,17 +23,23 @@ constructor(private router: Router, private http: HttpClient) {}
   products: Product[] = [];
   searchTerm: string = '';
   filteredProducts: any[] = [];
+  filterStatus: string = '';
+  minPrice: number | null = null;
+  maxPrice: number | null = null;
+  categories: string[] = [];
+  filterCategory: string = '';
+  filterShow: boolean = false;
 
   ngOnInit(): void{
     this.http.get<Product[]>(this.urls.product.root).subscribe(response => {
       this.products = response;
       this.filteredProducts = this.products;
     });  
-  }
 
-  filterStatus: string = '';
-minPrice: number | null = null;
-maxPrice: number | null = null;
+    this.http.get<string[]>(this.urls.product.categories).subscribe(response => {
+      this.categories = response;
+    });  
+  }
 
 applyFilters(): void {
   this.filteredProducts = this.products.filter(product => {
@@ -41,9 +47,19 @@ applyFilters(): void {
     const matchesStatus = this.filterStatus === '' || product.status.toString() === this.filterStatus;
     const matchesMinPrice = this.minPrice == null || product.price >= this.minPrice;
     const matchesMaxPrice = this.maxPrice == null || product.price <= this.maxPrice;
+    const matchesCategory = this.filterCategory === '' || product.category === this.filterCategory;
 
-    return matchesName && matchesStatus && matchesMinPrice && matchesMaxPrice;
+    return matchesName && matchesStatus && matchesMinPrice && matchesMaxPrice && matchesCategory;
   });
+}
+cleanFilters(): void {
+  this.searchTerm = '';
+  this.filterStatus = '';
+  this.minPrice = null;
+  this.maxPrice = null;
+  this.filterCategory = '';
+  this.filteredProducts = this.products;
+  this.applyFilters();
 }
 }
 
