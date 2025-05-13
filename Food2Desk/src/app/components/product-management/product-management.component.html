@@ -65,6 +65,7 @@
             <table class="table table-bordered align-middle">
               <thead class="table-light">
                 <tr class="text-center">
+                  <th>Imagem</th>
                   <th>Nome</th>
                   <th>Descrição</th>
                   <th>Categoria</th>
@@ -75,6 +76,9 @@
               </thead>
               <tbody>
                 <tr *ngFor="let product of filteredProducts">
+                  <td class="text-center">
+                    <img [src]="product.image" alt="{{ product.name }}" class="img-thumbnail" style="width: 60px; height: 60px; object-fit: cover;">
+                  </td>                  
                   <td><strong>{{ product.name }}</strong></td>
                   <td>{{ product.description }}</td>
                   <td class="text-center">{{ product.category }}</td>

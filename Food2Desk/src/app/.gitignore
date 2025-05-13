@@ -28,6 +28,10 @@ o que falta:
 3. cadastro usuario
 4. tela de historico de pedidos
 
+fazer pos entrega:
+1. [filtro produtos] limpar nao esta funcionando
+
+
 p/ salvar:
 this.productsList = [
       { id: 1, image: "images/coxinha.jpg", name: 'Coxinha', description: 'Coxinha de frango com ou sem catupiry', price: 7.99 }, 
