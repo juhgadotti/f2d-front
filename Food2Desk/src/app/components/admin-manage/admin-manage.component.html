@@ -16,39 +16,50 @@
                 [ngClass]="{'col-md-6': !showThirdColumn, 'col-md-4': showThirdColumn}">
                 <h4 class="d-flex align-items-center">
                     Novos pedidos
-                    <div class="badge ms-2 new-order-length">{{ orderListStatus(1).length }}</div>
+                    <div class="badge badge-neworder ms-2">{{ orderListStatus(1).length }}</div>
+                    <div style="float: right !important;"><i class="fa-solid fa-basket-shopping order-delivery"></i>
+                    </div>
                 </h4>
                 <div id="newOrders">
                     <div *ngFor="let item of orderListStatus(1)" class="order-item">
                         <div>
-                            <span class="order-code text-muted">#{{ item.code }}</span>
+                            <span class="order-code text-muted">#{{ item.code }}</span> <input type="checkbox">
                         </div>
                         <div class="order-header">
                             <span class="order-title">Itens:</span>
                             <div class="order-icons">
-                              <i class="fa-solid fa-basket-shopping order-delivery" (click)="updateOrderStatus(item, 2)"></i>
-                                 <i class="fa-solid fa-circle-check order-check" (click)="updateOrderStatus(item, 3)"></i>
-                                 <i class="fa fa-eye" (click)="item.showDetails = !item.showDetails"></i>
+                                <i class="fa-solid fa-basket-shopping order-delivery"
+                                    (click)="updateOrderStatus(item, 2)"></i>
+                                <i class="fa-solid fa-circle-check order-check"
+                                    (click)="updateOrderStatus(item, 3)"></i>
+                                <i class="fa"
+                                    [ngClass]="{'fa-caret-down': !item.showDetails, 'fa-caret-up': item.showDetails}"
+                                    (click)="item.showDetails = !item.showDetails"></i>
                             </div>
-                          </div>                                                  
+                        </div>
                         <ul>
                             <li *ngFor="let product of item.cart">
                                 {{product.quantity}}x {{product.name}}
                             </li>
-                        </ul>     
+                        </ul>
                         <div *ngIf="item.showDetails">
+                            <hr>
                             <!-- Conteúdo extra do card -->
-                            <p>Endereço: {{ item.totalCharge }}</p>
-                           
+                            <p>Bloco: {{item.office?.block}} - Andar: {{item.office?.floor}}- Escritório:
+                                {{item.office?.number}}</p>
+
                             <!-- ou qualquer outra info -->
-                          </div>                  
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="col-12 col-md-6 orders-card"
                 [ngClass]="{'col-md-6': !showThirdColumn, 'col-md-4': showThirdColumn}">
-                <h4>Em Entrega</h4>
+                <h4>
+                    Em Entrega
+                    <div class="badge badge-delivery ms-2">{{ orderListStatus(2).length }}</div>
+                </h4>
                 <div id="inDelivery">
                     <div *ngFor="let item of orderListStatus(2)" class="order-item">
                         <span>Andar: {{ item.office?.floor }} - Escritorio: {{ item.office?.number }} </span>
@@ -65,7 +76,10 @@
                 </div>
             </div>
             <div class="col-12 col-md-4 orders-card" *ngIf="showThirdColumn" id="concludedColumn">
-                <h4>Concluídos</h4>
+                <h4>
+                    Concluídos
+                    <div class="badge badge-completed ms-2">{{ orderListStatus(2).length }}</div>
+                </h4>
                 <div id="concludedOrders">
                     <div *ngFor="let item of orderListStatus(3)" class="order-item">
                         <h6>#{{ item.code }}</h6> <span>R${{item.totalCharge}}</span>
