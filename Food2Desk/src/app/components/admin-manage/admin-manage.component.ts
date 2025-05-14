@@ -21,6 +21,7 @@ export class AdminManageComponent implements OnInit {
     private urls = Food2DeskApi.urls;
     newOrderList: Order[] = [];
     showThirdColumn: boolean = false;
+    showDetails: boolean = false;
 
   ngOnInit(): void {
     this.http.get<Order[]>(this.urls.order.root).subscribe(response =>{

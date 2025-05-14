@@ -28,14 +28,20 @@
                             <div class="order-icons">
                               <i class="fa-solid fa-basket-shopping order-delivery" (click)="updateOrderStatus(item, 2)"></i>
                                  <i class="fa-solid fa-circle-check order-check" (click)="updateOrderStatus(item, 3)"></i>
-                                 <i class="fa fa-eye"></i>
+                                 <i class="fa fa-eye" (click)="item.showDetails = !item.showDetails"></i>
                             </div>
                           </div>                                                  
                         <ul>
                             <li *ngFor="let product of item.cart">
                                 {{product.quantity}}x {{product.name}}
                             </li>
-                        </ul>                       
+                        </ul>     
+                        <div *ngIf="item.showDetails">
+                            <!-- Conteúdo extra do card -->
+                            <p>Endereço: {{ item.totalCharge }}</p>
+                           
+                            <!-- ou qualquer outra info -->
+                          </div>                  
                     </div>
                 </div>
             </div>
