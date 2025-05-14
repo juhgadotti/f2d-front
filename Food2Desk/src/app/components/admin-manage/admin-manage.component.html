@@ -3,7 +3,7 @@
     <!-- <nav class="navbar navbar-expand-lg px-4"></nav> -->
     <div class="container content-wrapper">
         <div class="header">
-            <h3 class="p-3">Gerenciador de Pedidos
+            <h3 class="p-3">Gerenciar Pedidos
                 <button class="btn btn-swipe-column" (click)="showThirdColumn = !showThirdColumn" id="toggleConcluded">
                     <i class="fa-regular fa-fw"
                         [ngClass]="{'fa-eye': !showThirdColumn, 'fa-eye-slash': showThirdColumn}"></i>
@@ -21,21 +21,21 @@
                 <div id="newOrders">
                     <div *ngFor="let item of orderListStatus(1)" class="order-item">
                         <div>
-                            <p class="order-code text-muted">#{{ item.code }}</p>
+                            <span class="order-code text-muted">#{{ item.code }}</span>
                         </div>
-                        <div class="float-left">
-                            <p>{{item.userName}}</p>
-                            <ul>
-                                <li *ngFor="let product of item.cart">                                    
-                                    {{product.quantity}}x {{product.name}}
-                                </li>
-                            </ul>
-                            <div class="float-right">
-                                <i class="fa-solid fa-basket-shopping order-actions" style="margin-right: 13px;"
-                                    (click)="updateOrderStatus(item, 2)"></i>
-                                <i class="fa-solid fa-circle-check order-check" (click)="updateOrderStatus(item, 3)"></i>
+                        <div class="order-header">
+                            <span class="order-title">Itens:</span>
+                            <div class="order-icons">
+                              <i class="fa-solid fa-basket-shopping order-delivery" (click)="updateOrderStatus(item, 2)"></i>
+                                 <i class="fa-solid fa-circle-check order-check" (click)="updateOrderStatus(item, 3)"></i>
+                                 <i class="fa fa-eye"></i>
                             </div>
-                        </div>                        
+                          </div>                                                  
+                        <ul>
+                            <li *ngFor="let product of item.cart">
+                                {{product.quantity}}x {{product.name}}
+                            </li>
+                        </ul>                       
                     </div>
                 </div>
             </div>

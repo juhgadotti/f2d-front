@@ -141,6 +141,33 @@ h4 {
         justify-content: space-between;
         width: 100%;   
     }
+
+    .order-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%; // para ocupar toda a linha do card
+        margin-bottom: 8px;
+      
+        .order-title {
+          font-weight: bold;
+        }
+      
+        .order-icons {
+          display: flex;
+          gap: 8px;
+      
+          i {
+            cursor: pointer;
+            font-size: 18px;
+      
+            &:hover {
+              color: #656565; // destaque no hover, se quiser
+            }
+          }
+        }
+      }
+      
 }
 
 .order-code{
@@ -149,4 +176,8 @@ h4 {
 
 .order-check{
     color: #009e15;
+}
+
+.order-delivery{
+    color: #ff9f45;
 }

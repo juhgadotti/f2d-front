@@ -21,6 +21,7 @@ export class LoginComponent {
   private urls = Food2DeskApi.urls;
 
   currentView: 'login' | 'register' = 'login';
+  router: any;
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.loginForm = this.fb.group({
@@ -49,7 +50,7 @@ export class LoginComponent {
   }
 
   register(){
-
+    
   }
   switchView(view: number):void {
     this.currentView = view == 1 ? 'login' : 'register';
