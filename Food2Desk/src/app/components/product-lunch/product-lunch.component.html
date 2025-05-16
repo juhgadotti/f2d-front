@@ -34,13 +34,15 @@
                 </div>
 
                 <div class="text-end">
-                    <button class="btn btn-sm btn-outline-primary me-2 add-button" (click)="addDish(day)">
+                    <button class="btn btn-sm btn-outline-primary me-2 add-button" (click)="addDish(day)" *ngIf="editMode[day]">
                         <i class="fa-solid fa-plus"></i>
                     </button>
-                    <button class="btn btn-sm btn-outline-success edit-button" *ngIf="editMode[day]"
+
+                    <button class="btn btn-sm btn-outline-success save-button" *ngIf="editMode[day]"
                         (click)="toggleEditMode(day)">
                         <i class="fa-solid fa-check"></i>
                     </button>
+
                     <button class="btn btn-sm btn-outline-primary edit-button" *ngIf="!editMode[day]"
                         (click)="toggleEditMode(day)">
                         <i class="fa-solid fa-pen-to-square"></i>
