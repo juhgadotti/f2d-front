@@ -7,12 +7,13 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from '../../header/header.component';
 import { Product } from '../../interfaces/product';
 import { ProductRegisterComponent } from '../../components/product-register/product-register.component';
+import { ProductLunchComponent } from '../product-lunch/product-lunch.component';
 //teste
 
 @Component({
   selector: 'app-product-management',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FormsModule, ProductRegisterComponent],
+  imports: [CommonModule, HeaderComponent, FormsModule, ProductRegisterComponent, ProductLunchComponent],
   templateUrl: './product-management.component.html',
   styleUrl: './product-management.component.scss'
 })
