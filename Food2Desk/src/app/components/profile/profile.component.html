@@ -1,1 +1,95 @@
-<p>profile works!</p>
+<main class="container my-4">
+    <div class="row">
+        <!-- dados basico -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 position-relative">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <span><i class="fa-solid fa-user me-2"></i> Dados Básicos</span>
+                    <i class="fa-solid fa-pen-to-square text-white edit-icon"
+                        (click)="isEditingUser = !isEditingUser"></i>
+                </div>
+                <div class="card-body">
+                    <div *ngIf="!isEditingUser; else editMode">
+                        <p><strong>Nome:</strong> {{ user.name }}</p>
+                        <p><strong>Email:</strong> {{ user.email }}</p>
+                        <p><strong>CPF:</strong> {{ user.cpf }}</p>
+                        <p><strong>Telefone:</strong> {{ user.phone }}</p>
+                    </div>
+
+                    <ng-template #editMode>
+                        <div class="mb-2">
+                            <label class="form-label">Nome</label>
+                            <input type="text" class="form-control" [(ngModel)]="user.name" />
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" [(ngModel)]="user.email" />
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label">CPF</label>
+                            <input type="text" class="form-control" [(ngModel)]="user.cpf" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Telefone</label>
+                            <input type="text" class="form-control" [(ngModel)]="user.phone" />
+                        </div>
+
+                        <div class="text-end">
+                            <button class="btn btn-sm btn-success me-2" (click)="saveUserEdit()">Salvar</button>
+                            <button class="btn btn-sm btn-secondary" (click)="cancelUserEdit()">Cancelar</button>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- escritorios -->
+        <!-- Card 2: Escritórios -->
+        <div class="col-md-6 mb-4">
+            <div class="card h-100 position-relative">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <span><i class="fa-solid fa-building me-2"></i> Escritórios</span>
+                    <i class="fa-solid fa-pen-to-square text-white edit-icon"
+                        (click)="isEditingOffices = !isEditingOffices"></i>
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm align-middle">
+                        <thead>
+                            <tr>
+                                <th>Bloco</th>
+                                <th>Andar</th>
+                                <th>Número</th>
+                                <th>Empresa</th>
+                                <th *ngIf="isEditingOffices" class="text-end">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let office of user.offices; let i = index">
+                                <td>{{ office.block }}</td>
+                                <td>{{ office.floor }}</td>
+                                <td>{{ office.number }}</td>
+                                <td>{{ office.enterprise }}</td>
+                                <td *ngIf="isEditingOffices" class="text-end">
+                                    <button class="btn btn-sm btn-outline-primary me-1" (click)="editOffice(i)">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger" (click)="removeOffice(i)">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div *ngIf="isEditingOffices" class="text-end mt-3">
+                        <button class="btn btn-sm btn-success" (click)="addOffice()">
+                            <i class="fa-solid fa-plus me-1"></i> Adicionar Escritório
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
