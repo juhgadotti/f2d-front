@@ -34,5 +34,14 @@
 .tab-product{
     color:#a2a2a2;
     font-weight: bold;
+}
 
+.btn-outline-edit{
+    color: #ff9f45;
+    border: none;
+
+    &:hover{
+        color: white;
+        background-color: #ff9f45;
+    }
 }
