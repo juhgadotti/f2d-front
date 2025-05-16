@@ -8,6 +8,7 @@ import { ProductManagementComponent } from './components/product-management/prod
 import { LoginComponent } from './components/login/login.component';
 import { LunchManageComponent } from './components/lunch-manage/lunch-manage.component';
 import { ProductLunchComponent } from './components/product-lunch/product-lunch.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 export const routes: Routes = [
@@ -18,5 +19,6 @@ export const routes: Routes = [
     {path: "product-register", component: ProductRegisterComponent},
     {path: "product-management", component: ProductManagementComponent},
     {path: "login", component: LoginComponent},
-    {path: "product-lunch", component: ProductLunchComponent}
+    {path: "product-lunch", component: ProductLunchComponent},
+    {path: "profile", component: ProfileComponent}
 ];
