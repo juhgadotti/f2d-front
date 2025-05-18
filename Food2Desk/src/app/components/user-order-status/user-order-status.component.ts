@@ -20,9 +20,17 @@ export class UserOrderStatusComponent implements OnInit {
   private urls = Food2DeskApi.urls;
   orderList: Order[] = [];
 
+  preparingOrders: Order[] = [];
+  deliveryOrders: Order[] = [];
+  completedOrders: Order[] = [];
+
   ngOnInit(): void {
     this.http.get<Order[]>(this.urls.order.root).subscribe(response => {
       this.orderList = response;
+
+      this.preparingOrders = response.filter(order => order.status === 1);
+      this.deliveryOrders = response.filter(order => order.status === 2);
+      this.completedOrders = response.filter(order => order.status === 3);
     });
 
     const orders = [
