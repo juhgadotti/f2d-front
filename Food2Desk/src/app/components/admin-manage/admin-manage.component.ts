@@ -15,7 +15,6 @@ import { Router } from '@angular/router';
   styleUrl: './admin-manage.component.scss'
 })
 
-
 export class AdminManageComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient) { }
 
