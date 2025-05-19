@@ -25,7 +25,7 @@
         </div>
         <!-- Parte direita (ainda vazia) -->
         <div class="card col-md-3 shadow-sm p-3">
-            <h5 class="mb-3">Resumo da Reserva</h5>
+            <h5 class="mb-3">Resumo do Pedido</h5>
 
             <div *ngIf="selectedDishIndex !== null; else noSelection">
                 <p><strong>Prato:</strong> {{ dailyDishes[selectedDishIndex].name }}</p>
@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class="mt-3">
-                    <button class="btn btn-success w-100">Reservar</button>
+                    <button  [disabled]="!consumptionType" class="btn btn-success w-100">Confirmar</button>
                 </div>
             </div>
             <ng-template #noSelection>
