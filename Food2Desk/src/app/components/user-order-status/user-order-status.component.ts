@@ -19,6 +19,7 @@ export class UserOrderStatusComponent implements OnInit {
 
   private urls = Food2DeskApi.urls;
   orderList: Order[] = [];
+  showHistory = false;
 
   preparingOrders: Order[] = [];
   deliveryOrders: Order[] = [];

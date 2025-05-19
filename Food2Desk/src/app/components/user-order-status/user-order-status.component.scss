@@ -1,20 +1,44 @@
 .order-details {
-    margin-top: 3px;
-    display: flex; // Coloca os itens na mesma linha
-    align-items: center; // Alinha os ícones verticalmente com o texto
-    gap: 3rem; // Espaçamento horizontal entre os itens (ajuste conforme necessário)
-  }
+  margin-top: 3px;
+  display: flex; // Coloca os itens na mesma linha
+  align-items: center; // Alinha os ícones verticalmente com o texto
+  gap: 3rem; // Espaçamento horizontal entre os itens (ajuste conforme necessário)
+}
 
-  .space {
-    margin-left: 3rem; // Adiciona um grande espaço antes do segundo elemento
-  }
-  
-  .status{
-    background-color: #ddd;
-    border-radius: 8px;
-    height: 30px;
-    width: 120px;
-    margin-left: 8px;
-    align-items: center !important;
-    border: none;
+.space {
+  margin-left: 3rem; // Adiciona um grande espaço antes do segundo elemento
+}
+
+.status {
+  background-color: #ddd;
+  border-radius: 8px;
+  height: 30px;
+  width: 120px;
+  margin-left: 8px;
+  align-items: center !important;
+  border: none;
+}
+
+.title {
+  max-width: 250px;
+  border-radius: 8px;
+  padding: 0.5rem 1rem; // ou px-3 py-2 se preferir classes
+  display: flex;
+  align-items: center; // importante aqui também!
+  justify-content: center; 
+}
+
+.title-history {
+  background-color: #daffdf;
+  border: 1px solid #82ce7d;
+}
+
+.title-preparation {
+  background-color: #eff6ff;
+  border: 1px solid #c6dffe;
+}
+
+.title-delivery {
+  background-color: #fff5e7;
+  border: 1px solid #ff9f45;
 }

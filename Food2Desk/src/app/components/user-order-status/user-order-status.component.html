@@ -1,53 +1,65 @@
 <app-header></app-header>
 
 <main>
-  <div class="container mt-4">
-    <!-- Em preparação -->
-    <div class="mb-4">
-      <p class="fw-bold fs-5">Pedidos em preparação:</p>
-      <div *ngIf="preparingOrders.length === 0" class="text-muted">Nenhum pedido em preparação</div>
-      <div *ngFor="let order of preparingOrders" class="orderDetails mb-3">
-        <span class="fw-bold">Pedido #{{ order.code }}</span>
-        <button class="status ms-2">Em preparação</button><br>
-        <i class="fa-solid fa-dollar-sign"></i> {{ order.totalCharge }}
-        <span class="space"></span>
-        <i class="fa-solid fa-location-dot"></i> {{ order.office?.number }}
-        <li *ngFor="let item of order.cart">
-          {{ item.name }} ({{ item.quantity }})
-        </li>
-      </div>
-    </div>
+    <!-- sentindo falta de algo aqui? faça um pedido! -->
+    <div class="container mt-4">
+        <!-- Em preparação -->
+        <div class="mb-4" *ngIf="preparingOrders.length != 0">
+            <div class="title title-preparation d-flex align-items-center">
+                <p class="fw-bold fs-5 m-0"><i class="fa-solid fa-utensils fa-fw me-2"></i>Preparando</p>
+            </div>
+            <!-- <div *ngIf="preparingOrders.length === 0" class="text-muted">Nenhum pedido em preparação</div> -->
+            <div *ngFor="let order of preparingOrders" class="orderDetails mb-3">
+                <span class="fw-bold">Pedido #{{ order.code }}</span>
+                <br>
+                <i class="fa-solid fa-dollar-sign"></i> {{ order.totalCharge }}
+                <span class="space"></span>
+                <i class="fa-solid fa-location-dot"></i> {{ order.office?.number }}
+                <li *ngFor="let item of order.cart">
+                    {{ item.name }} ({{ item.quantity }})
+                </li>
+            </div>
+        </div>
 
-    <!-- Saiu para entrega -->
-    <div class="mb-4">
-      <p class="fw-bold fs-5">Saiu para entrega:</p>
-      <div *ngIf="deliveryOrders.length === 0" class="text-muted">Nenhum pedido em entrega</div>
-      <div *ngFor="let order of deliveryOrders" class="orderDetails mb-3">
-        <span class="fw-bold">Pedido #{{ order.code }}</span>
-        <button class="status ms-2">Saiu para entrega</button><br>
-        <i class="fa-solid fa-dollar-sign"></i> {{ order.totalCharge }}
-        <span class="space"></span>
-        <i class="fa-solid fa-location-dot"></i> {{ order.office?.number }}
-        <li *ngFor="let item of order.cart">
-          {{ item.name }} ({{ item.quantity }})
-        </li>
-      </div>
-    </div>
+        <!-- Saiu para entrega -->
+        <div class="mb-4" *ngIf="deliveryOrders.length != 0">
+            <div class="title title-delivery d-flex align-items-center">
+                <p class="fw-bold fs-5 m-0"><i class="fa-solid fa-basket-shopping fa-fw me-2"></i>Saiu para entrega</p>
+            </div>
+            <!-- <div *ngIf="deliveryOrders.length === 0" class="text-muted">Nenhum pedido em entrega</div> -->
+            <div *ngFor="let order of deliveryOrders" class="orderDetails mb-3">
+                <span class="fw-bold">Pedido #{{ order.code }}</span>
+                <br>
+                <i class="fa-solid fa-dollar-sign"></i> {{ order.totalCharge }}
+                <span class="space"></span>
+                <i class="fa-solid fa-location-dot"></i> {{ order.office?.number }}
+                <li *ngFor="let item of order.cart">
+                    {{ item.name }} ({{ item.quantity }})
+                </li>
+            </div>
+        </div>
 
-    <!-- Histórico -->
-    <div class="mb-4">
-      <p class="fw-bold fs-5">Histórico de pedidos:</p>
-      <div *ngIf="completedOrders.length === 0" class="text-muted">Nenhum pedido finalizado</div>
-      <div *ngFor="let order of completedOrders" class="orderDetails mb-3">
-        <span class="fw-bold">Pedido #{{ order.code }}</span>
-        <button class="status ms-2">Concluído</button><br>
-        <i class="fa-solid fa-dollar-sign"></i> {{ order.totalCharge }}
-        <span class="space"></span>
-        <i class="fa-solid fa-location-dot"></i> {{ order.office?.number }}
-        <li *ngFor="let item of order.cart">
-          {{ item.name }} ({{ item.quantity }})
-        </li>
-      </div>
+        <!-- Histórico -->
+        <div class="mb-4" *ngIf="completedOrders.length != 0">
+            <div class="title title-history d-flex align-items-center">
+                <p class="fw-bold fs-5 m-0"><i class="fa-solid fa-list fa-fw me-2"></i>Histórico</p>
+                <!-- <button class="btn btn-sm btn-light p-1 ms-3" (click)="showHistory = !showHistory">
+                <i class="fa-solid" [ngClass]="showHistory ? 'fa-eye-slash' : 'fa-eye'"></i>
+            </button> -->
+            </div>
+            <!-- <div *ngIf="completedOrders.length === 0" class="text-muted">Nenhum pedido finalizado</div> -->
+            <div>
+                <div *ngFor="let order of completedOrders" class="orderDetails mb-3">
+                    <span class="fw-bold">Pedido #{{ order.code }}</span>
+                    <br>
+                    <i class="fa-solid fa-dollar-sign"></i> {{ order.totalCharge }}
+                    <span class="space"></span>
+                    <i class="fa-solid fa-location-dot"></i> {{ order.office?.number }}
+                    <li *ngFor="let item of order.cart">
+                        {{ item.name }} ({{ item.quantity }})
+                    </li>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </main>
