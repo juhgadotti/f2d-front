@@ -3,30 +3,46 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Food2DeskApi } from '../../../environments/path';
 import { User } from '../../interfaces/user';
 import { HttpClient } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 interface UserAuth {
   email: string,
-  password: string 
+  password: string
 }
 
 @Component({
   selector: 'app-login',
+  standalone: true,
+  imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 
 export class LoginComponent {
   loginForm: FormGroup;
+  registerForm: FormGroup;
+
 
   private urls = Food2DeskApi.urls;
 
-  currentView: 'login' | 'register' = 'login';
+  currentView: 'login' | 'register' | 'offices' = 'register';
   router: any;
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
+    });
+
+    this.registerForm = this.fb.group({
+      name: [''],
+      email: ['', [Validators.required, Validators.email]],
+      confirmEmail: [''],
+      cpf: [''],
+      phone: [''],
+      password: ['', Validators.required],
+      confirmPassword: ['']
     });
   }
 
@@ -38,25 +54,39 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       console.log(this.loginForm.value);
       this.http.post<User>(this.urls.order.root, this.loginForm).subscribe(response => {
-            console.log(response);
-          });
+        console.log(response);
+      });
     }
   }
 
-  login(){
+  login() {
     this.http.post<User>(this.urls.order.root, this.userAuth).subscribe(response => {
       console.log(response);
     });
   }
 
-  register(){
-    
-  }
-  switchView(view: number):void {
-    this.currentView = view == 1 ? 'login' : 'register';
+  register() {
+    console.log('oi')
+    this.switchView(3);
   }
 
-  loginTest(){
+  switchView(view: number): void {
+    console.log(view)
+    switch (view) {
+      case 1:
+        this.currentView = 'login';
+        break;
+      case 2:
+        this.currentView = 'register';
+        break;
+      case 3:
+        this.currentView = 'offices';
+        break;
+    }
+    console.log(this.currentView)
+  }
+
+  loginTest() {
     console.log('socorro')
     // this.http.get<User>(this.urls.order.root, this.loginForm).subscribe(response => {
     //   console.log(response);
