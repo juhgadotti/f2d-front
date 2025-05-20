@@ -6,4 +6,5 @@
     price: number
     category: string
     status: number | string
+    dayweek: number | null 
 }

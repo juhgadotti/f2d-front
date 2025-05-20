@@ -1,2 +1,56 @@
 <app-header></app-header>
-<p>admin-lunch works!</p>
+<main>
+  <div class="container content-wrapper">
+    <div class="header">
+      <h3 class="p-3">Gerenciar Almoços
+        <button class="btn btn-swipe-column" (click)="showCompleted = !showCompleted">
+          <i class="fa-regular fa-fw" [ngClass]="{'fa-eye': !showCompleted, 'fa-eye-slash': showCompleted}"></i>
+          {{ showCompleted ? 'Ocultar Concluídos' : 'Exibir Concluídos' }}
+        </button>
+      </h3>
+    </div>
+    <div class="row d-flex">
+      <!-- Pedidos no Local -->
+      <div class="col-12 col-md-6 orders-card">
+        <h4>
+          No Local
+          <div class="badge badge-neworder ms-2">{{ lunchListStatus(1).length }}</div>
+        </h4>
+        <div *ngFor="let item of lunchListStatus(1)" class="order-item">
+          <div class="order-header">
+            <div>
+              <span class="order-code text-muted">#{{ item.id }}</span>
+            </div>
+            <div class="order-icons">
+              <i class="fa-solid fa-circle-check order-check" (click)="updateLunchStatus(item, 2)"></i>
+            </div>
+          </div>
+          <div>
+            <strong>{{ item.userName }}</strong><br>
+            Prato: {{ item.product.name }}<br>
+            Valor: R${{ item.product.price.toFixed(2) }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Concluídos -->
+      <div class="col-12 col-md-6 orders-card" *ngIf="showCompleted">
+        <h4>
+          Concluídos
+          <div class="badge badge-completed ms-2">{{ lunchListStatus(2).length }}</div>
+        </h4>
+        <div *ngFor="let item of lunchListStatus(2)" class="order-item">
+          <div class="order-header">
+            <h6>#{{ item.id }}</h6>
+          </div>
+          <div>
+            <strong>{{ item.userName }}</strong><br>
+            Prato: {{ item.product.name }}<br>
+            Valor: R${{ item.product.price.toFixed(2) }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+

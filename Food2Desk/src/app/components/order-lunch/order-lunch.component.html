@@ -2,11 +2,11 @@
 <main>
     <div class="mt-3"></div>
     <div class="row justify-content-center mb-3">
-    <div class="col-md-6 text-center">
-        <h1>Quarta-feira</h1>
-        <span>Escolha entre as nossas opções do dia! O almoço começa a ser servido a partir das 12h</span>
+        <div class="col-md-6 text-center">
+            <h1>Quarta-feira</h1>
+            <span>Escolha entre as nossas opções do dia! O almoço começa a ser servido a partir das 12h</span>
+        </div>
     </div>
-</div>
     <div class="row justify-content-center">
         <!-- Parte esquerda: Lista de opções -->
         <div class="col-md-3">
@@ -31,21 +31,28 @@
             <div *ngIf="selectedDishIndex !== null; else noSelection">
                 <p><strong>Prato:</strong> {{ dailyDishes[selectedDishIndex].name }}</p>
                 <p><strong>Valor:</strong> R$ {{ dailyDishes[selectedDishIndex].price.toFixed(2) }}</p>
+                <p><strong>Local de entrega:</strong></p>
+                <input class="form-check-input mx-2" type="radio" id="office1" name="consumption" value="office1"
+                     />
+                <label class="form-check-label" for="optionEntrega">2145<span style="color: grey;"> (21º andar)</span></label>
 
+                <input class="form-check-input ms-4 me-2" type="radio" id="office2" name="consumption" value="office2"
+                   />
+                <label class="form-check-label" for="optionLocal">2146<span style="color: grey;"> (21º andar)</span></label>
                 <div class="mt-3">
                     <label class="form-label"><strong>Forma de Consumo:</strong></label>
                     <div>
                         <input class="form-check-input mx-2" type="radio" id="optionEntrega" name="consumption"
                             value="entrega" [(ngModel)]="consumptionType" />
                         <label class="form-check-label" for="optionEntrega">Entrega</label>
-                        
-                        <input class="form-check-input ms-4 me-2" type="radio" id="optionLocal" name="consumption" value="local"
-                            [(ngModel)]="consumptionType" />
+
+                        <input class="form-check-input ms-4 me-2" type="radio" id="optionLocal" name="consumption"
+                            value="local" [(ngModel)]="consumptionType" />
                         <label class="form-check-label" for="optionLocal">Comer no local</label>
                     </div>
                 </div>
                 <div class="mt-3">
-                    <button  [disabled]="!consumptionType" class="btn btn-success w-100">Confirmar</button>
+                    <button [disabled]="!consumptionType" class="btn btn-success w-100">Confirmar</button>
                 </div>
             </div>
             <ng-template #noSelection>

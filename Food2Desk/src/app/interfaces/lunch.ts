@@ -1,8 +1,7 @@
 export interface Lunch {
-    id: string 
-    name: string
-    description: string
-    price: number
-    category: string
-    dayweek: number
+    id: number 
+    userName: string   
+    status: number 
+    product: {id: string, name: string, price: number}
+    office:  { officeId: string, floor: string, number: string, block: string | null} | null
 }
