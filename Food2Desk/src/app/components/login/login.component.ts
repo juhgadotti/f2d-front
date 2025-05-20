@@ -4,6 +4,7 @@ import { Food2DeskApi } from '../../../environments/path';
 import { User } from '../../interfaces/user';
 import { HttpClient } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 interface UserAuth {
@@ -22,14 +23,14 @@ interface UserAuth {
 export class LoginComponent {
   loginForm: FormGroup;
   registerForm: FormGroup;
+  officeForm: FormGroup;
 
 
   private urls = Food2DeskApi.urls;
 
   currentView: 'login' | 'register' | 'offices' = 'register';
-  router: any;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private router: Router, private http: HttpClient) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -44,6 +45,13 @@ export class LoginComponent {
       password: ['', Validators.required],
       confirmPassword: ['']
     });
+
+    this.officeForm = this.fb.group({
+      bloco: [''],
+      andar: [null],
+      sala: [null]
+    });
+
   }
 
   userAuth: UserAuth = {
@@ -92,4 +100,12 @@ export class LoginComponent {
     //   console.log(response);
     // });
   }
+
+  submitOffice() {
+    if (this.officeForm.valid) {
+      this.router.navigate(['/user-home']);
+      // lógica de envio aqui
+    }
+  }
+
 }

@@ -117,7 +117,35 @@
         </div>
       </form>
       } @case ('offices') {
-      <form>aaaaaaa</form>
+      <div class="office-form-container p-4">
+        <h6 class="mb-3 text-center">
+          Quase lá! Agora cadastre onde você irá receber os pedidos
+        </h6>
+
+        <form (ngSubmit)="submitOffice()" [formGroup]="officeForm">
+          <div class="mb-3">
+            <label for="bloco" class="form-label">Bloco</label>
+            <input type="text" id="bloco" class="form-control" formControlName="bloco" placeholder="Ex: A, B, C...">
+          </div>
+
+          <div class="mb-3">
+            <label for="andar" class="form-label">Andar</label>
+            <input type="number" id="andar" class="form-control" formControlName="andar" placeholder="Ex: 3">
+          </div>
+
+          <div class="mb-3">
+            <label for="sala" class="form-label">Número da sala</label>
+            <input type="number" id="sala" class="form-control" formControlName="sala" placeholder="Ex: 305">
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100">Cadastrar local</button>
+        </form>
+
+        <p class="text-muted text-center mt-3 small">
+          Você pode adicionar mais locais após o cadastro!
+        </p>
+      </div>
+
       }
       }
     </div>
