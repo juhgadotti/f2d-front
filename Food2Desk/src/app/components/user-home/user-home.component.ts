@@ -10,11 +10,6 @@ import { HttpClient } from '@angular/common/http';
 import { Food2DeskApi } from '../../../environments/path';
 import { Observable } from 'rxjs';
 
-interface Delivery {
-  now: boolean,
-  time: string | null
-}
-
 @Component({
   selector: 'app-user-home',
   imports: [CommonModule, HeaderComponent, FormsModule],
@@ -22,68 +17,77 @@ interface Delivery {
   styleUrls: ['./user-home.component.scss'],
   standalone: true
 })
-   
+
 export class UserHomeComponent implements OnInit {
-  constructor(private router: Router, private http: HttpClient) {}
-  
+  constructor(private router: Router, private http: HttpClient) { }
+
   private urls = Food2DeskApi.urls;
 
   productsList: Product[] = [];
   order: Partial<Order> = { cart: [] };
   user: User = {} as User; //q isso aqui meu deus
   totalString: string | undefined = '';
+  searchTerm: string = '';
+  selectedCategory: string = '';      // lista filtrada que será exibida
+  allProducts: Product[] = [];        // lista original recebida do backend
+  categories: string[] = [];          // categorias únicas
 
   ngOnInit(): void {
-
     this.http.get<Product[]>(this.urls.product.root).subscribe(response => {
       this.productsList = response;
+      this.categories = [...new Set(response.map(p => p.category))];
     });
-    
-    this.http.get<User>(this.urls.user.root).subscribe(response =>{
+
+    this.http.get<User>(this.urls.user.root).subscribe(response => {
       this.user = response;
     });
   }
 
-  delivery: Delivery = {
-     now: true, time: null
-  }
+  reserveDish(){ this.router.navigate(['/order-lunch'])}
   
-  orderItens: boolean =  true;
+
+  filterProducts(): void {
+  this.productsList = this.allProducts.filter(product => {
+    const matchesName = product.name.toLowerCase().includes(this.searchTerm.toLowerCase());
+    const matchesCategory = this.selectedCategory === '' || product.category === this.selectedCategory;
+    return matchesName && matchesCategory;
+  });
+}
+
+  orderItens: boolean = true;
   orderSent: boolean = false;
-    
-  currentView: 'items' | 'details' | 'review'| 'confirmation'  = 'items';
+
+  currentView: 'items' | 'details' | 'review' | 'confirmation' = 'items';
 
   selectedOffice!: User['offices'][0] | null;
 
   addToCart(product: any) {
     console.log(product);
     const item = this.order.cart?.find(cartItem => cartItem.id === product.id);
-    if(!item) {
-        this.order.cart?.push({...product, quantity: 1});
+    if (!item) {
+      this.order.cart?.push({ ...product, quantity: 1 });
     }
     else {
-       item.quantity++;
+      item.quantity++;
     }
-    this.calculateTotalPrice();    
+    this.calculateTotalPrice();
   }
 
-  removeFromCart(product: any){
-    if(product.quantity > 1)
+  removeFromCart(product: any) {
+    if (product.quantity > 1)
       product.quantity--;
-    else  {
+    else {
       this.order.cart = this.order.cart?.filter(cartItem => cartItem.id !== product.id);
     }
     this.calculateTotalPrice();
   }
 
-  calculateTotalPrice(): void{
+  calculateTotalPrice(): void {
     this.order.totalCharge = this.order.cart?.reduce((sum, item) => sum + item.price * item.quantity, 0);
     this.totalString = this.order.totalCharge?.toFixed(2).replace('.', ',');
   }
 
   sendOrder(): void { //vai retornar o recebimento do pedido
-    this.order.deliverNow = this.delivery.now;
-    this.order.deliveryTime = this.delivery.time?.toString();
     //this.order.office?.floor.at;
     //this.http.put<order>().subscribe(response => {
     //  console.log(response)
@@ -91,12 +95,12 @@ export class UserHomeComponent implements OnInit {
     //this.http.post<Order>(this.urls.order.root, this.order, ).pipe(response =>{
     //  console.log(response);
     //});
-    
+
     this.orderNavigate(2);
   }
 
   test() {
-    console.log(this.order);    
+    console.log(this.order);
 
     this.http.post<Order>(this.urls.order.root, this.order).subscribe(response => {
       console.log(response);
@@ -112,13 +116,9 @@ export class UserHomeComponent implements OnInit {
     this.order.cart = [];
     this.selectedOffice = null;
 
-    this.delivery = {
-       now: true, time: ''
-    }
-
     this.totalString = '';
     this.orderNavigate(4);
-    
+
     this.http.get<Product[]>(this.urls.product.root).subscribe(response => {
       this.productsList = response;
     });
@@ -128,12 +128,12 @@ export class UserHomeComponent implements OnInit {
     this.router.navigate(['/user-order-status']);
   }
 
-  onOfficeSelect(){
+  onOfficeSelect() {
     this.order.office = this.selectedOffice;
   }
 
   orderNavigate(view: number) {
-    switch (view){
+    switch (view) {
       case 1:
         this.currentView = 'details';
         break;

@@ -169,3 +169,17 @@
     color: white;
   }
 }
+
+.lunch-banner{
+  background-color:rgb(254, 239, 197);
+  box-shadow: small;
+}
+
+.btn-reserve{
+background-color: #bf4e4b;
+color: #ffff;
+&:hover{
+  background-color: #aa3939;
+
+}
+}
