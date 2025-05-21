@@ -4,8 +4,6 @@ export interface Order {
     userId: string
     userName: string
     totalCharge: number | null
-    deliverNow: boolean
-    deliveryTime: string | null
     toDelivery: boolean
     isLunch: boolean
     status: number
