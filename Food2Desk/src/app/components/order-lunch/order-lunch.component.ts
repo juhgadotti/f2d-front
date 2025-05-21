@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 export class OrderLunchComponent {
   consumptionType: 'entrega' | 'local' | null = null;
   selectedDishIndex: number | null = null;
-
+confirmation: boolean = false;
   dailyDishes = [
     { name: 'Parmegiana de Frango', description: 'Filé empanado com queijo e molho', price: 22.50 },
     { name: 'Peixe Grelhado', description: 'Com legumes e arroz integral', price: 19.90 },

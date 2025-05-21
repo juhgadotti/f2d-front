@@ -26,34 +26,46 @@
         </div>
         <!-- Parte direita (ainda vazia) -->
         <div class="card col-md-3 shadow-sm p-3">
-            <h5 class="mb-3">Resumo do Pedido</h5>
+            <div *ngIf="!confirmation">
+                <h5 class="mb-3">Resumo do Pedido</h5>
 
-            <div *ngIf="selectedDishIndex !== null; else noSelection">
-                <p><strong>Prato:</strong> {{ dailyDishes[selectedDishIndex].name }}</p>
-                <p><strong>Valor:</strong> R$ {{ dailyDishes[selectedDishIndex].price.toFixed(2) }}</p>
-                <p><strong>Local de entrega:</strong></p>
-                <input class="form-check-input mx-2" type="radio" id="office1" name="consumption" value="office1"
-                     />
-                <label class="form-check-label" for="optionEntrega">2145<span style="color: grey;"> (21º andar)</span></label>
+                <div *ngIf="selectedDishIndex !== null; else noSelection">
+                    <p><strong>Prato:</strong> {{ dailyDishes[selectedDishIndex].name }}</p>
+                    <p><strong>Valor:</strong> R$ {{ dailyDishes[selectedDishIndex].price.toFixed(2) }}</p>
+                    <div class="mt-3">
+                        <label class="form-label"><strong>Forma de Consumo:</strong></label>
+                        <div>
+                            <input class="form-check-input mx-2" type="radio" id="optionEntrega" name="consumption"
+                                value="entrega" [(ngModel)]="consumptionType" />
+                            <label class="form-check-label" for="optionEntrega">Entrega</label>
 
-                <input class="form-check-input ms-4 me-2" type="radio" id="office2" name="consumption" value="office2"
-                   />
-                <label class="form-check-label" for="optionLocal">2146<span style="color: grey;"> (21º andar)</span></label>
-                <div class="mt-3">
-                    <label class="form-label"><strong>Forma de Consumo:</strong></label>
+                            <input class="form-check-input ms-4 me-2" type="radio" id="optionLocal" name="consumption"
+                                value="local" [(ngModel)]="consumptionType" />
+                            <label class="form-check-label" for="optionLocal">Comer no local</label>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <p><strong>Local de entrega:</strong></p>
+                        <input [disabled]="consumptionType === 'local'" class="form-check-input mx-2" type="radio"
+                            id="office1" name="local" value="office1" />
+                        <label class="form-check-label" for="optionEntrega">2145<span style="color: grey;"> (21º
+                                andar)</span></label>
+
+                        <input [disabled]="consumptionType === 'local'" class="form-check-input ms-4 me-2" type="radio"
+                            id="office2" name="local" value="office2" />
+                        <label class="form-check-label" for="optionLocal">2146<span style="color: grey;"> (21º
+                                andar)</span></label>
+                    </div>
                     <div>
-                        <input class="form-check-input mx-2" type="radio" id="optionEntrega" name="consumption"
-                            value="entrega" [(ngModel)]="consumptionType" />
-                        <label class="form-check-label" for="optionEntrega">Entrega</label>
-
-                        <input class="form-check-input ms-4 me-2" type="radio" id="optionLocal" name="consumption"
-                            value="local" [(ngModel)]="consumptionType" />
-                        <label class="form-check-label" for="optionLocal">Comer no local</label>
+                        <button [disabled]="!consumptionType" class="btn btn-success mt-3 w-100"
+                            (click)="confirmation = !confirmation">Confirmar</button>
                     </div>
                 </div>
-                <div class="mt-3">
-                    <button [disabled]="!consumptionType" class="btn btn-success w-100">Confirmar</button>
-                </div>
+            </div>
+            <div *ngIf="confirmation" class="container">
+                <p class="text-success fw-bold fs-5 mb-3  justify-content-center">
+                    <i class="fa-solid fa-circle-check me-2"></i>Pedido enviado!
+                </p>
             </div>
             <ng-template #noSelection>
                 <p class="text-muted">Nenhuma opção selecionada</p>
