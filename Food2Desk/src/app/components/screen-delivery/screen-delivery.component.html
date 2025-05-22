@@ -1,41 +1,75 @@
 <app-header></app-header>
+<div class="central-container d-flex justify-content-center align-items-center mt-3">
+    <div class="button-group d-flex gap-3">
+        <button class="btn btn-switch" (click)="showOrder = !showOrder">
+            <i class="fas fa-fw fa-solid fa-cart-shopping my-2"></i>
+        </button>
+        <button class="btn btn-switch" (click)="showOrder = !showOrder">
+            <i class="fas fa-fw fa-solid fa-bell-concierge my-2"></i>
+        </button>
+    </div>
+</div>
 
 <div class="container d-flex justify-content-center mt-4">
-  <div class="col-12 col-md-6 orders-card">
-    
-    <h4 class="text-center mb-4">Em Entrega</h4>
+    <div class="col-12 col-md-6 orders-card">
+        <h4 class="text-center mb-2">Em Entrega</h4>
+        <div id="inDelivery" *ngIf="showOrder">
+            <h5 class="text-center mb-2">Pedidos</h5>
 
-    <div id="inDelivery">
-      <div *ngFor="let item of deliveryList" class="order-item mb-3 p-3 border rounded shadow-sm bg-light">
-        <div class="order-header d-flex justify-content-between align-items-center mb-2">
-          <div class="d-flex align-items-center">            
-            <span class="trong">#{{ item.code }}</span>
-          </div>
-          <div class="order-icons d-flex align-items-center">
-            <i class="fa-solid fa-circle-check text-success me-2" (click)="updateOrderStatus(item)"></i>
-            <i class="fa"
-               [ngClass]="{
+            <div *ngFor="let item of deliveryList" class="order-item mb-3 p-3 border rounded shadow-sm bg-light">
+                <div class="order-header d-flex justify-content-between align-items-center mb-2">
+                    <div class="d-flex align-items-center">
+                        <span class="trong">#{{ item.code }}</span>
+                    </div>
+                    <div class="order-icons d-flex align-items-center">
+                        <i class="fa-solid fa-circle-check text-success me-2" (click)="updateOrderStatus(item)"></i>
+                        <i class="fa" [ngClass]="{
                   'fa-caret-down': !item.showDetails,
                   'fa-caret-up': item.showDetails
-                }"
-               (click)="item.showDetails = !item.showDetails"></i>
-          </div>
+                }" (click)="item.showDetails = !item.showDetails"></i>
+                    </div>
+                </div>
+
+                <div>
+                    <span class="fw-bold">Andar: {{ item.office?.floor }} - Nº: {{ item.office?.number }}</span><br>
+                    <span><span class="little">Cobrar:</span> R${{item.totalCharge}} <span class="little">de</span>
+                        {{item.userName}}</span>
+                </div>
+
+                <div *ngIf="item.showDetails" class="mt-2">
+                    <ul class="small mb-0 ps-3">
+                        <li *ngFor="let product of item.cart">
+                            {{ product.quantity }}x {{ product.name }}
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
-        <div>
-          <span class="fw-bold">Andar: {{ item.office?.floor }} - Nº: {{ item.office?.number }}</span><br>
-          <span><span class="little">Cobrar:</span> R${{item.totalCharge}} <span class="little">de</span> {{item.userName}}</span>
-        </div>
+        <div id="inDelivery" *ngIf="!showOrder">
+            <h5 class="text-center mb-2">Almoço</h5>
 
-        <div *ngIf="item.showDetails" class="mt-2">
-          <ul class="small mb-0 ps-3">
-            <li *ngFor="let product of item.cart">
-              {{ product.quantity }}x {{ product.name }}
-            </li>
-          </ul>
+            <div *ngFor="let item of lunchList" class="order-item mb-3 p-3 border rounded shadow-sm bg-light">
+                <div class="order-header d-flex justify-content-between align-items-center mb-2">
+                    <div class="d-flex align-items-center">
+                        <span class="trong">#{{ item.code }}</span>
+                    </div>
+                    <div class="order-icons d-flex align-items-center">
+                        <i class="fa-solid fa-circle-check text-success me-2" (click)="updateOrderStatus(item)"></i>
+                    </div>
+                </div>
+
+                <div>
+                    <span class="fw-bold">Andar: {{ item.office?.floor }} - Nº: {{ item.office?.number }}</span><br>
+                    <span><span class="little">Cobrar:</span> R${{item.totalCharge}} <span class="little">de</span>
+                        {{item.userName}}</span>
+                </div>
+                <ul class="small mb-0 ps-3">
+                    <li *ngFor="let product of item.cart">
+                        {{ product.name }}
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
     </div>
-
-  </div>
 </div>

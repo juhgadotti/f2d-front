@@ -18,12 +18,16 @@ export class ScreenDeliveryComponent implements OnInit {
 
   private urls = Food2DeskApi.urls;
   deliveryList: (Order & { showDetails?: boolean })[] = [];
+  showOrder: boolean = true;
+  lunchList: Order[] = [];
 
   ngOnInit(): void {
     this.http.get<Order[]>(this.urls.order.root).subscribe(response => {
       console.log(response)
-      this.deliveryList = response.filter(p => p.status == 2);
+      this.deliveryList = response.filter(p => p.status == 2); //&& p.isLunch == false
       this.deliveryList = this.deliveryList .map(item => ({ ...item, showDetails: false }));
+      console.log(this.deliveryList)
+      this.lunchList = response.filter(p => p.status != 2); //l => l.isLunch == true
     });
   }
 

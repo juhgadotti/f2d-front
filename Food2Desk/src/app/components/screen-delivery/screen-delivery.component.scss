@@ -201,3 +201,18 @@ h4 {
     font-size: small;
     color: #5d5d5d;
 }
+
+.central-container {
+  top: 0;
+  left: 0;
+  width: 100vw;
+}
+
+.btn-switch{
+    background-color: #cfd6df;
+    border-color:rgb(148, 148, 148);
+    color: rgb(59, 59, 59);
+    &:hover{
+    background-color:rgb(159, 159, 159);
+    }
+}
