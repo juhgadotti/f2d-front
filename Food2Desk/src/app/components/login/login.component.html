@@ -1,13 +1,14 @@
 <main>
 
-
-
   <div class="login-container d-flex align-items-center justify-content-center">
-    <div class="login-card card shadow p-4">
-
-      <h3 class="text-center mb-4">
-        <i class="fas fa-user-circle me-2 red-dark"></i> {{currentView == 'login' ? 'Login' : 'Cadastre-se'}}
-      </h3>
+    <div class="login-card card shadow p-4" style="max-height: 90vh;">
+      <div class="img justify-content-center">
+        <img src="images/s2d2.png">
+      </div>
+        <h4 class="text-center mb-2" >
+          {{currentView == 'login' ? 'Login' : 'Cadastre-se'}}
+        </h4>
+      
       @switch (currentView) {
       @case('login'){
       <form [formGroup]="loginForm" (ngSubmit)="login()">
@@ -42,80 +43,80 @@
           <i class="fas fa-sign-in-alt me-2"></i> Entrar
         </button>
         <div class="sm mt-2">
-          Não tem uma conta? <a class="link" (click)="switchView(0)"> Cadastre-se</a>
+          Não tem uma conta? <a class="link" (click)="switchView(2)"> Cadastre-se</a>
         </div>
       </form>
 
       } @case('register') {
+      <div style="overflow-y: auto;   max-height: 90vh;">
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
 
-      <form [formGroup]="registerForm" (ngSubmit)="register()">
-
-        <!-- [formGroup]="loginForm" -->
-
-        <div class="mb-3">
-          <label for="email" class="form-label"><i class="fa-solid fa-pen me-2"></i>Nome</label>
-          <div class="input-group">
-            <input type="text" id="register-name" class="form-control" formControlName="name"
-              placeholder="Digite nome e sobrenome">
+          <div class="mb-3">
+            <label for="email" class="form-label"><i class="fa-solid fa-pen me-2"></i>Nome</label>
+            <div class="input-group">
+              <input type="text" id="register-name" class="form-control" formControlName="name"
+                placeholder="Digite nome e sobrenome">
+            </div>
           </div>
-        </div>
 
-        <div class="mb-2">
-          <label for="email" class="form-label"><i class="fas fa-envelope me-2"></i>Email</label>
-          <div class="input-group">
-            <input type="email" id="register-email" class="form-control" formControlName="email"
-              placeholder="Digite seu email">
+          <div class="mb-2">
+            <label for="email" class="form-label"><i class="fas fa-envelope me-2"></i>Email</label>
+            <div class="input-group">
+              <input type="email" id="register-email" class="form-control" formControlName="email"
+                placeholder="Digite seu email">
+            </div>
           </div>
-        </div>
-        <div class="mb-3">
-          <label for="email" class="form-label sm">Confirme seu email</label>
-          <div class="input-group">
-            <input type="email" id="register-email-confirm" class="form-control" formControlName="confirmEmail"
-              placeholder="Confirme seu email">
+          <div class="mb-3">
+            <label for="email" class="form-label sm">Confirme seu email</label>
+            <div class="input-group">
+              <input type="email" id="register-email-confirm" class="form-control" formControlName="confirmEmail"
+                placeholder="Confirme seu email">
+            </div>
           </div>
-        </div>
 
-        <div class="mb-3">
-          <label for="email" class="form-label"><i class="fa-solid fa-id-card me-2"></i>CPF</label>
-          <div class="input-group">
-            <input type="email" id="register-doc" class="form-control" formControlName="cpf"
-              placeholder="Digite seu CPF">
+          <div class="mb-3">
+            <label for="email" class="form-label"><i class="fa-solid fa-id-card me-2"></i>CPF</label>
+            <div class="input-group">
+              <input type="email" id="register-doc" class="form-control" formControlName="cpf"
+                placeholder="Digite seu CPF">
+            </div>
           </div>
-        </div>
 
-        <div class="mb-3">
-          <label for="email" class="form-label"><i class="fa-solid fa-phone me-2"></i>Celular</label>
-          <div class="input-group">
-            <input type="phone" id="register-phone" class="form-control" formControlName="phone"
-              placeholder="Ex: (13) 98765-4321">
+          <div class="mb-3">
+            <label for="email" class="form-label"><i class="fa-solid fa-phone me-2"></i>Celular</label>
+            <div class="input-group">
+              <input type="phone" id="register-phone" class="form-control" formControlName="phone"
+                placeholder="Ex: (13) 98765-4321">
+            </div>
           </div>
-        </div>
 
-        <div class="mb-2">
-          <label for="password" class="form-label"><i class="fas fa-lock me-2"></i>Senha</label>
-          <div class="input-group">
-            <input type="password" id="register-password" class="form-control" formControlName="password"
-              placeholder="Digite sua senha">
-            <br>
+          <div class="mb-2">
+            <label for="password" class="form-label"><i class="fas fa-lock me-2"></i>Senha</label>
+            <div class="input-group">
+              <input type="password" id="register-password" class="form-control" formControlName="password"
+                placeholder="Digite sua senha">
+              <br>
+            </div>
+            <small style="color: gray;">Mínimo 8 caracteres</small>
           </div>
-          <small style="color: gray;">Mínimo 8 caracteres</small>
-        </div>
-        <div class="mb-3">
-          <label for="password" class="form-label sm">Confirme sua senha</label>
-          <div class="input-group">
-            <input type="password" id="register-password-confirm" class="form-control" formControlName="confirmPassword"
-              placeholder="Confirme sua senha">
+          <div class="mb-3">
+            <label for="password" class="form-label sm">Confirme sua senha</label>
+            <div class="input-group">
+              <input type="password" id="register-password-confirm" class="form-control"
+                formControlName="confirmPassword" placeholder="Confirme sua senha">
+            </div>
           </div>
-        </div>
 
-        <button type="submit" class="btn btn-success w-100" style="border-radius: 25px;">
-          <!-- [disabled]="loginForm.invalid" -->
-          Cadastrar
-        </button>
+          <button type="submit" class="btn btn-primary w-100" style="border-radius: 25px;">
+            <!-- [disabled]="loginForm.invalid" -->
+            Cadastrar
+          </button>
+          
+        </form>
+      </div>
         <div class="sm mt-2">
           Já tem uma conta? <a class="link" (click)="switchView(1)"> Entrar</a>
         </div>
-      </form>
       } @case ('offices') {
       <div class="office-form-container p-4">
         <h6 class="mb-3 text-center">

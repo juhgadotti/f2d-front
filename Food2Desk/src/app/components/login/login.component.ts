@@ -28,7 +28,7 @@ export class LoginComponent {
 
   private urls = Food2DeskApi.urls;
 
-  currentView: 'login' | 'register' | 'offices' = 'register';
+  currentView: 'login' | 'register' | 'offices' = 'login';
 
   constructor(private fb: FormBuilder, private router: Router, private http: HttpClient) {
     this.loginForm = this.fb.group({
