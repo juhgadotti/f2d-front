@@ -7,7 +7,8 @@ export const Food2DeskApi = {
         },
         user: {
             root: `${environment.baseServerUrl}/api/user`,
-            authentication: `${environment.baseServerUrl}/api/user/authentication`,
+            auth: `${environment.baseServerUrl}/api/user/auth`,
+            office: `${environment.baseServerUrl}/api/user/office`
         },
         product: {
             root: `${environment.baseServerUrl}/api/product`,
