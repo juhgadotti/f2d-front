@@ -32,7 +32,7 @@
 
         <div *ngFor="let item of productsList">
           <div class="item-card display-flex">
-            <img class="item-image" id="imageItem" [src]="item.image" alt="img"
+            <img class="item-image" id="imageItem" [src]="item.imageUrl" alt="img"
               [ngStyle]="{'width.px': 120, 'heigth.px': 120}">
             <div class="item-info">
               <p class="item-name" style="margin-top: 6px;"> {{ item.name }} </p>
@@ -83,7 +83,7 @@
               (change)="onOfficeSelect()" />
             <label class="form-check-label">
               <strong>{{ office.number }}</strong>
-              <span class="text-muted fst-italic"> ({{ office.floor }}° andar)</span>
+              <span class="text-muted fst-italic"> ({{office.block}}, {{ office.floor }}° andar)</span>
             </label>
           </div>          
 
@@ -101,7 +101,7 @@
           <input type="time" class="form-control w-50 mb-3" [disabled]="delivery.now" min="09:00:00" max="18:00:00"
             [(ngModel)]="delivery.time" /> -->
 
-          <button class="btn btn-outline-success w-100 py-2" [disabled]="!selectedOffice" (click)="sendOrder()">
+          <button class="btn btn-outline-success w-100 py-2" [disabled]="!selectedOffice" (click)="reviewOrder()">
             Revisar Pedido
           </button>
         </div>
@@ -110,6 +110,9 @@
         <i class="fa-solid fa-arrow-left-long f2d-red" (click)="orderNavigate(1)" style="cursor: pointer;"></i>
         <div class="p-3">
           <div class="mb-3">
+            <div class="text-danger mb-3">
+              <i class="fa-solid fa-lg fa-beat-fade fa-triangle-exclamation"></i> Atenção! Não é possível cancelar o pedido após confirmado! <br>
+            </div>
             <p class="mb-1 fw-semibold text-secondary">
               <i class="fa-solid fa-location-dot me-2"></i>
               Local de entrega:
@@ -138,7 +141,7 @@
           </div>
 
           <div class="text-center">
-            <button class="btn btn-success px-4 py-2" (click)="test()">
+            <button class="btn btn-success px-4 py-2" (click)="sendOrder()">
               <i class="fa-solid fa-check me-2"></i> Confirmar pedido!
             </button>
           </div>
@@ -152,7 +155,7 @@
 
           <p class="mb-4">
             <i class="fa-regular fa-clock me-2"></i>
-            Previsão de entrega: <strong>15 minutos</strong>
+            Previsão de entrega: <strong>{{time}} minutos </strong>
           </p>
 
           <div class="d-grid gap-3">

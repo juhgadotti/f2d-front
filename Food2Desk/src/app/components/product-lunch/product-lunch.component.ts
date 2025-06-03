@@ -1,6 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Product } from '../../interfaces/product';
+import { Food2DeskApi } from '../../../environments/path';
 
 @Component({
   selector: 'app-product-lunch',
@@ -10,29 +14,90 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './product-lunch.component.scss'
 })
 
-export class ProductLunchComponent {
-  weekDays = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado', 'Domingo'];
 
-  lunchMenu: { [key: string]: { name: string; quantity: number, price: number }[] } = {
-    'Segunda': [{ name: 'Parmegiana de Frango', quantity: 20, price: 20 }, { name: 'Peixe', quantity: 15, price: 20 }],
-    'Terça': [{ name: 'Feijoada', quantity: 30, price: 20 }, { name: 'Bife Acebolado', quantity: 15, price: 20 }],
+
+
+
+export class ProductLunchComponent implements OnInit {
+  constructor(private router: Router, private http: HttpClient) { }
+  dayMap: { [key: number]: string } = {
+    1: 'Segunda',
+    2: 'Terça',
+    3: 'Quarta',
+    4: 'Quinta',
+    5: 'Sexta',
+    6: 'Sabado',
+    7: 'Domingo'
+  };
+
+  lunchMenu: { [key: string]: Product[] } = {
+    'Segunda': [],
+    'Terça': [],
     'Quarta': [],
     'Quinta': [],
     'Sexta': [],
     'Sabado': [],
-    'Domingo': [],
+    'Domingo': []
   };
+
+  private urls = Food2DeskApi.urls;
+
+  ngOnInit(): void {
+    this.http.get<Product[]>(this.urls.product.lunch).subscribe(response => {
+      for (const key in this.lunchMenu) {
+        this.lunchMenu[key] = [];
+      }
+
+      for (const product of response) {
+        if (product.weekDay != null) { // apenas se for diferente de null
+          const dayName = this.dayMap[product.weekDay];
+          if (dayName) {
+            this.lunchMenu[dayName].push(product);
+          }
+        }
+      }
+    });
+
+  }
+  weekDays = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado', 'Domingo'];
 
   editMode: { [key: string]: boolean } = {};
 
   addDish(day: string) {
+    const weekDay = this.weekDays.indexOf(day) + 1;
     const dishName = prompt(`Digite o nome do prato para ${day}:`);
     const quantity = prompt(`Digite a quantidade de porções para ${dishName}:`);
     const price = prompt(`Digite o valor de ${dishName}:`);
 
+
+    const newLunch = {
+      name: dishName,
+      quantity: quantity,
+      price: price,
+      weekDay: weekDay,
+      category: 'Almoço'
+    };
+
     if (dishName && quantity && !isNaN(Number(quantity))) {
-      this.lunchMenu[day].push({ name: dishName, quantity: Number(quantity), price: Number(price) });
-    }
+      this.http.post<Product>(this.urls.product.lunch, newLunch).subscribe(response => {
+        if (response.weekDay != null) {
+          const dayName = this.weekDays[response.weekDay - 1];
+          if (dayName && this.lunchMenu[dayName]) {
+            this.lunchMenu[dayName].push({
+              name: response.name,
+              quantity: response.quantity,
+              price: response.price,
+              id: response.id,
+              imageUrl: '',
+              description: '',
+              category: '',
+              status: '',
+              weekDay: null
+            });
+          }
+        }
+      });
+    } 
   }
 
   toggleEditMode(day: string) {
@@ -40,6 +105,14 @@ export class ProductLunchComponent {
   }
 
   removeDish(day: string, index: number) {
-    this.lunchMenu[day].splice(index, 1);
+  const dish = this.lunchMenu[day][index];
+
+  if (dish && dish.id) {
+    // Envia pro backend para deletar pelo ID
+    this.http.delete(`${this.urls.product.lunch}/${dish.id}`).subscribe(() => {
+      // Remove do front após confirmar a exclusão
+      this.lunchMenu[day].splice(index, 1);
+    });
   }
+}
 }

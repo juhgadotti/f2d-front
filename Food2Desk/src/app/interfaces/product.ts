@@ -1,10 +1,11 @@
  export interface Product {
     id: string 
-    image: string
+    imageUrl: string
     name: string
     description: string
     price: number
     category: string
+    quantity: number | null
     status: number | string
-    dayweek: number | null 
+    weekDay: number | null 
 }

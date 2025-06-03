@@ -94,12 +94,13 @@ export class LoginComponent {
       localStorage.setItem('admin', 'true');
       const usuario = localStorage.getItem('admin');
       this.router.navigate(['/admin-home'])
+      return;
     }
 
     this.http.put<UserAuth>(this.urls.user.auth, this.userAuth).subscribe({
       next: (response) => {
         console.log('Login bem-sucedido', response);
-        
+        localStorage.setItem('userId', response.userId?.toString() || '');
         this.router.navigate(['/user-home'])
       },
       error: (err) => {

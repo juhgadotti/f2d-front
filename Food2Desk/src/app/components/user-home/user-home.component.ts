@@ -31,28 +31,35 @@ export class UserHomeComponent implements OnInit {
   selectedCategory: string = '';      // lista filtrada que será exibida
   allProducts: Product[] = [];        // lista original recebida do backend
   categories: string[] = [];          // categorias únicas
+  time: number = 12;
 
   ngOnInit(): void {
     this.http.get<Product[]>(this.urls.product.root).subscribe(response => {
-      this.productsList = response;
-      this.categories = [...new Set(response.map(p => p.category))];
+      const filtered = response.filter(a => a.status == 1);
+      this.allProducts = filtered;
+      this.productsList = [...this.allProducts]; // inicializa com todos
+      this.categories = [...new Set(filtered.map(p => p.category))];
     });
 
-    this.http.get<User>(this.urls.user.root).subscribe(response => {
+    const userId = localStorage.getItem('userId');
+    this.http.get<User>(`${this.urls.user.root}/${userId}`).subscribe(response => {
       this.user = response;
     });
   }
 
-  reserveDish(){ this.router.navigate(['/order-lunch'])}
-  
 
-  filterProducts(): void {
+  reserveDish() { this.router.navigate(['/order-lunch']) }
+
+filterProducts() {
   this.productsList = this.allProducts.filter(product => {
-    const matchesName = product.name.toLowerCase().includes(this.searchTerm.toLowerCase());
     const matchesCategory = this.selectedCategory === '' || product.category === this.selectedCategory;
-    return matchesName && matchesCategory;
+    const matchesSearch = product.name.toLowerCase().includes(this.searchTerm.toLowerCase());
+    return matchesCategory && matchesSearch;
   });
 }
+
+
+
 
   orderItens: boolean = true;
   orderSent: boolean = false;
@@ -87,24 +94,15 @@ export class UserHomeComponent implements OnInit {
     this.totalString = this.order.totalCharge?.toFixed(2).replace('.', ',');
   }
 
-  sendOrder(): void { //vai retornar o recebimento do pedido
-    //this.order.office?.floor.at;
-    //this.http.put<order>().subscribe(response => {
-    //  console.log(response)
-    //});     
-    //this.http.post<Order>(this.urls.order.root, this.order, ).pipe(response =>{
-    //  console.log(response);
-    //});
-
-    this.orderNavigate(2);
-  }
-
-  test() {
+  sendOrder() {
     console.log(this.order);
 
+    this.order.userId = localStorage.getItem('userId') ?? undefined;
+    this.order.toDelivery = true;
     this.http.post<Order>(this.urls.order.root, this.order).subscribe(response => {
       console.log(response);
     });
+    this.time += (this.order.cart?.length ?? 1 * 2);
     this.orderNavigate(3);
     //this.http.post<Order>(this.urls.order.root, this.order).subscribe(response => {
     //  console.log(response);
@@ -120,7 +118,10 @@ export class UserHomeComponent implements OnInit {
     this.orderNavigate(4);
 
     this.http.get<Product[]>(this.urls.product.root).subscribe(response => {
-      this.productsList = response;
+      const filtered = response.filter(a => a.status == 1);
+      this.allProducts = filtered;
+      this.productsList = [...this.allProducts]; // inicializa com todos
+      this.categories = [...new Set(filtered.map(p => p.category))];
     });
   }
 
@@ -130,6 +131,10 @@ export class UserHomeComponent implements OnInit {
 
   onOfficeSelect() {
     this.order.office = this.selectedOffice;
+  }
+
+  reviewOrder() {
+    this.orderNavigate(2);
   }
 
   orderNavigate(view: number) {

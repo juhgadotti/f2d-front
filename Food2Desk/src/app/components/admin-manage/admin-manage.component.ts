@@ -23,11 +23,13 @@ export class AdminManageComponent implements OnInit {
   showThirdColumn: boolean = false;
   //showDetails: boolean = false;socorro
   newOrderList: (Order & { showDetails?: boolean })[] = [];
+  selectedOrders: Order[] = [];
+
 
   ngOnInit(): void {
     this.http.get<Order[]>(this.urls.order.root).subscribe(response => {
-      console.log(response)
-      this.newOrderList = response.map(item => ({ ...item, showDetails: false }));
+      const onlyDeliveryList = response.filter(a => a.toDelivery == true);
+      this.newOrderList = onlyDeliveryList.map(item => ({ ...item, showDetails: false }));
     });
   }
 
@@ -45,5 +47,22 @@ export class AdminManageComponent implements OnInit {
   orderListStatus(status: number): (Order & { showDetails?: boolean })[] {
     return this.newOrderList.filter(p => p.status == status);
   }
+
+  toggleSelection(order: Order) {
+  const index = this.selectedOrders.findIndex(o => o.id === order.id);
+  if (index > -1) {
+    this.selectedOrders.splice(index, 1); // desmarca
+  } else {
+    this.selectedOrders.push(order); // seleciona
+  }
+}
+
+updateSelectedOrders(newStatus: number) {
+  this.selectedOrders.forEach(order => {
+    this.updateOrderStatus(order, newStatus);
+  });
+
+  this.selectedOrders = []; // limpa os selecionados após envio
+}
 
 }

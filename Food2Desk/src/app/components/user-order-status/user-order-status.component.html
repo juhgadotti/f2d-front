@@ -5,7 +5,7 @@
     <div class="container mt-4">
         <!-- Em preparação -->
         <div class="mb-4" *ngIf="preparingOrders.length != 0">
-            <div class="title title-preparation d-flex align-items-center">
+            <div class="title title-preparation d-flex align-items-center mb-3">
                 <p class="fw-bold fs-5 m-0"><i class="fa-solid fa-utensils fa-fw me-2"></i>Preparando</p>
             </div>
             <!-- <div *ngIf="preparingOrders.length === 0" class="text-muted">Nenhum pedido em preparação</div> -->
@@ -16,14 +16,15 @@
                 <span class="space"></span>
                 <i class="fa-solid fa-location-dot"></i> {{ order.office?.number }}
                 <li *ngFor="let item of order.cart">
-                    {{ item.name }} ({{ item.quantity }})
+                    {{ item.quantity }}x {{ item.name }} 
                 </li>
+                <hr>
             </div>
         </div>
 
         <!-- Saiu para entrega -->
         <div class="mb-4" *ngIf="deliveryOrders.length != 0">
-            <div class="title title-delivery d-flex align-items-center">
+            <div class="title title-delivery d-flex align-items-center  mb-3">
                 <p class="fw-bold fs-5 m-0"><i class="fa-solid fa-basket-shopping fa-fw me-2"></i>Saiu para entrega</p>
             </div>
             <!-- <div *ngIf="deliveryOrders.length === 0" class="text-muted">Nenhum pedido em entrega</div> -->
@@ -36,12 +37,13 @@
                 <li *ngFor="let item of order.cart">
                     {{ item.name }} ({{ item.quantity }})
                 </li>
+                <hr>
             </div>
         </div>
 
         <!-- Histórico -->
         <div class="mb-4" *ngIf="completedOrders.length != 0">
-            <div class="title title-history d-flex align-items-center">
+            <div class="title title-history d-flex align-items-center mb-3">
                 <p class="fw-bold fs-5 m-0"><i class="fa-solid fa-list fa-fw me-2"></i>Histórico</p>
                 <!-- <button class="btn btn-sm btn-light p-1 ms-3" (click)="showHistory = !showHistory">
                 <i class="fa-solid" [ngClass]="showHistory ? 'fa-eye-slash' : 'fa-eye'"></i>
@@ -58,6 +60,7 @@
                     <li *ngFor="let item of order.cart">
                         {{ item.name }} ({{ item.quantity }})
                     </li>
+                    <hr>
                 </div>
             </div>
         </div>

@@ -22,7 +22,13 @@ export class ScreenKitchenComponent implements OnInit {
   ngOnInit(): void {
     this.http.get<Order[]>(this.urls.order.root).subscribe(response => {
       console.log(response)
-      this.orderList = response.filter(p => p.status == 1);
+      this.orderList = response.filter(p => p.status == 0 && p.isLunch == false);
+    });
+  }
+
+  refresh(){
+    this.http.get<Order[]>(this.urls.order.root).subscribe(response => {     
+      this.orderList = response.filter(p => p.status == 0 && p.isLunch == false);
     });
   }
 }

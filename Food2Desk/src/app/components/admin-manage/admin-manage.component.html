@@ -5,7 +5,8 @@
         <div class="header">
             <h3 class="p-3">Gerenciar Pedidos Delivery
                 <button class="btn btn-swipe-column" (click)="showThirdColumn = !showThirdColumn" id="toggleConcluded">
-                    <i class="fa-regular fa-fw" [ngClass]="{'fa-eye': !showThirdColumn, 'fa-eye-slash': showThirdColumn}"></i>
+                    <i class="fa-regular fa-fw"
+                        [ngClass]="{'fa-eye': !showThirdColumn, 'fa-eye-slash': showThirdColumn}"></i>
                     {{ showThirdColumn ? 'Ocultar Concluídos' : 'Exibir Concluídos' }}
                 </button>
             </h3>
@@ -15,27 +16,28 @@
                 [ngClass]="{'col-md-6': !showThirdColumn, 'col-md-4': showThirdColumn}">
                 <h4 class="d-flex align-items-center">
                     Novos pedidos
-                    <div class="badge badge-neworder ms-2">{{ orderListStatus(1).length }}</div>
+                    <div class="badge badge-neworder ms-2">{{ orderListStatus(0).length }}</div>
                     <div class="ms-auto d-flex gap-2">
-                        <i class="fa-solid fa-basket-shopping order-delivery"></i>
-                        <i class="fa-solid fa-circle-check order-check"></i>
+                        <i class="fa-solid fa-basket-shopping order-delivery" (click)="updateSelectedOrders(1)"></i>
+                        <i class="fa-solid fa-circle-check order-check" (click)="updateSelectedOrders(2)"></i>
                     </div>
                 </h4>
 
                 <div id="newOrders">
-                    <div *ngFor="let item of orderListStatus(1)" class="order-item">
+                    <div *ngFor="let item of orderListStatus(0)" class="order-item">
 
                         <div class="order-header">
                             <div>
-                                <input class="form-check-input me-2" type="checkbox">
+                                <input class="form-check-input me-2" type="checkbox"
+                                    [checked]="selectedOrders.includes(item)" (change)="toggleSelection(item)">
                                 <span class="order-code text-muted">#{{ item.code }}</span>
                             </div>
 
                             <div class="order-icons">
                                 <i class="fa-solid fa-basket-shopping order-delivery"
-                                    (click)="updateOrderStatus(item, 2)"></i>
+                                    (click)="updateOrderStatus(item, 1)"></i>
                                 <i class="fa-solid fa-circle-check order-check"
-                                    (click)="updateOrderStatus(item, 3)"></i>
+                                    (click)="updateOrderStatus(item, 2)"></i>
                                 <i class="fa"
                                     [ngClass]="{'fa-caret-down': !item.showDetails, 'fa-caret-up': item.showDetails}"
                                     (click)="item.showDetails = !item.showDetails"></i>
@@ -64,13 +66,13 @@
                 [ngClass]="{'col-md-6': !showThirdColumn, 'col-md-4': showThirdColumn}">
                 <h4>
                     Em Entrega
-                    <div class="badge badge-delivery ms-2">{{ orderListStatus(2).length }}</div>
+                    <div class="badge badge-delivery ms-2">{{ orderListStatus(1).length }}</div>
                     <div class="ms-auto d-flex gap-2">
                         <i class="fa-solid fa-circle-check order-check"></i>
                     </div>
                 </h4>
                 <div id="inDelivery">
-                    <div *ngFor="let item of orderListStatus(2)" class="order-item">
+                    <div *ngFor="let item of orderListStatus(1)" class="order-item">
                         <div class="order-header">
                             <div>
                                 <input class="form-check-input me-2" type="checkbox">
@@ -79,7 +81,7 @@
 
                             <div class="order-icons">
                                 <i class="fa-solid fa-circle-check order-check"
-                                    (click)="updateOrderStatus(item, 3)"></i>
+                                    (click)="updateOrderStatus(item, 2)"></i>
                             </div>
                         </div>
                         <span style="font-weight: bold;">Andar: {{ item.office?.floor }} - Nº: {{
@@ -102,7 +104,7 @@
                     <div class="badge badge-completed ms-2">{{ orderListStatus(2).length }}</div>
                 </h4>
                 <div id="concludedOrders">
-                    <div *ngFor="let item of orderListStatus(3)" class="order-item">
+                    <div *ngFor="let item of orderListStatus(2)" class="order-item">
                         <div class="order-header">
                             <h6>#{{ item.code }}</h6>
                             <div class="order-icons">

@@ -23,30 +23,30 @@
         <!-- COLUNA: LOCAL -->
         <div class="row">
             <div class="col-12 col-md-6 orders-card px-3">
-                <h4>Consumo no Local <span class="badge badge-neworder ms-2">{{ lunchListStatus(1).length }}</span></h4>
-                <div *ngFor="let item of lunchListStatus(1)" class="order-item">
+                <h4>Consumo no Local <span class="badge badge-neworder ms-2">{{ lunchList.length }}</span></h4>
+                <div *ngFor="let item of lunchList" class="order-item">
                     <div class="order-header">
-                        <h6>#{{ item.id }}</h6>
+                        <h6>#{{ item.code }}</h6>
                         <div class="order-icons">
-                            <i class="fa-solid fa-circle-check order-check" (click)="updateLunchStatus(item, 3)"></i>
+                            <i class="fa-solid fa-circle-check order-check" (click)="updateOrderStatus(item)"></i>
                         </div>
                     </div>
                     <div>
                         <strong>{{ item.userName }}</strong><br>
-                        <span>{{ item.product.name }}</span> - R${{ item.product.price }}
+                            <span *ngFor="let product of item.cart"> {{ product.name }} </span> - R${{ item.totalCharge }}
                     </div>
                 </div>
             </div>
             <div class="col-12 col-md-6 orders-card px-3">
-                <h4>Retirados <span class="badge badge-completed ms-2">{{ lunchListStatus(3, false).length }}</span></h4>
+                <h4>Retirados <span class="badge badge-completed ms-2">{{ lunchCompleted.length }}</span></h4>
 
-                <div *ngFor="let item of lunchListStatus(3, false)" class="order-item">
+                <div *ngFor="let item of lunchCompleted" class="order-item">
                     <div class="order-header">
-                        <h6>#{{ item.id }}</h6>
+                        <h6>#{{ item.code }}</h6>
                     </div>
                     <div>
                         <strong>{{ item.userName }}</strong><br>
-                        {{ item.product.name }} - R${{ item.product.price }}
+                        <span *ngFor="let product of item.cart"> {{ product.name }} </span> - R${{ item.totalCharge }}
                     </div>
                 </div>
             </div>

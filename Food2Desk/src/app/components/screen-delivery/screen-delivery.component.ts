@@ -23,15 +23,25 @@ export class ScreenDeliveryComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.get<Order[]>(this.urls.order.root).subscribe(response => {
-      console.log(response)
-      this.deliveryList = response.filter(p => p.status == 2); //&& p.isLunch == false
+      this.deliveryList = response.filter(p => p.status == 1 && p.isLunch == false);
       this.deliveryList = this.deliveryList .map(item => ({ ...item, showDetails: false }));
-      console.log(this.deliveryList)
-      this.lunchList = response.filter(p => p.status != 2); //l => l.isLunch == true
-    });
+      this.lunchList = response.filter(p => p.status == 1 &&  p.isLunch == true); //
+    });   
+  }
+
+  getLists(){
+    this.http.get<Order[]>(this.urls.order.root).subscribe(response => {
+      this.deliveryList = response.filter(p => p.status == 1 && p.isLunch == false);
+      this.deliveryList = this.deliveryList .map(item => ({ ...item, showDetails: false }));
+      this.lunchList = response.filter(p => p.status == 1 &&  p.isLunch == true && p.toDelivery == true); //
+    });   
   }
 
   updateOrderStatus(item: any) {
     console.log(item);
+    item.status = 2;
+     this.http.put(this.urls.order.status, item).subscribe(response => {
+      this.getLists();
+    });
   }
 }

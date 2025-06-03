@@ -26,13 +26,16 @@ export class UserOrderStatusComponent implements OnInit {
   completedOrders: Order[] = [];
 
   ngOnInit(): void {
-    this.http.get<Order[]>(this.urls.order.root).subscribe(response => {
-      this.orderList = response;
+    const userId = localStorage.getItem('userId');
 
-      this.preparingOrders = response.filter(order => order.status === 1);
-      this.deliveryOrders = response.filter(order => order.status === 2);
-      this.completedOrders = response.filter(order => order.status === 3);
-    });
+    this.http.get<Order[]>(`${this.urls.order.root}/${userId}`).subscribe(response => {
+      console.log(response)
+          this.orderList = response;
+
+          this.preparingOrders = response.filter(order => order.status === 0);
+          this.deliveryOrders = response.filter(order => order.status === 1);
+          this.completedOrders = response.filter(order => order.status === 2);
+        });
 
     const orders = [
       {

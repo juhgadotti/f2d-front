@@ -191,10 +191,20 @@ h4 {
 
 .order-check {
     color: #009e15;
+    cursor: pointer;
+    
+    &:hover{
+        color: #016b0f;
+    }
 }
 
 .order-delivery {
     color: #ff9f45;
+    cursor: pointer;
+
+    &:hover{
+        color: #df7817;
+    }
 }
 
 .little{

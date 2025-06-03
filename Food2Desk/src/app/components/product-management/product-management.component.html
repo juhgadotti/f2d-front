@@ -26,11 +26,21 @@
     <div class="tab-content">
       <!-- Product List Tab -->
       <div class="tab-pane fade show active" id="productList" role="tabpanel">
-        <div class="mb-3 d-flex justify-content-between align-items-center">
-          <input type="text" class="form-control w-50" placeholder="Buscar por nome..." [(ngModel)]="searchTerm"
+        <div class="mb-3 d-flex align-items-center gap-2">
+          <!-- Campo de busca ocupa mais espaço -->
+          <input type="text" class="form-control flex-grow-1" placeholder="Buscar por nome..." [(ngModel)]="searchTerm"
             (input)="applyFilters()" />
-          <button class="btn btn-filter-outline" (click)="filterShow = !filterShow">Filtros<i class="fa-solid ms-1"
-              [class.fa-caret-down]="!filterShow" [class.fa-caret-up]="filterShow"></i></button>
+
+          <!-- Botão de atualizar -->
+          <button class="btn btn-filter-outline" (click)="updateList()">
+            <i class="fa-solid fa-rotate-right m-1"></i>
+          </button>
+
+          <!-- Botão de filtro -->
+          <button class="btn btn-filter-outline" (click)="filterShow = !filterShow" style="width: 110px;">
+            Filtros
+            <i class="fa-solid ms-1" [class.fa-caret-down]="!filterShow" [class.fa-caret-up]="filterShow"></i>
+          </button>
         </div>
         <div class="row mb-3" *ngIf="filterShow">
           <div class="col-md-3">
@@ -71,7 +81,7 @@
           <table class="table table-bordered align-middle">
             <thead class="table-light">
               <tr class="text-center">
-                <!-- <th>Imagem</th> -->
+                <th>Imagem</th>
                 <th>Nome</th>
                 <th>Descrição</th>
                 <th>Categoria</th>
@@ -86,6 +96,8 @@
                   <img [src]="product.image" alt="{{ product.name }}" class="img-thumbnail"
                     style="width: 60px; height: 60px; object-fit: cover;">
                 </td> -->
+                <td class="text-center"><img class="product-image" id="imageItem" [src]="product.imageUrl" alt="img"
+                    [ngStyle]="{'width.px': 40, 'heigth.px': 40}"></td>
                 <td><strong>{{ product.name }}</strong></td>
                 <td>{{ product.description }}</td>
                 <td class="text-center">{{ product.category }}</td>
@@ -97,13 +109,18 @@
                     *ngIf="product.status !== 1 && product.status !== 'Active'">Inativo</span>
                 </td>
                 <td class="text-center">
-                  <button class="btn btn-sm btn-outline-edit me-1 btn-round" title="Edit">
+                  <button class="btn btn-sm btn-outline-edit me-1 btn-round" title="Edit"
+                    (click)="openEditModal(product)">
                     <i class="fa fa-pen"></i>
                   </button>
-                  <button class="btn btn-sm btn-outline-danger me-1 btn-round" title="Delete">
+
+                  <button class="btn btn-sm btn-outline-danger me-1 btn-round" title="Delete"
+                    (click)="prepareDelete(product.id)" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
                     <i class="fa fa-trash"></i>
                   </button>
-                  <button class="btn btn-sm btn-outline-success btn-round" title="Toggle Status">
+
+                  <button class="btn btn-sm btn-outline-success btn-round" title="Toggle Status"
+                    (click)="changeProductStatus(product.id)">
                     <i class="fa fa-power-off"></i>
                   </button>
                 </td>
@@ -125,4 +142,79 @@
       </div>
     </div>
   </div>
+
+
+  <!-- Modal de Confirmação -->
+  <div #confirmDeleteModal class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmDeleteLabel">Confirmar Exclusão</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+          Tem certeza que deseja excluir este produto?
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button class="btn btn-danger" (click)="confirmDelete()">Excluir</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Product Modal -->
+  <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true"
+    #editProductModal>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editProductModalLabel">Editar Produto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label class="form-label">Nome</label>
+              <input type="text" class="form-control" [(ngModel)]="product.name" name="name">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Descrição</label>
+              <textarea class="form-control" [(ngModel)]="product.description" name="description"></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Categoria</label>
+              <input type="text" class="form-control" [(ngModel)]="product.category" name="category">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Preço</label>
+              <input type="number" class="form-control" [(ngModel)]="product.price" name="price" step="0.01">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Status</label>
+              <select class="form-select" [(ngModel)]="product.status" name="status">
+                <option [value]="1">Ativo</option>
+                <option [value]="0">Inativo</option>
+              </select>
+            </div>
+            <div class="form-group mb-3 col-12">
+              <label style="margin-bottom: 1%;" for="imageUrl">Arquivo Imagem</label>
+              <input type="file" id="imageUrl" class="form-control" (change)="uploadSupabase($event)">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success" (click)="updateProduct()">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </main>

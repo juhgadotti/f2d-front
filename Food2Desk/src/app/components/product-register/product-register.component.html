@@ -41,11 +41,15 @@
 
       <div class="form-group mb-3 col-12">
         <label style="margin-bottom: 1%;" for="imageUrl">Arquivo Imagem</label>
-        <input type="file" id="imageUrl" class="form-control">
+        <input type="file" id="imageUrl" class="form-control" (change)="uploadSupabase($event)">
       </div>
 
       <div *ngIf="alreadyExist" class="text-danger mb-3">
         Produto já existente! Edite o atual ou substitua o existente.
+      </div>
+
+      <div *ngIf="sucess" class="text-success bold mb-3">
+        Produto cadastrado com sucesso!
       </div>
 
       <div class="d-flex gap-3 mt-3">
