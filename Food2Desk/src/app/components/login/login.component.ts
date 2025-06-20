@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { UserAuth } from '../../interfaces/userAuth';
 import { UserRegister } from '../../interfaces/userRegister';
 import { CommonModule } from '@angular/common';
+import { LocalStorageService } from '../../services/local-storage.service';
+
 
 @Component({
   selector: 'app-login',
@@ -25,7 +27,7 @@ export class LoginComponent {
 
   private urls = Food2DeskApi.urls;
 
-  currentView: 'login' | 'register' | 'offices' = 'register';
+  currentView: 'login' | 'register' | 'offices' = 'login';
 
   userAuth: UserAuth = {
     email: '',
@@ -88,9 +90,16 @@ export class LoginComponent {
     this.userAuth.email = this.loginForm.value.email;
     this.userAuth.password = this.loginForm.value.password;
 
+    if(this.loginForm.value.email == 'admin@snack2desk.com'){
+      localStorage.setItem('admin', 'true');
+      const usuario = localStorage.getItem('admin');
+      this.router.navigate(['/admin-home'])
+    }
+
     this.http.put<UserAuth>(this.urls.user.auth, this.userAuth).subscribe({
       next: (response) => {
         console.log('Login bem-sucedido', response);
+        
         this.router.navigate(['/user-home'])
       },
       error: (err) => {
@@ -111,13 +120,6 @@ export class LoginComponent {
         this.currentView = 'offices';
         break;
     }
-  }
-
-  loginTest() {
-    console.log('socorro')
-    // this.http.get<User>(this.urls.order.root, this.loginForm).subscribe(response => {
-    //   console.log(response);
-    // });
   }
 
     register() {
@@ -151,7 +153,8 @@ export class LoginComponent {
       this.http.post(this.urls.user.office, office).subscribe(response => {
       console.log(response)
     });
-      // this.router.navigate(['/user-home']);
+    localStorage.setItem('admin', 'false');
+      this.router.navigate(['/user-home']);
       // lógica de envio aqui
     }
   }

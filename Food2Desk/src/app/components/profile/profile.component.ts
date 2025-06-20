@@ -22,13 +22,13 @@ export class ProfileComponent implements OnInit {
   originalUser: any = {};
 
   user = {
-    name: 'Fulano da Silva',
-    email: 'fulano@email.com',
-    cpf: '123.456.789-00',
-    phone: '(11) 99999-9999',
+    name: 'João Silva',
+    email: 'joaosilva@email.com',
+    cpf: '506.927.150-45',
+    phone: '(12) 34567890',
     offices: [
-      { block: 'A', floor: '3', number: '301', enterprise: 'numax' },
-      { block: 'B', floor: '1', number: '102', enterprise: 'amor em nutri' }
+      { block: 'A', floor: '6', number: '610' },
+      // { block: 'B', floor: '1', number: '102', enterprise: 'amor em nutri' }
     ]
   };
 
@@ -59,8 +59,7 @@ export class ProfileComponent implements OnInit {
     this.user.offices.push({
       block: '',
       floor: '',
-      number: '',
-      enterprise: ''
+      number: ''
     });
   }
 

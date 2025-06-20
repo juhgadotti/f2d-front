@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LocalStorageService } from '../services/local-storage.service';
+
 
 @Component({
   selector: 'app-header',
@@ -17,7 +19,14 @@ export class HeaderComponent implements OnInit {
   isUser: boolean = true;
 
   ngOnInit(): void {
-    //pegar tipo de usuario 
+     const usuario = localStorage.getItem('admin');
+     console.log(usuario)
+     if(usuario == 'true'){
+      console.log('a')
+      this.isUser = false;
+     } else {
+      this.isUser = true;
+     }
   }
 
   redirectUser(url: number) {
@@ -46,5 +55,10 @@ export class HeaderComponent implements OnInit {
         this.router.navigate(['/product-management'])
         break;
     }
+  }
+
+  logout(){
+    localStorage.setItem('admin', 'false');
+    this.router.navigate(['/login'])
   }
 }

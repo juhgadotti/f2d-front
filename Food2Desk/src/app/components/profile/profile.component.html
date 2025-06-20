@@ -62,8 +62,7 @@
                             <tr>
                                 <th>Bloco</th>
                                 <th>Andar</th>
-                                <th>Número</th>
-                                <th>Empresa</th>
+                                <th>Número</th>                               
                                 <th *ngIf="isEditingOffices" class="text-end">Ações</th>
                             </tr>
                         </thead>
@@ -71,8 +70,7 @@
                             <tr *ngFor="let office of user.offices; let i = index">
                                 <td>{{ office.block }}</td>
                                 <td>{{ office.floor }}</td>
-                                <td>{{ office.number }}</td>
-                                <td>{{ office.enterprise }}</td>
+                                <td>{{ office.number }}</td>                                
                                 <td *ngIf="isEditingOffices" class="text-end">
                                     <button class="btn btn-sm btn-round btn-outline-edit me-1" (click)="editOffice(i)">
                                         <i class="fa-solid fa-pen"></i>
