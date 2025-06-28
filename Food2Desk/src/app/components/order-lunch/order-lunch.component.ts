@@ -35,7 +35,7 @@ export class OrderLunchComponent implements OnInit {
   private urls = Food2DeskApi.urls;
 
   ngOnInit() {
-    const weekDay = 1;
+    const weekDay = 6;
     this.http.get<Product[]>(`${this.urls.product.lunch}/${weekDay}`).subscribe(response => {
       this.dailyDishes = response;
     });
