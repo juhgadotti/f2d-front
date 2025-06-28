@@ -27,6 +27,7 @@ export class ProductManagementComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient) { }
   @ViewChild('confirmDeleteModal') confirmDeleteModal!: ElementRef;
   @ViewChild('editProductModal') editProductModal!: ElementRef;
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
   private urls = Food2DeskApi.urls;
   products: Product[] = [];
@@ -41,6 +42,7 @@ export class ProductManagementComponent implements OnInit {
   productIdToDelete: string | null = null;
   product: Product = {} as Product;
   imageUrl: string = '';
+  updateImage: boolean = false;
 
   ngOnInit(): void {
     this.list();
@@ -121,16 +123,24 @@ export class ProductManagementComponent implements OnInit {
   }
 
   updateProduct() {
-    this.product.imageUrl = this.imageUrl;
+    if(this.updateImage){
+      this.product.imageUrl = this.imageUrl;
+    } else {
+      this.product.imageUrl = this.product.imageUrl;
+    }
+
     this.http.put<Product>(this.urls.product.root, this.product).subscribe(response => {
       this.list();
       const modalEl = this.editProductModal.nativeElement;
       const modalInstance = bootstrap.Modal.getInstance(modalEl);
       modalInstance.hide();
+       this.fileInput.nativeElement.value = '';
+        this.updateImage = false;
     });
   }
 
   async uploadSupabase(event: any) {
+    this.updateImage = true;
       const file: File = event.target.files[0];
       const filePath = `${file.name}`;    
       let {data, error} = await supabase.storage.from('product').upload(filePath, file);

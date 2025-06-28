@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Product } from '../../interfaces/product';
 import { HttpClient } from '@angular/common/http';
@@ -19,6 +19,8 @@ import { supabase } from '../../supabase.client';
 export class ProductRegisterComponent implements OnInit {
 
   constructor(private router: Router, private http: HttpClient) { }
+  
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
   product: Product = {} as Product;
   name!: string;
@@ -63,9 +65,7 @@ export class ProductRegisterComponent implements OnInit {
       } else {
         this.sucess = true;
         this.alreadyExist = false;
-
-        this.name = ''
-
+        this.clean();
       }
     });
   }
@@ -76,6 +76,7 @@ export class ProductRegisterComponent implements OnInit {
       console.log(response)
       this.alreadyExist = false;
       this.sucess = true;
+      this.clean();
     });
   }
 
@@ -83,6 +84,9 @@ export class ProductRegisterComponent implements OnInit {
     this.name = '';
     this.price = 0;
     this.categoryString = '';
+    this.description = '';
+    this.fileInput.nativeElement.value = '';
+
   }
 
   async uploadSupabase(event: any) {

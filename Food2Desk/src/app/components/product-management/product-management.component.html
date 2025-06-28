@@ -204,7 +204,7 @@
             </div>
             <div class="form-group mb-3 col-12">
               <label style="margin-bottom: 1%;" for="imageUrl">Arquivo Imagem</label>
-              <input type="file" id="imageUrl" class="form-control" (change)="uploadSupabase($event)">
+              <input type="file" #fileInput id="imageUrl" class="form-control" (change)="uploadSupabase($event)">
             </div>
           </form>
         </div>

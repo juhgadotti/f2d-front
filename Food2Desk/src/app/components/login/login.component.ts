@@ -137,6 +137,7 @@ export class LoginComponent {
     this.http.post<any>(this.urls.user.root, this.userRegister).subscribe(response => {
       console.log(response)
       this.userId = response.id;
+      localStorage.setItem('userId', this.userId ?? '');
     });
     this.switchView(3);
   }
